@@ -1,3 +1,7 @@
+#ifndef __BLOCK_H__
+#define __BLOCK_H__
+
+
 #include "cell.h"
 
 
@@ -10,3 +14,5 @@ class Block {
     Cell* cell3;
     Cell* cell4;
 }
+
+#endif

@@ -8,9 +8,10 @@
 // mutiple ineritance 
 class Cell : public Subject, public Observer {
     int val, row, col; 
+    bool iffilled;
 
     public:
-    Cell( const int&, const int&, const int& ); 
+    Cell( const int&, const int&, const int&, iffilled = false); 
 
     // this method will change the subject, so it triggers
     // notifyobservers 

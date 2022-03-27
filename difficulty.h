@@ -18,7 +18,7 @@ class Level: public Difficulty {
     public:
     Level(Difficulty* diff);
     virtual ~Level();
-    std::string getblock(Block* block) override;
+    Block* block getblock(Block* block) override;
 };
 
 class Level0: public Level {
@@ -27,7 +27,7 @@ class Level0: public Level {
     public:
     Level0(Difficulty* diff);
     virtual ~Level0();
-    std::string getblock(Block* block) override;
+    Block* block getblock(Block* block) override;
 };
 
 class Level1: public Level {
@@ -36,7 +36,7 @@ class Level1: public Level {
     public:
     Level1(Difficulty* diff);
     virtual ~Level1();
-    std::string getblock(Block* block) override;
+    Block* block getblock(Block* block) override;
 };
 
 class Level2: public Level {
@@ -45,7 +45,7 @@ class Level2: public Level {
     public:
     Level2(Difficulty* diff);
     virtual ~Level2();
-    std::string getblock(Block* block) override;
+    Block* block getblock(Block* block) override;
 };
 
 class Level3: public Level {
@@ -54,7 +54,7 @@ class Level3: public Level {
     public:
     Level3(Difficulty* diff);
     virtual ~Level3();
-    std::string getblock(Block* block) override;
+    Block* block getblock(Block* block) override;
 };
 
 class Level4: public Level {
@@ -63,7 +63,7 @@ class Level4: public Level {
     public:
     Level4(Difficulty* diff);
     virtual ~Level4();
-    std::string getblock() override;
+    Block* block getblock(Block* block) override;
 };
 
 class ActionHeavy: public Level {
@@ -72,7 +72,7 @@ class ActionHeavy: public Level {
     public:
     ActionHeavy(Difficulty* diff);
     virtual ~ActionHeavy();
-    std::string getblock() override;
+    Block* block getblock(Block* block) override;
 };
 
 #endif

@@ -1,12 +1,13 @@
-#ifndef __difficulty_H__
-#define __difficulty_H__
+#ifndef __DIFFICULTY_H__
+#define __DIFFICULTY_H__
 
 #include <iostream>
+#include "block.h"
 #include <string>
 
 class Difficulty {
   public:
-    virtual std::string getblock() = 0;
+    virtual std::string getblock(Block* block) = 0;
     virtual ~Difficulty();
 };
 
@@ -17,7 +18,7 @@ class Level: public Difficulty {
     public:
     Level(Difficulty* diff);
     virtual ~Level();
-    std::string getblock() override;
+    std::string getblock(Block* block) override;
 };
 
 class Level0: public Level {
@@ -26,7 +27,7 @@ class Level0: public Level {
     public:
     Level0(Difficulty* diff);
     virtual ~Level0();
-    std::string getblock() override;
+    std::string getblock(Block* block) override;
 };
 
 class Level1: public Level {
@@ -35,7 +36,7 @@ class Level1: public Level {
     public:
     Level1(Difficulty* diff);
     virtual ~Level1();
-    std::string getblock() override;
+    std::string getblock(Block* block) override;
 };
 
 class Level2: public Level {
@@ -44,7 +45,7 @@ class Level2: public Level {
     public:
     Level2(Difficulty* diff);
     virtual ~Level2();
-    std::string getblock() override;
+    std::string getblock(Block* block) override;
 };
 
 class Level3: public Level {
@@ -53,7 +54,7 @@ class Level3: public Level {
     public:
     Level3(Difficulty* diff);
     virtual ~Level3();
-    std::string getblock() override;
+    std::string getblock(Block* block) override;
 };
 
 class Level4: public Level {

@@ -16,9 +16,11 @@ Level0::Level0(Difficulty* diff): Level{diff} { }
 
 Level0::~Level0() { }
 
-std::string Level0::getblock() { }
+std::string Level0::getblock() { 
+    return 
+}
 
-Level1::Level1(Difficulty* diff): Level{diff} { }
+Level1::Level1(Difficulty* diff) Level{diff} { }
 
 Level1::~Level1() { }
 

@@ -20,16 +20,6 @@ class Level: public Difficulty {
     std::string getblock() override;
 };
 
-
-class Level: public Difficulty {
-    protected:
-    Difficulty* diff;
-    public:
-    Level(Difficulty* diff);
-    virtual ~Level();
-    std::string getblock() override;
-};
-
 class Level0: public Level {
     protected:
     Difficulty* diff;

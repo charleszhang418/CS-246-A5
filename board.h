@@ -9,30 +9,33 @@
 
 // mutiple ineritance 
 class Board : public Subject, public Observer {
+    int width, height;
+    int score;
     int level;
-    int width = 11;
-    int height = 15; 
     std::vector<std::vector<Cell*>> cells;
-    int mark = 0;
 
     public:
-    Board( const int&, const int&, const int&); 
+    Board(int width, int height, int score, int level); 
+    ~Board();
 
+    void initial();
+
+    // Setters
+    void setLevel(int level);
+    void setScore(int score);
+
+    // Getters
+    int getLevel() const;
+    int getScore() const;
     // this method will change the subject, so it triggers
     // notifyobservers 
     bool isover();
 
-    bool operationvalid();
+    bool isvalid();
 
     void resetgame();
 
     bool isRowFull(const int&);
-
-    void setvalue(const int&);
-
-    int getvalue();
-
-    int getmark();
 
 
    

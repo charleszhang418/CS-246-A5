@@ -6,7 +6,7 @@
 #include "board.h"
 using namespace std;
 
-Board::Board(const int& level, const int& width, const int& col)
+Board::Board(int width, int height, int score, int level) : width{width}
 
 
 

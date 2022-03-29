@@ -8,7 +8,7 @@
 // mutiple ineritance 
 class Cell : public Subject, public Observer {
     int row, col; 
-    Char val = 'n';
+    char val = 'n';
     
 
     public:

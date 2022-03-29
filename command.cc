@@ -36,6 +36,11 @@ string Command::readcom(string in) {
             return n;
         }
     }
+    for (size_t i = 0; i < short_command.size(); ++i) {
+        if (short_command[i] == in) {
+            return command_list[i];
+        }
+    }
     return "Not found";
 }
 

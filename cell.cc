@@ -6,4 +6,12 @@
 #include "board.h"
 using namespace std;
 
-Cell::Cell(const int& row, const int& col) : row{row}, col{col} {}
+Cell::Cell(int row, int col) : row{row}, col{col} {}
+
+std::vector<int> getState() {
+
+}
+
+void Cell::notify( Subject& ) {
+    return
+}

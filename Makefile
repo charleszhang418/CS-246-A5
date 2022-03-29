@@ -14,6 +14,10 @@ block.o: block.cc block.h
 
 difficulty.o: difficulty.cc difficulty.h
 
+observer.o: observer.cc observer.h
+
+subject.o: subject.cc subject.h
+
 .PHONY: clean
 
 clean:

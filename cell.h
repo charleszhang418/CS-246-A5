@@ -8,19 +8,18 @@
 // mutiple ineritance 
 class Cell : public Subject, public Observer {
     int row, col; 
-    char val = 'n';
-    
+    bool iffilled = false;
 
     public:
-    Cell( const int&, const int&, const int&); 
+    Cell(int, int); 
 
     // this method will change the subject, so it triggers
     // notifyobservers 
     void eraseVal();
 
-    std::vector<int> getState() const override;
+    std::vector<int> getState() const;
 
-    void notify( Subject& ) override; 
+    void notify() override; 
 };
 
 #endif 

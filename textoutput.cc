@@ -12,7 +12,7 @@ using namespace std;
 
 TextOutput::TextOutput(int width, int height //, Board *board1, Board *board2
     ) :
-    width{width}, height{height}//, board1{board1}, board2{board2} 
+    width{width}, height{height} //, board1{board1}, board2{board2} 
     {
 
         for (int i = 0; i < height; ++i) {

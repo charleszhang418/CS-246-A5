@@ -1,16 +1,18 @@
 CXX = g++
 CXXFLAGS = -std=c++14 -Wall -Werror=vla
-OBJECTS = main.o echo.o textprocess.o
-EXEC = a4q3
+OBJECTS = main.o command.o block.o difficulty.o
+EXEC = a5
 
-${EXEC}: echo.o main.o textprocess.o
+${EXEC}: main.o command.o block.o difficulty.o
 		${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
 
-main.o: main.cc echo.h 
+main.o: main.cc command.h 
 
-textprocess.o: textprocess.h textprocess.cc
+command.o: command.cc command.h
 
-echo.o: echo.cc echo.h
+block.o: block.cc block.h
+
+difficulty.o: difficulty.cc difficulty.h
 
 .PHONY: clean
 

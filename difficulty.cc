@@ -1,4 +1,4 @@
-#include"difficulty.h"
+#include "difficulty.h"
 #include <iostream>
 #include <string>
 

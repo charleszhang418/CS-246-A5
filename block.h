@@ -15,8 +15,8 @@ class Block {
     Cell* cell3;
     Cell* cell4;
     public:
-    Block(int shape);
+    Block(int shape, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     ~Block();
-}
+};
 
 #endif

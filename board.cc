@@ -19,23 +19,33 @@ width{width}, height{height} {
     }
 }
 
+char Board::getVal(int col, int row) const {
+    return cells[col][row]->getvalue();
+}
 
+/*
 Block* Board::spin(Block* change) {
     bool suc = true;
-    vector<vector<int>> place =  helper(change);
+    vector<vector<int>> placeold =  helper1(change);
+    vector<vector<int>> placenew =  helper2(change);
     for (int i = 0; i < 4; i++) {
-        int new1 = place[i][0];
-        int new2 = place[i][1];
+        int new1 = placenew[i][0];
+        int new2 = placenew[i][1];
         if (cells[new1][new2]->getiffilled()) {
             suc = false;
         }
     }
     if (suc = true) {
         for (int i = 0; i < 4; i++) {
-            change
+            int old1 = placeold[i][0];
+            int old2 = placeold[i][1];
+            cells[old1][old2]->eraseValue(' ');
+            cells[old1][old2]->eraseIffilled(false);
+            char need = 
     }
 }
 
+*/
 
 
 

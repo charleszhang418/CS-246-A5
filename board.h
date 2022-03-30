@@ -9,9 +9,9 @@
 
 // mutiple ineritance 
 class Board : public Subject, public Observer {
-    int width = 11;
-    int height = 15;
-    int score = 0;
+    int width;
+    int height;
+    int score;
     int level;
     std::vector<std::vector<Cell*>> cells;
 
@@ -28,6 +28,7 @@ class Board : public Subject, public Observer {
     // Getters
     int getLevel() const;
     int getScore() const;
+    char getVal(int col, int row) const;
     // this method will change the subject, so it triggers
     // notifyobservers 
     bool isover();
@@ -40,7 +41,7 @@ class Board : public Subject, public Observer {
 
 
 
-    Block* spin(Block*);
+    // Block* spin(Block*);
 
 
 

@@ -6,7 +6,7 @@
 #include "board.h"
 using namespace std;
 
-Cell::Cell(int row, int col) : row{row}, col{col} {}
+Cell::Cell(int row, int col, char value) :  col{col}, row{row}, value{value} {}
 
 bool Cell::getiffilled() {
     return iffilled;
@@ -24,8 +24,24 @@ char Cell::getvalue() {
     return value;
 }
 
+void Cell::eraseRow(int row) {
+    row = row;
+}
+
+void Cell::eraseCol(int col) {
+    col = col;
+}
+
+void Cell::eraseValue(char value) {
+    value = value;
+}
+
+void Cell::eraseIffilled(bool iffilled) {
+    iffilled = iffilled;
+}
 
 
-void Cell::notify( Subject& ) {
-    return
+
+void Cell::notify() {
+    return;
 }

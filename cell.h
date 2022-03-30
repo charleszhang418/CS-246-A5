@@ -7,16 +7,20 @@
 
 // mutiple ineritance 
 class Cell : public Subject, public Observer {
-    int row, col; 
-    char value = 'n';
+    int col, row; 
+    char value;
     bool iffilled = false;
 
     public:
-    Cell(int, int); 
+    Cell(int, int, char = ' '); 
 
     // this method will change the subject, so it triggers
     // notifyobservers 
-    void eraseVal();
+    void eraseRow(int);
+    void eraseCol(int);
+    void eraseValue(char);
+    void eraseIffilled(bool);
+
 
     bool getiffilled();
     int getrow();

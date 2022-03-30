@@ -84,5 +84,7 @@ class TBlock: Block {
     ~TBlock();
 };
 
+char getc();
+
 
 #endif

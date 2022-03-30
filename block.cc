@@ -221,3 +221,17 @@ ZBlock::~ZBlock() {}
 TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
 
 TBlock::~TBlock() {}
+
+
+
+
+
+
+
+
+
+
+char Block::getc() {
+    return c;
+}
+

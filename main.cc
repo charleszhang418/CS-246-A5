@@ -1,17 +1,21 @@
 #include "command.h"
 #include "board.h"
 #include "cell.h"
+#include "block.h"
+#include "difficulty.h"
+
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <stdio.h>
+
 using namespace std;
 
 int main (int argc, char *argv[]) {
     // Initialization of variables
     Command temp_com;
-
+    int width = 11, height = 18;
     int cur_level = 0;
     int hi_score = 0;
 
@@ -43,8 +47,7 @@ int main (int argc, char *argv[]) {
 
     // Initialize boards with other settings
     // NEED BOARD FULL header file
-    Board *Board1 = new Board{}
-
+    Board *b1 = new Board{}
 
     
 

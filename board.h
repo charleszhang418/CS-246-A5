@@ -15,7 +15,7 @@ class Board : public Subject, public Observer {
     std::vector<std::vector<Cell*>> cells;
 
     public:
-    Board(int width, int height, int score, int level); 
+    Board(int width, int height, int level); 
     ~Board();
 
     void initial();

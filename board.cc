@@ -6,7 +6,7 @@
 #include "board.h"
 using namespace std;
 
-Board::Board(const int& level, const int& width, const int& height): level{level},
+Board::Board(const int level, const int width, const int height) : level{level},
 width{width}, height{height} {
     vector<std::vector<Cell*>> cells;
     for (int i = 0; i < height; i++) {

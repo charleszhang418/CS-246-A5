@@ -19,16 +19,22 @@ width{width}, height{height} {
     }
 }
 
+<<<<<<< Updated upstream
 char Board::getVal(int col, int row) const {
     return cells[col][row]->getvalue();
 }
 
 /*
 Block* Board::spin(Block* change) {
+=======
+/*
+Block* spin(Block* change) {
+>>>>>>> Stashed changes
     bool suc = true;
     vector<vector<int>> placeold =  helper1(change);
     vector<vector<int>> placenew =  helper2(change);
     for (int i = 0; i < 4; i++) {
+<<<<<<< Updated upstream
         int new1 = placenew[i][0];
         int new2 = placenew[i][1];
         if (cells[new1][new2]->getiffilled()) {
@@ -43,6 +49,11 @@ Block* Board::spin(Block* change) {
             cells[old1][old2]->eraseIffilled(false);
             char need = 
     }
+=======
+        int new1 = place[i][0];
+        int new2 = place[i][1];
+
+>>>>>>> Stashed changes
 }
 
 */

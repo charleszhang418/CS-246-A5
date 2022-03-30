@@ -10,48 +10,55 @@ Level::~Level() {
     delete this->diff;
 }
 
-Block* block Level::getblock(Block* block) { }
+// int Level::getWeight() {
+//     return 
+// }
 
 Level0::Level0(Difficulty* diff): Level{diff} { }
 
 Level0::~Level0() { }
 
-Block* block Level0::getblock(Block* block) { 
-    return block;
+int Level0::getWeight() {
+    return this->getWeight();
 }
+    
 
-Level1::Level1(Difficulty* diff) Level{diff} { }
+Level1::Level1(Difficulty* diff): Level{diff} { }
 
 Level1::~Level1() { }
 
-Block* block Level1::getblock(Block* block) { 
-    return block;
+int Level1::getWeight() { 
+    return this->getWeight();
 }
 
 Level2::Level2(Difficulty* diff): Level{diff} { }
 
 Level2::~Level2() { }
 
-Block* block Level2::getblock(Block* block) { 
-     return block;
+int Level2::getWeight() { 
+    return this->getWeight();
 }
 
 Level3::Level3(Difficulty* diff): Level{diff} { }
 
 Level3::~Level3() { }
 
-Block* block Level3::getblock(Block* block) { 
-    if (block->cell1->iffilled)
+int Level3::getWeight() { 
+    return 1 + this->getWeight();
 }
 
 Level4::Level4(Difficulty* diff): Level{diff} { }
 
 Level4::~Level4() { }
 
-Block* block Level4::getblock(Block* block) { }
+int Level4::getWeight() {
+    return this->getWeight();
+ }
 
 ActionHeavy::ActionHeavy(Difficulty* diff): Level{diff} {}
 
 ActionHeavy::~ActionHeavy() {}
 
-Block* block ActionHeavy::getblock(Block* block) { }
+int ActionHeavy::getWeight() {
+    return 2 + this->getWeight();
+}

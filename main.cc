@@ -3,6 +3,7 @@
 #include "cell.h"
 #include "block.h"
 #include "difficulty.h"
+#include "textoutput.h"
 
 
 #include <iostream>
@@ -45,10 +46,14 @@ int main (int argc, char *argv[]) {
 
     }
 
+    Board *b1 = new Board{11, 18, 0};
+    TextOutput t{11, 18, b1, b1};
+    cout << t;
     // Initialize boards with other settings
     // NEED BOARD FULL header file
-    Board *b1 = new Board{}
-
+    
+    
+    return 1;
     
 
     // Game

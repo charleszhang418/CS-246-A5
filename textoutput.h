@@ -16,6 +16,8 @@ class TextOutput {
   public:
     TextOutput(int width, int height, Board *board1, Board *board2);
     ~TextOutput();
+    int getHeight();
+    int getWidth();
     friend std::ostream &operator<<(std::ostream &out, TextOutput &text_out);
 
 };

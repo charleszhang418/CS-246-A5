@@ -12,7 +12,7 @@ class Cell : public Subject, public Observer {
     bool iffilled = false;
 
     public:
-    Cell(int, int, char = ' '); 
+    Cell(int, int, char); 
 
     // this method will change the subject, so it triggers
     // notifyobservers 
@@ -26,8 +26,7 @@ class Cell : public Subject, public Observer {
     int getrow();
     int getcol();
     char getvalue();
-
-    void notify() override; 
+    std::vector<int> getlocation();
 };
 
 #endif 

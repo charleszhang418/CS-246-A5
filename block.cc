@@ -2,6 +2,43 @@
 
 #include <iostream>
 
+
+void Block::erasetype(bool clock) {
+    if (clock) {
+        if (type == 4) {
+            type = 0;
+        } else {
+            type++;
+        }
+    } else {
+        if (type == 0) {
+            type = 4;
+        } else {
+            type--;
+        }
+    }
+}
+
+// void Block::eraseallcell(cell* cell1, cell* cell2, cell* cell3, cell* cell4) {
+//    cell1 = cell1;
+//    cell2 = cell2;
+//    cell3 = cell3;
+//    cell4 = cell4;
+// }
+
+
+
+/*
+vector<vector<int>> Block::getalllocation() {
+    vector<vector<int>> alllocation;
+    alllocation.emplace_back(cell1->getlocation);
+    alllocation.emplace_back(cell2->getlocation);
+    alllocation.emplace_back(cell3->getlocation);
+    alllocation.emplace_back(cell4->getlocation);
+    return alllocation;
+}
+*/
+
 Block::Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): cell1{cell1}, cell2{cell2}, cell3{cell3}, cell4{cell4} { }
 
 int Block::getType() {
@@ -10,7 +47,11 @@ int Block::getType() {
 
 Block::~Block() {}
 
-IBlock::IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+IBlock::IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char IBlock::getChar() {
+    return this->c;
+}
 
 std::vector<std::vector<int>> IBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
@@ -56,7 +97,11 @@ std::vector<std::vector<int>> IBlock::rotate(bool clockwise) {
 
 IBlock::~IBlock() {}
 
-JBlock::JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+JBlock::JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char JBlock::getChar() {
+    return this->c;
+}
 
 std::vector<std::vector<int>> JBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
@@ -202,36 +247,68 @@ std::vector<std::vector<int>> JBlock::rotate(bool clockwise) {
 
 JBlock::~JBlock() {}
 
-LBlock::LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+LBlock::LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char LBlock::getChar() {
+    return this->c;
+}
+
+std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
+    std::vector<std::vector<int>> result;
+    return result;
+}
 
 LBlock::~LBlock() {}
 
-OBlock::OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+OBlock::OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char OBlock::getChar() {
+    return this->c;
+}
+
+std::vector<std::vector<int>> OBlock::rotate(bool clockwise) {
+    std::vector<std::vector<int>> result;
+    return result;
+}
 
 OBlock::~OBlock() {}
 
-SBlock::SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+SBlock::SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char SBlock::getChar() {
+    return this->c;
+}
+
+std::vector<std::vector<int>> SBlock::rotate(bool clockwise) {
+    std::vector<std::vector<int>> result;
+    return result;
+}
 
 SBlock::~SBlock() {}
 
-ZBlock::ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+ZBlock::ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char ZBlock::getChar() {
+    return this->c;
+}
+
+std::vector<std::vector<int>> ZBlock::rotate(bool clockwise) {
+    std::vector<std::vector<int>> result;
+    return result;
+}
 
 ZBlock::~ZBlock() {}
 
-TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block(cell1, cell2, cell3, cell4) { }
+TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+
+char TBlock::getChar() {
+    return this->c;
+}
+
+std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
+    std::vector<std::vector<int>> result;
+    return result;
+}
 
 TBlock::~TBlock() {}
-
-
-
-
-
-
-
-
-
-
-char Block::getc() {
-    return c;
-}
 

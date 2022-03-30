@@ -28,7 +28,7 @@ class Board : public Subject, public Observer {
     // Getters
     int getLevel() const;
     int getScore() const;
-    char getVal(int col, int row) const;
+    char getVal(int col, int row);
     // this method will change the subject, so it triggers
     // notifyobservers 
     bool isover();
@@ -41,7 +41,7 @@ class Board : public Subject, public Observer {
 
 
 
-    // Block* spin(Block*);
+    // Block* spin(Block*, bool);
 
 
 

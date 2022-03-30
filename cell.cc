@@ -2,11 +2,9 @@
 #include "subject.h"
 #include "observer.h"
 #include "cell.h"
-#include "block.h"
-#include "board.h"
 using namespace std;
 
-Cell::Cell(int row, int col, char value) :  col{col}, row{row}, value{value} {}
+Cell::Cell(int row, int col, char value) :  row{row}, col{col}, value{value} {}
 
 bool Cell::getiffilled() {
     return iffilled;
@@ -18,6 +16,13 @@ int Cell::getrow() {
 
 int Cell::getcol() {
     return col;
+}
+
+vector<int> Cell::getlocation() {
+    vector<int> location;
+    location.emplace_back(this->getcol());
+    location.emplace_back(this->getrow());
+    return location;
 }
 
 char Cell::getvalue() {
@@ -40,8 +45,3 @@ void Cell::eraseIffilled(bool iffilled) {
     iffilled = iffilled;
 }
 
-
-
-void Cell::notify() {
-    return;
-}

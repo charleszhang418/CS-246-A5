@@ -8,6 +8,7 @@
 // mutiple ineritance 
 class Cell : public Subject, public Observer {
     int row, col; 
+    char value = 'n';
     bool iffilled = false;
 
     public:

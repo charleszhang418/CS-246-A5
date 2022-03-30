@@ -1,5 +1,5 @@
-#ifndef __CELL_H__
-#define __CELL_H__
+#ifndef __BOARD_H__
+#define __BOARD_H__
 
 #include <vector> 
 #include "subject.h"

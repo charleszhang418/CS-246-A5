@@ -6,7 +6,7 @@
 #include "board.h"
 using namespace std;
 
-Board::Board(const int level, const int width, const int height) : level{level},
+Board::Board(int level, int width, int height) : level{level},
 width{width}, height{height} {
     vector<std::vector<Cell*>> cells;
     for (int i = 0; i < height; i++) {
@@ -14,13 +14,21 @@ width{width}, height{height} {
         for (int j = 0; j < width; j++) {
             Cell* cell = new Cell(j,i);
             line.emplace_back(cell);
+        }
+     cells.emplace_back(line);
     }
-    cells.emplace_back(line);
-}
 }
 
 
-
+Block* spin(Block* change) {
+    bool suc = true;
+    vector<vector<int>> place =  helper(change);
+    for (int i = 0; i < 4; i++) {
+        int new1 = place[i][0];
+        int new2 = place[i][1];
+        if 
+    }
+}
 
 
 

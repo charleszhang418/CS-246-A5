@@ -8,9 +8,23 @@ using namespace std;
 
 Cell::Cell(int row, int col) : row{row}, col{col} {}
 
-std::vector<int> getState() {
-
+bool Cell::getiffilled() {
+    return iffilled;
 }
+
+int Cell::getrow() {
+    return row;
+}
+
+int Cell::getcol() {
+    return col;
+}
+
+char Cell::getvalue() {
+    return value;
+}
+
+
 
 void Cell::notify( Subject& ) {
     return

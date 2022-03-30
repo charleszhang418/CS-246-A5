@@ -18,7 +18,10 @@ class Cell : public Subject, public Observer {
     // notifyobservers 
     void eraseVal();
 
-    std::vector<int> getState() const;
+    bool getiffilled();
+    int getrow();
+    int getcol();
+    char getvalue();
 
     void notify() override; 
 };

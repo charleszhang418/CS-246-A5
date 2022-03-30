@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
-
 using namespace std;
 
 int main (int argc, char *argv[]) {
@@ -42,7 +41,6 @@ int main (int argc, char *argv[]) {
 
     // Initialize boards with other settings
     // NEED BOARD FULL header file
-
 
     
 

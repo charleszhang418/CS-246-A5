@@ -9,12 +9,15 @@
 
 class Block {
     protected:
+    int type = 0;
     Cell* cell1;
     Cell* cell2;
     Cell* cell3;
     Cell* cell4;
     public:
     Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
+    int getType();
     ~Block();
 };
 
@@ -23,6 +26,7 @@ class IBlock: Block {
     char c = 'I';
     public:
     IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~IBlock();
 };
 
@@ -31,6 +35,7 @@ class JBlock: Block {
     char c = 'J';
     public:
     JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~JBlock();
 };
 
@@ -39,6 +44,7 @@ class LBlock: Block {
     char c = 'L';
     public:
     LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~LBlock();
 };
 
@@ -47,6 +53,7 @@ class OBlock: Block {
     char c = 'O';
     public:
     OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~OBlock();
 };
 
@@ -55,6 +62,7 @@ class SBlock: Block {
     char c = 'S';
     public:
     SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~SBlock();
 };
 
@@ -63,6 +71,7 @@ class ZBlock: Block {
     char c = 'Z';
     public:
     ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~ZBlock();
 };
 
@@ -71,6 +80,7 @@ class TBlock: Block {
     char c = 'T';
     public:
     TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    std::vector<std::vector<int>> rotate(bool clockwise) override;
     ~TBlock();
 };
 

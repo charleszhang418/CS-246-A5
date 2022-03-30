@@ -10,7 +10,7 @@
 // mutiple ineritance 
 class Board : public Subject, public Observer {
     int width, height;
-    int score;
+    int score = 0;
     int level;
     std::vector<std::vector<Cell*>> cells;
 

@@ -20,13 +20,19 @@ width{width}, height{height} {
 }
 
 
-Block* spin(Block* change) {
+Block* Board::spin(Block* change) {
     bool suc = true;
     vector<vector<int>> place =  helper(change);
     for (int i = 0; i < 4; i++) {
         int new1 = place[i][0];
         int new2 = place[i][1];
-        if 
+        if (cells[new1][new2]->getiffilled()) {
+            suc = false;
+        }
+    }
+    if (suc = true) {
+        for (int i = 0; i < 4; i++) {
+            change
     }
 }
 

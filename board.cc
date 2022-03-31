@@ -65,6 +65,10 @@ Block* Board::spin(Block* change, bool clock) {
 
 */
 
+Cell* Board::getCell(int col, int row) {
+    return this->cells[col][row];
+}
+
 Board::~Board() {}
 
 

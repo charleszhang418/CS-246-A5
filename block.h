@@ -28,7 +28,7 @@ class Block {
 // vector<vector<int>> getalllocation();
 };
 
-class IBlock: Block {
+class IBlock: public Block {
     protected:
     char c = 'I';
     public:
@@ -38,7 +38,7 @@ class IBlock: Block {
     ~IBlock();
 };
 
-class JBlock: Block {
+class JBlock: public Block {
     protected:
     char c = 'J';
     public:
@@ -48,7 +48,7 @@ class JBlock: Block {
     ~JBlock();
 };
 
-class LBlock: Block {
+class LBlock: public Block {
     protected:
     char c = 'L';
     public:
@@ -58,7 +58,7 @@ class LBlock: Block {
     ~LBlock();
 };
 
-class OBlock: Block {
+class OBlock: public Block {
     protected:
     char c = 'O';
     public:
@@ -68,7 +68,7 @@ class OBlock: Block {
     ~OBlock();
 };
 
-class SBlock: Block {
+class SBlock: public Block {
     protected:
     char c = 'S';
     public:
@@ -78,7 +78,7 @@ class SBlock: Block {
     ~SBlock();
 };
 
-class ZBlock: Block {
+class ZBlock: public Block {
     protected:
     char c = 'Z';
     public:
@@ -88,7 +88,7 @@ class ZBlock: Block {
     ~ZBlock();
 };
 
-class TBlock: Block {
+class TBlock: public Block {
     protected:
     char c = 'T';
     public:

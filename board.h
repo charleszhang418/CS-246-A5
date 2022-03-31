@@ -39,6 +39,8 @@ class Board : public Subject, public Observer {
 
     bool isRowFull(const int&);
 
+    Cell* getCell(int col, int row);
+
 
 
     // Block* spin(Block*, bool);

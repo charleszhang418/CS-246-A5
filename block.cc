@@ -19,6 +19,18 @@ void Block::erasetype(bool clock) {
     }
 }
 
+void Block::clearCellState() {
+    cell1->eraseIffilled(false);
+    cell2->eraseIffilled(false);
+    cell3->eraseIffilled(false);
+    cell4->eraseIffilled(false);
+    cell1->eraseValue(' ');
+    cell2->eraseValue(' ');
+    cell3->eraseValue(' ');
+    cell4->eraseValue(' ');
+}
+
+
 // void Block::eraseallcell(cell* cell1, cell* cell2, cell* cell3, cell* cell4) {
 //    cell1 = cell1;
 //    cell2 = cell2;
@@ -47,7 +59,9 @@ int Block::getType() {
 
 Block::~Block() {}
 
-IBlock::IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+IBlock::IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char IBlock::getChar() {
     return this->c;
@@ -93,11 +107,22 @@ std::vector<std::vector<int>> IBlock::rotate(bool clockwise) {
     return result;
 }
 
-
+void IBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
+}
 
 IBlock::~IBlock() {}
 
-JBlock::JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+JBlock::JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char JBlock::getChar() {
     return this->c;
@@ -245,9 +270,22 @@ std::vector<std::vector<int>> JBlock::rotate(bool clockwise) {
     return result;
 }
 
+void JBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
+}
+
 JBlock::~JBlock() {}
 
-LBlock::LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+LBlock::LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char LBlock::getChar() {
     return this->c;
@@ -395,9 +433,22 @@ std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
     return result;
 }
 
+void LBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
+}
+
 LBlock::~LBlock() {}
 
-OBlock::OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+OBlock::OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char OBlock::getChar() {
     return this->c;
@@ -424,9 +475,22 @@ std::vector<std::vector<int>> OBlock::rotate(bool clockwise) {
     return result;
 }
 
+void OBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
+}
+
 OBlock::~OBlock() {}
 
-SBlock::SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+SBlock::SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char SBlock::getChar() {
     return this->c;
@@ -472,9 +536,22 @@ std::vector<std::vector<int>> SBlock::rotate(bool clockwise) {
     return result;
 }
 
+void SBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
+}
+
 SBlock::~SBlock() {}
 
-ZBlock::ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+ZBlock::ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char ZBlock::getChar() {
     return this->c;
@@ -520,9 +597,22 @@ std::vector<std::vector<int>> ZBlock::rotate(bool clockwise) {
     return result;
 }
 
+void ZBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
+}
+
 ZBlock::~ZBlock() {}
 
-TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { }
+TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
+    this->updateCellState();
+}
 
 char TBlock::getChar() {
     return this->c;
@@ -668,6 +758,17 @@ std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
         result.emplace_back(v4);
     } 
     return result;
+}
+
+void TBlock::updateCellState() {
+    cell1->eraseIffilled(true);
+    cell2->eraseIffilled(true);
+    cell3->eraseIffilled(true);
+    cell4->eraseIffilled(true);
+    cell1->eraseValue(this->c);
+    cell2->eraseValue(this->c);
+    cell3->eraseValue(this->c);
+    cell4->eraseValue(this->c);
 }
 
 TBlock::~TBlock() {}

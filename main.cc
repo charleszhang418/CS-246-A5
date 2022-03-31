@@ -48,6 +48,7 @@ int main (int argc, char *argv[]) {
 
     Board *b1 = new Board{11, 18, 0};
 
+
     Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
 
     TextOutput t{11, 18, b1, b1};

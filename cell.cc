@@ -30,18 +30,18 @@ char Cell::getvalue() {
 }
 
 void Cell::eraseRow(int row) {
-    row = row;
+    this->row = row;
 }
 
 void Cell::eraseCol(int col) {
-    col = col;
+    this->col = col;
 }
 
 void Cell::eraseValue(char value) {
-    value = value;
+    this->value = value;
 }
 
 void Cell::eraseIffilled(bool iffilled) {
-    iffilled = iffilled;
+    this->iffilled = iffilled;
 }
 

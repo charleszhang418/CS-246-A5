@@ -18,6 +18,8 @@ class Block {
     Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual char getChar() = 0;
     virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
+    virtual void clearCellState();
+    virtual void updateCellState() = 0;
     int getType();
     ~Block();
 
@@ -35,6 +37,7 @@ class IBlock: public Block {
     IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) ;
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~IBlock();
 };
 
@@ -45,6 +48,7 @@ class JBlock: public Block {
     JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~JBlock();
 };
 
@@ -55,6 +59,7 @@ class LBlock: public Block {
     LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~LBlock();
 };
 
@@ -65,6 +70,7 @@ class OBlock: public Block {
     OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~OBlock();
 };
 
@@ -75,6 +81,7 @@ class SBlock: public Block {
     SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~SBlock();
 };
 
@@ -85,6 +92,7 @@ class ZBlock: public Block {
     ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~ZBlock();
 };
 
@@ -95,6 +103,7 @@ class TBlock: public Block {
     TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
+    void updateCellState() override;
     ~TBlock();
 };
 

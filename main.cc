@@ -61,6 +61,8 @@ int main (int argc, char *argv[]) {
     //b1->spin(currentBlock, true);
     Block* curBlock = b1->generateNewBlock('L');
 
+    b1->move(-1, 0, 2, curBlock);
+
     //? For textoutput and graphicsoutput
     TextOutput t{11 , 18, b1, b2};
     cout << t;

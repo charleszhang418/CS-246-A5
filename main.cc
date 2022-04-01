@@ -45,7 +45,7 @@ int main (int argc, char *argv[]) {
         } 
         if (cmd_arg == "-startlevel") {
             string xxx = argv[i + 1];
-            ini_level = 1;//stoi(xxx);
+            ini_level = stoi(xxx);
             i++;
         }
 
@@ -58,14 +58,14 @@ int main (int argc, char *argv[]) {
     Board *b2 = new Board{width, height, ini_level};
     TextOutput t{11 , 18, b1, b2};
 
-    int 
 
-    Block* curBlock = b1->generateNewBlock('L', 4);
+    Block *curBlock1 = b1->generateNewBlock('L', 4);
+    Block *curBlock2 = b2->generateNewBlock('L', 2);
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
     //b1->spin(currentBlock, true);
 
-    b1->move(-1, 0, 2, curBlock);
+    b1->move(-1, 0, 2, curBlock1);
 
     //? For textoutput and graphicsoutput
     
@@ -74,7 +74,7 @@ int main (int argc, char *argv[]) {
     
     string cmdin;
     //! Game
-    while (cin >>cmdin ) {
+    while (cin >> cmdin) {
 
         bool restart = false;
         bool touch = false;
@@ -95,7 +95,7 @@ int main (int argc, char *argv[]) {
 
         if (cmdin == "left") {
             if (!touch) {
-                // cur_play->move(-1, 0, 2);
+                cur_play->move(-1, 0, )
             }
         }
 
@@ -124,11 +124,20 @@ int main (int argc, char *argv[]) {
         }
 
         if (cmdin == "levelup") {
-            
+            int cur_level = cur_play->getLevel();
+            if (cur_level < 4) {
+                cur_level += 1;
+            }
+            cur_play->setLevel(cur_level);
         }
 
-        if (cmdin == "leveldown") {
-            
+        if (cmdin == "leveldown") { 
+            int cur_level = cur_play->getLevel();
+            if (cur_level > 0) {
+                cur_level -= 1;
+            }
+            cur_play->setLevel(cur_level);
+            cout << t;
         }
 
         if (cmdin == "norandom") {

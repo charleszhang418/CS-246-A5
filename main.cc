@@ -55,11 +55,10 @@ int main (int argc, char *argv[]) {
     Board *b1 = new Board{width, height, cur_level};
     Board *b2 = new Board{width, height, cur_level};
 
-    // Block* currentBlock = b1->generateNewBlock('T');
-    //Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
+    Block* currentBlock = b1->generateNewBlock('L');
+    // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
     //b1->spin(currentBlock, true);
-    Block* curBlock = b1->generateNewBlock('L');
 
     b1->move(-1, 0, 2, curBlock);
 

@@ -13,7 +13,7 @@ width{width}, height{height}, level{level} {
     for (int i = 0; i < height; i++) {
         vector<Cell*> line;
         for (int j = 0; j < width; j++) {
-            Cell* cell = new Cell(j,i,' ');
+            Cell* cell = new Cell(j, i,' ');
             line.emplace_back(cell);
         }
         cells.emplace_back(line);

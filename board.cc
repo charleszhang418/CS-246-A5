@@ -13,7 +13,7 @@ width{width}, height{height}, level{level} {
     for (int i = 0; i < height; i++) {
         vector<Cell*> line;
         for (int j = 0; j < width; j++) {
-            Cell* cell = new Cell(j,i,' ');
+            Cell* cell = new Cell(j, i,' ');
             line.emplace_back(cell);
         }
         cells.emplace_back(line);
@@ -68,7 +68,7 @@ void Board::spin(Block* change, bool clock) {
 
 
 Cell* Board::getCell(int col, int row) {
-    return this->cells[col][row];
+    return this->cells[row][col];
 }
 
 Block* Board::generateNewBlock(char c) {
@@ -77,7 +77,7 @@ Block* Board::generateNewBlock(char c) {
     } else if (c == 'J') {
        return new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'L') {
-       return new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+       return new LBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'O') {
        return new OBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'S') {

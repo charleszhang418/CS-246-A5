@@ -15,8 +15,15 @@ using namespace std;
 
 int main (int argc, char *argv[]) {
     
-    //? Initialization of variables
-    int cur_level = 0;
+    //? Board Varibles
+    Command cmd;
+    
+    int hi_score = 0;
+    int width = 11;
+    int height = 18;
+    int player = 1;
+    int ini_level = 0;
+    
 
     bool graphicsMode = true; //? Default: with both graphic output and text output
 
@@ -38,24 +45,22 @@ int main (int argc, char *argv[]) {
         } 
         if (cmd_arg == "-startlevel") {
             string xxx = argv[i + 1];
-            cur_level = stoi(xxx);
+            ini_level = 1;//stoi(xxx);
             i++;
         }
 
     }
     
-    //? Board Varibles
-    Command cmd;
     
-    int hi_score = 0;
-    int width = 11;
-    int height = 18;
 
     //? Initialize two boards
-    Board *b1 = new Board{width, height, cur_level};
-    Board *b2 = new Board{width, height, cur_level};
+    Board *b1 = new Board{width, height, ini_level};
+    Board *b2 = new Board{width, height, ini_level};
+    TextOutput t{11 , 18, b1, b2};
 
-    Block* currentBlock = b1->generateNewBlock('L');
+    int 
+
+    Block* curBlock = b1->generateNewBlock('L', 4);
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
     //b1->spin(currentBlock, true);
@@ -63,23 +68,23 @@ int main (int argc, char *argv[]) {
     b1->move(-1, 0, 2, curBlock);
 
     //? For textoutput and graphicsoutput
-    TextOutput t{11 , 18, b1, b2};
+    
     cout << t;
     // Initialize boards with other setting
     
-
+    string cmdin;
     //! Game
-    while (true) {
+    while (cin >>cmdin ) {
 
-        int player = 1;
         bool restart = false;
+        bool touch = false;
         // Two players turn
         Board *cur_play = (player == 1) ? b1 : b2;
         // With input
 
         // Special Action
         string intput;
-        string cmdin;
+        
 
         if (cmdin == "rename") {
             string old, cur;
@@ -89,9 +94,9 @@ int main (int argc, char *argv[]) {
         }
 
         if (cmdin == "left") {
-            // if (cur_play->validMove(-1, 0)) {
-            //     cur_play->Move(-1, 0);
-            // }
+            if (!touch) {
+                // cur_play->move(-1, 0, 2);
+            }
         }
 
         if (cmdin == "right") {

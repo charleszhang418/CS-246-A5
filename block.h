@@ -3,6 +3,7 @@
 
 
 #include "cell.h"
+#include "difficulty.h"
 
 
 
@@ -10,12 +11,13 @@
 class Block {
     protected:
     int type = 0;
+    Difficulty* diff;
     Cell* cell1;
     Cell* cell2;
     Cell* cell3;
     Cell* cell4;
     public:
-    Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    Block(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual char getChar() = 0;
     virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
     virtual void clearCellState();
@@ -33,7 +35,7 @@ class IBlock: public Block {
     protected:
     char c = 'I';
     public:
-    IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) ;
+    IBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) ;
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;
@@ -44,7 +46,7 @@ class JBlock: public Block {
     protected:
     char c = 'J';
     public:
-    JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    JBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;
@@ -55,7 +57,7 @@ class LBlock: public Block {
     protected:
     char c = 'L';
     public:
-    LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    LBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;
@@ -66,7 +68,7 @@ class OBlock: public Block {
     protected:
     char c = 'O';
     public:
-    OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    OBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;
@@ -77,7 +79,7 @@ class SBlock: public Block {
     protected:
     char c = 'S';
     public:
-    SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    SBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;
@@ -88,7 +90,7 @@ class ZBlock: public Block {
     protected:
     char c = 'Z';
     public:
-    ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    ZBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;
@@ -99,7 +101,7 @@ class TBlock: public Block {
     protected:
     char c = 'T';
     public:
-    TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    TBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
     void updateCellState() override;

@@ -43,7 +43,7 @@ class Board : public Subject, public Observer {
 
     void resetgame();
 
-    Block* generateNewBlock(char c);
+    Block* generateNewBlock(char c, int level);
 
     
 

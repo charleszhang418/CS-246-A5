@@ -2,12 +2,11 @@
 #define __DIFFICULTY_H__
 
 #include <iostream>
-#include "block.h"
 #include <string>
 
 class Difficulty {
   public:
-    virtual int getWeight() = 0;
+    // virtual int getWeight() = 0;
     virtual ~Difficulty();
 };
 
@@ -16,7 +15,7 @@ class Level: public Difficulty {
     protected:
     Difficulty* diff;
     public:
-    Level(Difficulty* diff);
+    Level();
     virtual ~Level();
     virtual int getWeight() = 0;
     // int getWeight() override;
@@ -33,7 +32,7 @@ class Level0: public Level {
 
 class Level1: public Level {
     protected:
-    Difficulty* core;
+    Difficulty* diff;
     public:
     Level1(Difficulty* diff);
     virtual ~Level1();

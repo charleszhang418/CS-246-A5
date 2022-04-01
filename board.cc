@@ -5,6 +5,7 @@
 #include "cell.h"
 #include "block.h"
 #include "board.h"
+#include "difficulty.h"
 using namespace std;
 
 Board::Board(int width, int height, int level) : 
@@ -71,21 +72,37 @@ Cell* Board::getCell(int col, int row) {
     return this->cells[row][col];
 }
 
-Block* Board::generateNewBlock(char c) {
+Block* Board::generateNewBlock(char c, int level) {
+    Difficulty* diff = new Level();
+    if (level == 0) {
+        diff = new Level0(diff);
+    } 
+    if (level == 1) {
+        diff = new Level1(diff);
+    }
+    if (level == 2) {
+        diff = new Level2(diff);
+    }
+    if (level == 3) {
+        diff = new Level3(diff);
+    }
+    if (level == 4) {
+        diff = new Level4(diff);
+    }
     if (c == 'I') {
-       return new IBlock(this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
+       return new IBlock(diff, this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
     } else if (c == 'J') {
        return new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'L') {
-       return new LBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+       return new LBlock(diff, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'O') {
-       return new OBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
+       return new OBlock(diff, this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'S') {
-       return new SBlock(this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
+       return new SBlock(diff, this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'Z') {
-       return new ZBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(1, 4));
+       return new ZBlock(diff, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(1, 4));
     } else {
-       return new TBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
+       return new TBlock(diff, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
     }
 }
 

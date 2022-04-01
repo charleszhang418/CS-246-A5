@@ -4,7 +4,7 @@
 
 Difficulty::~Difficulty() { }
 
-Level::Level(Difficulty* diff): diff{diff} { }
+Level::Level(): diff{nullptr} { }
 
 Level::~Level() { 
     delete this->diff;

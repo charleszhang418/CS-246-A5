@@ -71,7 +71,10 @@ int main (int argc, char *argv[]) {
     
     cout << t;
     // Initialize boards with other setting
-    
+
+    cout << curBlock1->getWeight() << endl;
+    cout << curBlock2->getWeight() << endl;
+
     string cmdin;
     //! Game
     while (cin >> cmdin) {
@@ -84,6 +87,7 @@ int main (int argc, char *argv[]) {
 
         // Special Action
         string intput;
+
         
 
         if (cmdin == "rename") {
@@ -95,7 +99,7 @@ int main (int argc, char *argv[]) {
 
         if (cmdin == "left") {
             if (!touch) {
-                cur_play->move(-1, 0, )
+                cur_play->move(-1, 0, 2, curBlock1);
             }
         }
 
@@ -124,20 +128,20 @@ int main (int argc, char *argv[]) {
         }
 
         if (cmdin == "levelup") {
-            int cur_level = cur_play->getLevel();
-            if (cur_level < 4) {
-                cur_level += 1;
-            }
-            cur_play->setLevel(cur_level);
+            // int cur_level = cur_play->getLevel();
+            // if (cur_level < 4) {
+            //     cur_level += 1;
+            // }
+            // cur_play->setLevel(cur_level);
         }
 
         if (cmdin == "leveldown") { 
-            int cur_level = cur_play->getLevel();
-            if (cur_level > 0) {
-                cur_level -= 1;
-            }
-            cur_play->setLevel(cur_level);
-            cout << t;
+            // int cur_level = cur_play->getLevel();
+            // if (cur_level > 0) {
+            //     cur_level -= 1;
+            // }
+            // cur_play->setLevel(cur_level);
+            // cout << t;
         }
 
         if (cmdin == "norandom") {

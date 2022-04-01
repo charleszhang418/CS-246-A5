@@ -73,37 +73,42 @@ Cell* Board::getCell(int col, int row) {
 }
 
 Block* Board::generateNewBlock(char c, int level) {
-    Difficulty* diff = new Level();
-    if (level == 0) {
-        diff = new Level0(diff);
+    Block* block;
+    Difficulty* diff;
+    if (c == 'I') {
+        block = new IBlock(nullptr, this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
+    } else if (c == 'J') {
+        block = new JBlock(nullptr, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+    } else if (c == 'L') {
+        block = new LBlock(nullptr, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+    } else if (c == 'O') {
+        block = new OBlock(nullptr, this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
+    } else if (c == 'S') {
+        block = new SBlock(nullptr, this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
+    } else if (c == 'Z') {
+        block = new ZBlock(nullptr, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(1, 4));
+    } else {
+        block = new TBlock(nullptr, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
+    }
+    if (level >= 0) {
+        
+        diff = new Level0(block);
+        
     } 
-    if (level == 1) {
+    if (level >= 1) {
         diff = new Level1(diff);
     }
-    if (level == 2) {
+    if (level >= 2) {
         diff = new Level2(diff);
     }
-    if (level == 3) {
+    if (level >= 3) {
         diff = new Level3(diff);
     }
-    if (level == 4) {
+    if (level >= 4) {
         diff = new Level4(diff);
     }
-    if (c == 'I') {
-       return new IBlock(diff, this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
-    } else if (c == 'J') {
-       return new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
-    } else if (c == 'L') {
-       return new LBlock(diff, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
-    } else if (c == 'O') {
-       return new OBlock(diff, this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
-    } else if (c == 'S') {
-       return new SBlock(diff, this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
-    } else if (c == 'Z') {
-       return new ZBlock(diff, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(1, 4));
-    } else {
-       return new TBlock(diff, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
-    }
+    block->updateBlockDifficulty(diff);
+    return block;
 }
 
 bool Board::move(int x, int y, int weight, Block* b) {

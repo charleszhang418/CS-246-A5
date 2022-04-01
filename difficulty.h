@@ -6,7 +6,7 @@
 
 class Difficulty {
   public:
-    // virtual int getWeight() = 0;
+    virtual int getWeight();
     virtual ~Difficulty();
 };
 
@@ -15,9 +15,9 @@ class Level: public Difficulty {
     protected:
     Difficulty* diff;
     public:
-    Level();
+    Level(Difficulty* diff);
     virtual ~Level();
-    virtual int getWeight() = 0;
+    virtual int getWeight();
     // int getWeight() override;
 };
 

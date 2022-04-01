@@ -8,7 +8,7 @@
 
 
 
-class Block {
+class Block: public Difficulty {
     protected:
     int type = 0;
     Difficulty* diff;
@@ -23,6 +23,8 @@ class Block {
     virtual void clearCellState();
     virtual void updateCellState() = 0;
     int getType();
+    virtual void updateBlockDifficulty(Difficulty* diff);
+    virtual int getLevel();
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     ~Block();
 

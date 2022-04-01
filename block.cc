@@ -32,6 +32,14 @@ void Block::clearCellState() {
     cell4->eraseValue(' ');
 }
 
+void Block::updateBlockDifficulty(Difficulty* diff) {
+    this->diff = diff;
+}
+
+int Block::getLevel() {
+    return this->diff->getWeight();
+}
+
 void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
    this->cell1 = cell1;
    this->cell2 = cell2;

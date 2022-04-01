@@ -25,17 +25,19 @@ char Board::getVal(int col, int row) {
     return cells[col][row]->getvalue();
 }
 
-/*
-Block* Board::spin(Block* change, bool clock) {
+
+void Board::spin(Block* change, bool clock) {
+    
     bool suc = true;
-    vector<vector<int>> placeold =  getalllocation(change);
-    vector<vector<int>> placenew =  rotate(change);
+    vector<vector<int>> placeold =  change->getalllocation();
+    vector<vector<int>> placenew =  change->rotate(clock);
     
     for (int i = 0; i < 4; i++) {
         int new1 = placenew[i][0];
         int new2 = placenew[i][1];
         if (cells[new1][new2]->getiffilled()) {
             suc = false;
+            
         }
     }
     
@@ -63,10 +65,35 @@ Block* Board::spin(Block* change, bool clock) {
 }
 
 
-*/
+
 
 Cell* Board::getCell(int col, int row) {
     return this->cells[col][row];
+}
+
+Block* Board::generateNewBlock(char c) {
+    if (c == 'I') {
+       return new IBlock(this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
+    } else if (c == 'J') {
+       return new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+    } else if (c == 'L') {
+       return new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+    } else if (c == 'O') {
+       return new OBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
+    } else if (c == 'S') {
+       return new SBlock(this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
+    } else if (c == 'Z') {
+       return new ZBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(1, 4));
+    } else {
+       return new TBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
+    }
+}
+
+bool Board::move(int x, int y, int weight, Block* b) {
+    // int col1 = b
+    // if (x == 1) {
+
+    // }
 }
 
 Board::~Board() {}

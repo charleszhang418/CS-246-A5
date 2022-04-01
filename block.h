@@ -21,13 +21,12 @@ class Block {
     virtual void clearCellState();
     virtual void updateCellState() = 0;
     int getType();
+    virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     ~Block();
 
     void erasetype(bool);
 
-//    void eraseallcell(cell*, cell*, cell*, cell*);
-
-// vector<vector<int>> getalllocation();
+    std::vector<std::vector<int>> getalllocation();
 };
 
 class IBlock: public Block {

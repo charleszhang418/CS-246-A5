@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+using namespace std;
+
 
 void Block::erasetype(bool clock) {
     if (clock) {
@@ -30,26 +32,25 @@ void Block::clearCellState() {
     cell4->eraseValue(' ');
 }
 
-
-// void Block::eraseallcell(cell* cell1, cell* cell2, cell* cell3, cell* cell4) {
-//    cell1 = cell1;
-//    cell2 = cell2;
-//    cell3 = cell3;
-//    cell4 = cell4;
-// }
-
+void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
+   this->cell1 = cell1;
+   this->cell2 = cell2;
+   this->cell3 = cell3;
+   this->cell4 = cell4;
+}
 
 
-/*
-vector<vector<int>> Block::getalllocation() {
-    vector<vector<int>> alllocation;
-    alllocation.emplace_back(cell1->getlocation);
-    alllocation.emplace_back(cell2->getlocation);
-    alllocation.emplace_back(cell3->getlocation);
-    alllocation.emplace_back(cell4->getlocation);
+
+
+std::vector<std::vector<int>> Block::getalllocation() {
+    std::vector<std::vector<int>> alllocation;
+    alllocation.emplace_back(cell1->getlocation());
+    alllocation.emplace_back(cell2->getlocation());
+    alllocation.emplace_back(cell3->getlocation());
+    alllocation.emplace_back(cell4->getlocation());
     return alllocation;
 }
-*/
+
 
 Block::Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): cell1{cell1}, cell2{cell2}, cell3{cell3}, cell4{cell4} { }
 

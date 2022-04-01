@@ -4,7 +4,7 @@
 #include "cell.h"
 using namespace std;
 
-Cell::Cell(int row, int col, char value) :  row{row}, col{col}, value{value} {}
+Cell::Cell(int col, int row, char value) :  col{col}, row{row}, value{value} {}
 
 bool Cell::getiffilled() {
     return iffilled;

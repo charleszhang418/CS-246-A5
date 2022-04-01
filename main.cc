@@ -14,16 +14,14 @@
 using namespace std;
 
 int main (int argc, char *argv[]) {
-    // Initialization of variables
-    Command temp_com;
-    int width = 11, height = 18;
+    
+    //? Initialization of variables
     int cur_level = 0;
-    int hi_score = 0;
 
-    bool graphicsMode = true; // Default: with both graphic output and text output
+    bool graphicsMode = true; //? Default: with both graphic output and text output
 
 
-    // Command-line interface if exists
+    //? Command-line interface if exists
     for (int i = 0; i < argc; ++i) {
         string cmd_arg = argv[i];
         if (cmd_arg == "-text") {
@@ -45,35 +43,110 @@ int main (int argc, char *argv[]) {
         }
 
     }
+    
+    //? Board Varibles
+    Command cmd;
+    
+    int hi_score = 0;
+    int width = 11;
+    int height = 18;
 
-    Board *b1 = new Board{11, 18, 0};
+    //? Initialize two boards
+    Board *b1 = new Board{width, height, cur_level};
+    Board *b2 = new Board{width, height, cur_level};
 
+    // Block* currentBlock = b1->generateNewBlock('T');
+    //Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
+    
+    //b1->spin(currentBlock, true);
+    Block* curBlock = b1->generateNewBlock('L');
 
-    Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
-
-    TextOutput t{11, 18, b1, b1};
+    //? For textoutput and graphicsoutput
+    TextOutput t{11 , 18, b1, b2};
     cout << t;
-    // Initialize boards with other settings
-    // NEED BOARD FULL header file
-    
-    
-    return 1;
+    // Initialize boards with other setting
     
 
-    // Game
+    //! Game
     while (true) {
 
+        int player = 1;
         bool restart = false;
         // Two players turn
+        Board *cur_play = (player == 1) ? b1 : b2;
         // With input
 
         // Special Action
+        string intput;
+        string cmdin;
 
+        if (cmdin == "rename") {
+            string old, cur;
+            cin >> old;
+            cin >> cur;
+            cmd.short_com(old, cur);
+        }
+
+        if (cmdin == "left") {
+            // if (cur_play->validMove(-1, 0)) {
+            //     cur_play->Move(-1, 0);
+            // }
+        }
+
+        if (cmdin == "right") {
+            // if (cur_play->validMove(1, 0)) {
+            //     cur_play->Move(1, 0);
+            // }
+        }
+
+        if (cmdin == "down") {
+            // if (cur_play->validMove(0, 1)) {
+            //     cur_play->Move(0, 1);
+            // }
+        }
         
+        if (cmdin == "clockwise") {
+
+        }
+
+        if (cmdin == "counterclockwise") {
+
+        }
+
+        if (cmdin == "drop") {
+
+        }
+
+        if (cmdin == "levelup") {
+            
+        }
+
+        if (cmdin == "leveldown") {
+            
+        }
+
+        if (cmdin == "norandom") {
+            
+        }
+
+        if (cmdin == "random") {
+            
+        }
+
+        if (cmdin == "sequence") {
+            
+        }
+
+        //! For Block create with Block name
+
+
+        if (cmdin == "restart") {
+            restart = true;
+
+        }
 
 
     }
-
 
 
 }

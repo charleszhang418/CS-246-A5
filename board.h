@@ -33,17 +33,24 @@ class Board : public Subject, public Observer {
     // notifyobservers 
     bool isover();
 
-    bool isvalid();
+    //? Blockspin
+    void spin(Block* change, bool clock);
+
+    //? BlockMove
+    bool move(int x, int y, int weight, Block* b);
+
+    void clearFull();
 
     void resetgame();
 
-    bool isRowFull(const int&);
+    Block* generateNewBlock(char c);
+
+    
 
     Cell* getCell(int col, int row);
 
 
 
-    // Block* spin(Block*, bool);
 
 
 

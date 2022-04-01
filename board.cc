@@ -116,19 +116,23 @@ bool Board::move(int x, int y, int weight, Block* b) {
             }
             x = 0;
         } else {
-            b->clearCellState();
-            Cell* cell1 = this->getCell(col1, row1 + 1);
-            Cell* cell2 = this->getCell(col2, row2 + 1);
-            Cell* cell3 = this->getCell(col3, row3 + 1);
-            Cell* cell4 = this->getCell(col4, row4 + 1);
-            if (!(cell1->getiffilled()) && !(cell2->getiffilled()) && !(cell3->getiffilled()) && !(cell4->getiffilled())) {
-                b->eraseallcell(cell1, cell2, cell3, cell4);
-                b->updateCellState();
+            if ((row1 + 1 < 18) && (row2 + 1 < 18) && (row3 + 1 < 18) && (row4 + 1 < 18)) {
+                b->clearCellState();
+                Cell* cell1 = this->getCell(col1, row1 + 1);
+                Cell* cell2 = this->getCell(col2, row2 + 1);
+                Cell* cell3 = this->getCell(col3, row3 + 1);
+                Cell* cell4 = this->getCell(col4, row4 + 1);
+                if (!(cell1->getiffilled()) && !(cell2->getiffilled()) && !(cell3->getiffilled()) && !(cell4->getiffilled())) {
+                    b->eraseallcell(cell1, cell2, cell3, cell4);
+                    b->updateCellState();
+                } else {
+                    b->updateCellState();
+                    return false;
+                }
+            sum -= 1;
             } else {
-                b->updateCellState();
                 return false;
             }
-            sum -= 1;
         }
     }
     return true;  

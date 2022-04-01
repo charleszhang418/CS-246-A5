@@ -32,13 +32,15 @@ void Block::clearCellState() {
     cell4->eraseValue(' ');
 }
 
-void Block::updateBlockDifficulty(Difficulty* diff) {
-    this->diff = diff;
-}
+// void Block::updateBlockDifficulty(Difficulty* diff) {
+//     this->diff = diff;
+// }
 
-int Block::getLevel() {
-    return this->diff->getWeight();
-}
+// int Block::getLevel() {
+//     return this->diff->getWeight();
+// }
+
+int Block::getWeight() { return 0; }
 
 void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
    this->cell1 = cell1;
@@ -60,7 +62,7 @@ std::vector<std::vector<int>> Block::getalllocation() {
 }
 
 
-Block::Block(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): diff{diff}, cell1{cell1}, cell2{cell2}, cell3{cell3}, cell4{cell4} { }
+Block::Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): cell1{cell1}, cell2{cell2}, cell3{cell3}, cell4{cell4} { }
 
 int Block::getType() {
     return this->type;
@@ -68,7 +70,7 @@ int Block::getType() {
 
 Block::~Block() {}
 
-IBlock::IBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+IBlock::IBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 
@@ -129,7 +131,7 @@ void IBlock::updateCellState() {
 
 IBlock::~IBlock() {}
 
-JBlock::JBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+JBlock::JBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 
@@ -292,7 +294,7 @@ void JBlock::updateCellState() {
 
 JBlock::~JBlock() {}
 
-LBlock::LBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+LBlock::LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 
@@ -455,7 +457,7 @@ void LBlock::updateCellState() {
 
 LBlock::~LBlock() {}
 
-OBlock::OBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+OBlock::OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 
@@ -497,7 +499,7 @@ void OBlock::updateCellState() {
 
 OBlock::~OBlock() {}
 
-SBlock::SBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+SBlock::SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 
@@ -558,7 +560,7 @@ void SBlock::updateCellState() {
 
 SBlock::~SBlock() {}
 
-ZBlock::ZBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+ZBlock::ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 
@@ -619,7 +621,7 @@ void ZBlock::updateCellState() {
 
 ZBlock::~ZBlock() {}
 
-TBlock::TBlock(Difficulty* diff, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{diff, cell1, cell2, cell3, cell4} { 
+TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
     this->updateCellState();
 }
 

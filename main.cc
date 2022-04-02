@@ -75,6 +75,16 @@ int main (int argc, char *argv[]) {
     cout << curBlock1->getWeight() << endl;
     cout << curBlock2->getWeight() << endl;
 
+
+    // cout << curBlock2->displayNext()[0][0] << endl;
+    // cout << curBlock2->displayNext()[0][1] << endl;
+    // cout << curBlock2->displayNext()[1][0] << endl;
+    // cout << curBlock2->displayNext()[1][1] << endl;
+    // cout << curBlock2->displayNext()[2][0] << endl;
+    // cout << curBlock2->displayNext()[2][1] << endl;
+    // cout << curBlock2->displayNext()[3][0] << endl;
+    // cout << curBlock2->displayNext()[3][1] << endl;
+
     string cmdin;
     //! Game
     while (cin >> cmdin) {
@@ -83,7 +93,7 @@ int main (int argc, char *argv[]) {
         bool touch = false;
         // Two players turn
         Board *cur_play = (player == 1) ? b1 : b2;
-        Block *curBlock = (player == 1) ? curBlock1 : curBlock2;
+        Difficulty *curBlock = (player == 1) ? curBlock1 : curBlock2;
         // With input
 
         // Special Action
@@ -100,19 +110,19 @@ int main (int argc, char *argv[]) {
 
         if (cmdin == "left") {
             if (!touch) {
-                cur_play->move(-1, 0, curBlock, curBlock1);
+                cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
             }
         }
 
         if (cmdin == "right") {
             if (!touch) {
-                cur_play->move(1, 0, curBlock, curBlock1);
+                cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
             }
         }
 
         if (cmdin == "down") {
             if (!touch) {
-                cur_play->move(0, 1, curBlock->getWeight, curBlock)
+                cur_play->move(0, 1, curBlock->getWeight(), curBlock);
             }
         }
         

@@ -9,11 +9,15 @@ std::vector<std::vector<int>> Difficulty::getalllocation() { }
 void Difficulty::clearCellState() { }
 void Difficulty::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) { }
 void Difficulty::updateCellState() { }
-std::vector<std::vector<int>> Difficulty::displayNext() { }
+
 
 Difficulty::~Difficulty() { }
 
 Level::Level(Difficulty* diff): diff{diff} { }
+
+std::vector<std::vector<int>> Level::displayNext() { 
+    return diff->displayNext();
+}
 
 Level::~Level() { 
     delete this->diff;

@@ -147,6 +147,7 @@ std::vector<std::vector<int>> IBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 IBlock::~IBlock() {}
@@ -330,6 +331,7 @@ std::vector<std::vector<int>> JBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 JBlock::~JBlock() {}
@@ -513,6 +515,7 @@ std::vector<std::vector<int>> LBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 LBlock::~LBlock() {}
@@ -575,6 +578,7 @@ std::vector<std::vector<int>> OBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 OBlock::~OBlock() {}
@@ -656,6 +660,7 @@ std::vector<std::vector<int>> SBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 SBlock::~SBlock() {}
@@ -737,6 +742,7 @@ std::vector<std::vector<int>> ZBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 ZBlock::~ZBlock() {}
@@ -920,6 +926,7 @@ std::vector<std::vector<int>> TBlock::displayNext() {
     result.emplace_back(v2);
     result.emplace_back(v3);
     result.emplace_back(v4);
+    return result;
 }
 
 TBlock::~TBlock() {}

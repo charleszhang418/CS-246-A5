@@ -12,7 +12,7 @@ class Difficulty {
     virtual void clearCellState();
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual void updateCellState();
-    virtual std::vector<std::vector<int>> displayNext();
+    virtual std::vector<std::vector<int>> displayNext() = 0;
     virtual ~Difficulty();
 };
 
@@ -22,6 +22,7 @@ class Level: public Difficulty {
     Difficulty *diff;
     public:
     Level(Difficulty* diff);
+    std::vector<std::vector<int>> displayNext();
     virtual ~Level();
     //virtual int getWeight();
     // int getWeight() override;

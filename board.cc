@@ -28,42 +28,55 @@ char Board::getVal(int col, int row) {
 
 
 void Board::spin(Block* change, bool clock) {
-    
-    bool suc = true;
+
+    bool suc = 1;
     vector<vector<int>> placeold =  change->getalllocation();
     vector<vector<int>> placenew =  change->rotate(clock);
-    
+
     for (int i = 0; i < 4; i++) {
         int new1 = placenew[i][0];
         int new2 = placenew[i][1];
+
+        if ((new1 < 0) || (new2 < 0) || (new1 >= width) || (new2 >= height)) {
+            suc = 0;
+            break;
+        }
         if (cells[new1][new2]->getiffilled()) {
-            suc = false;
-            
+            suc = 0;
+            break;
         }
     }
-    
-    if (suc = true) {
+
+    if (suc == 1) {
+        change->clearCellState();
         char need = change->getChar();
         for (int i = 0; i < 4; i++) {
             int old1 = placeold[i][0];
             int old2 = placeold[i][1];
-            cells[old1][old2]->eraseValue(' ');
-            cells[old1][old2]->eraseIffilled(false);
-            
+            // cells[old1][old2]->eraseValue(' ');
+            // cells[old1][old2]->eraseIffilled(true);
+
             int new1 = placenew[i][0];
             int new2 = placenew[i][1];
-            
-            cells[new1][new2]->eraseValue(need);
-            cells[new1][new2]->eraseIffilled(true);   
+
+            // cells[new1][new2]->eraseValue(need);
+            // cells[new1][new2]->eraseIffilled(false);
         }
+
         change->erasetype(clock);
+        cout << need << endl;
+        cout << (placenew[0][0]) << (placenew[0][1]) << (placenew[1][0]) <<
+        (placenew[1][1]) << (placenew[2][0]) << (placenew[2][1]) <<
+        (placenew[3][0]) << (placenew[3][1]);
         Cell* cell1 = cells[placenew[0][0]][placenew[0][1]];
         Cell* cell2 = cells[placenew[1][0]][placenew[1][1]];
         Cell* cell3 = cells[placenew[2][0]][placenew[2][1]];
         Cell* cell4 = cells[placenew[3][0]][placenew[3][1]];
         change->eraseallcell(cell1, cell2, cell3, cell4);
+        change->updateCellState();
     }
 }
+
 
 
 

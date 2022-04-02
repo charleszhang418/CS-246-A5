@@ -83,6 +83,7 @@ int main (int argc, char *argv[]) {
         bool touch = false;
         // Two players turn
         Board *cur_play = (player == 1) ? b1 : b2;
+        Block *curBlock = (player == 1) ? curBlock1 : curBlock2;
         // With input
 
         // Special Action
@@ -99,20 +100,20 @@ int main (int argc, char *argv[]) {
 
         if (cmdin == "left") {
             if (!touch) {
-                //cur_play->move(-1, 0, 2, curBlock1);
+                cur_play->move(-1, 0, curBlock, curBlock1);
             }
         }
 
         if (cmdin == "right") {
-            // if (cur_play->validMove(1, 0)) {
-            //     cur_play->Move(1, 0);
-            // }
+            if (!touch) {
+                cur_play->move(1, 0, curBlock, curBlock1);
+            }
         }
 
         if (cmdin == "down") {
-            // if (cur_play->validMove(0, 1)) {
-            //     cur_play->Move(0, 1);
-            // }
+            if (!touch) {
+                cur_play->move(0, 1, curBlock->getWeight, curBlock)
+            }
         }
         
         if (cmdin == "clockwise") {

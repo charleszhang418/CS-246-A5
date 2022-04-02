@@ -5,6 +5,11 @@
 int Difficulty::getWeight() {
     return 0;
 }
+std::vector<std::vector<int>> Difficulty::getalllocation() { }
+void Difficulty::clearCellState() { }
+void Difficulty::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) { }
+void Difficulty::updateCellState() { }
+std::vector<std::vector<int>> Difficulty::displayNext() { }
 
 Difficulty::~Difficulty() { }
 

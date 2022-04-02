@@ -111,7 +111,7 @@ Difficulty* Board::generateNewBlock(char c, int level) {
     return diff;
 }
 
-bool Board::move(int x, int y, int weight, Block* b) {
+bool Board::move(int x, int y, int weight, Difficulty* b) {
     int sum = y + weight;
     while ((x != 0) || (sum > 0)) {
         int col1 = b->getalllocation()[0][0];

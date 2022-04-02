@@ -37,7 +37,7 @@ class Board : public Subject, public Observer {
     void spin(Block* change, bool clock);
 
     //? BlockMove
-    bool move(int x, int y, int weight, Block* b);
+    bool move(int x, int y, int weight, Difficulty* b);
 
     void clearFull();
 

@@ -1,12 +1,18 @@
 #ifndef __DIFFICULTY_H__
 #define __DIFFICULTY_H__
-
+#include "cell.h"
+#include <vector>
 #include <iostream>
 #include <string>
 
 class Difficulty {
   public:
     virtual int getWeight() = 0;
+    virtual std::vector<std::vector<int>> getalllocation();
+    virtual void clearCellState();
+    virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    virtual void updateCellState();
+    virtual std::vector<std::vector<int>> displayNext();
     virtual ~Difficulty();
 };
 

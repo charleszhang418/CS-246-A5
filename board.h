@@ -6,6 +6,7 @@
 #include "observer.h"
 #include "cell.h"
 #include "block.h"
+#include "difficulty.h"
 
 // mutiple ineritance 
 class Board : public Observer {
@@ -16,7 +17,8 @@ class Board : public Observer {
     int score;
     int dropTime;
     std::vector<std::vector<Cell*>> cells;
-    std::vector<Block*> blocks;
+    Difficulty* curBlock = nullptr;
+    char nextBlock = ' ';
 
     public:
     Board(int width, int height, int level, int score = 0, int dropTime = 0); 

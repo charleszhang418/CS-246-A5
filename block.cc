@@ -131,10 +131,6 @@ void IBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
-    cell1->eraseBlock(this);
-    cell2->eraseBlock(this);
-    cell3->eraseBlock(this);
-    cell4->eraseBlock(this);
 }
 
 std::vector<std::vector<int>> IBlock::displayNext() {

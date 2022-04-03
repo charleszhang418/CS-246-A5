@@ -34,7 +34,7 @@ class Board : public Subject, public Observer {
     bool isover();
 
     //? Blockspin
-    void spin(Block* change, bool clock);
+    void spin(Difficulty* change, bool clock);
 
     //? BlockMove
     bool move(int x, int y, int weight, Difficulty* b);

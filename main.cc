@@ -33,7 +33,7 @@ int main (int argc, char *argv[]) {
 
 
     //? Command-line interface if exists
-    for (int i = 0; i < argc; ++i) {
+    for (int i = 1; i < argc; ++i) {
         string cmd_arg = argv[i];
         if (cmd_arg == "-text") {
             graphicsMode = false;
@@ -97,6 +97,8 @@ int main (int argc, char *argv[]) {
 
     Difficulty *curBlock1 = b1->generateNewBlock('L', 4);
     Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
+
+    b1->spin(curBlock1, false);
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
     //b1->spin(currentBlock, true);
@@ -123,104 +125,104 @@ int main (int argc, char *argv[]) {
     
     string cmdin;
     //! Game
-    while (cin >> cmdin) {
+    // while (cin >> cmdin) {
 
-        bool restart = false;
-        bool touch = false;
-        // Two players turn
-        Board *cur_play = (player == 1) ? b1 : b2;
-        Difficulty *curBlock = (player == 1) ? curBlock1 : curBlock2;
-        // With input
+    //     bool restart = false;
+    //     bool touch = false;
+    //     // Two players turn
+    //     Board *cur_play = (player == 1) ? b1 : b2;
+    //     Difficulty *curBlock = (player == 1) ? curBlock1 : curBlock2;
+    //     // With input
 
-        // Special Action
-        string intput;
+    //     // Special Action
+    //     string intput;
 
         
 
-        if (cmdin == "rename") {
-            string old, cur;
-            cin >> old;
-            cin >> cur;
-            cmd.short_com(old, cur);
-        }
+    //     if (cmdin == "rename") {
+    //         string old, cur;
+    //         cin >> old;
+    //         cin >> cur;
+    //         cmd.short_com(old, cur);
+    //     }
 
-        if (cmdin == "left") {
-            if (!touch) {
-                touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
-            }
-        }
+    //     if (cmdin == "left") {
+    //         if (!touch) {
+    //             touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
+    //         }
+    //     }
 
-        if (cmdin == "right") {
-            if (!touch) {
-                touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
-            }
-        }
+    //     if (cmdin == "right") {
+    //         if (!touch) {
+    //             touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
+    //         }
+    //     }
 
-        if (cmdin == "down") {
-            if (!touch) {
-                touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
-            }
-        }
+    //     if (cmdin == "down") {
+    //         if (!touch) {
+    //             touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+    //         }
+    //     }
         
-        if (cmdin == "clockwise") {
-            if (!touch) {
-                cur_play->spin(curBlock, true);
-            }
-        }
+    //     if (cmdin == "clockwise") {
+    //         if (!touch) {
+    //             cur_play->spin(curBlock, true);
+    //         }
+    //     }
 
-        if (cmdin == "counterclockwise") {
-            if (!touch) {
-                cur_play->spin(curBlock, true);
-            }
-        }
+    //     if (cmdin == "counterclockwise") {
+    //         if (!touch) {
+    //             cur_play->spin(curBlock, true);
+    //         }
+    //     }
 
-        if (cmdin == "drop") {
-            while (!touch) {
-                touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
-            }
+    //     if (cmdin == "drop") {
+    //         while (!touch) {
+    //             touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+    //         }
 
-            //! Clear lines 
-        }
+    //         //! Clear lines 
+    //     }
 
-        if (cmdin == "levelup") {
-            // int cur_level = cur_play->getLevel();
-            // if (cur_level < 4) {
-            //     cur_level += 1;
-            // }
-            // cur_play->setLevel(cur_level);
-        }
+    //     if (cmdin == "levelup") {
+    //         // int cur_level = cur_play->getLevel();
+    //         // if (cur_level < 4) {
+    //         //     cur_level += 1;
+    //         // }
+    //         // cur_play->setLevel(cur_level);
+    //     }
 
-        if (cmdin == "leveldown") { 
-            // int cur_level = cur_play->getLevel();
-            // if (cur_level > 0) {
-            //     cur_level -= 1;
-            // }
-            // cur_play->setLevel(cur_level);
-            // cout << t;
-        }
+    //     if (cmdin == "leveldown") { 
+    //         // int cur_level = cur_play->getLevel();
+    //         // if (cur_level > 0) {
+    //         //     cur_level -= 1;
+    //         // }
+    //         // cur_play->setLevel(cur_level);
+    //         // cout << t;
+    //     }
 
-        if (cmdin == "norandom") {
+    //     if (cmdin == "norandom") {
             
-        }
+    //     }
 
-        if (cmdin == "random") {
+    //     if (cmdin == "random") {
             
-        }
+    //     }
 
-        if (cmdin == "sequence") {
+    //     if (cmdin == "sequence") {
             
-        }
+    //     }
 
-        //! For Block create with Block name
-
-
-        if (cmdin == "restart") {
-            restart = true;
-
-        }
+    //     //! For Block create with Block name
 
 
-    }
+    //     if (cmdin == "restart") {
+    //         restart = true;
+
+    //     }
+
+
+    // }
 
 
 }

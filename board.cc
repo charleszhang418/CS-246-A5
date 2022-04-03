@@ -27,7 +27,7 @@ char Board::getVal(int col, int row) {
 }
 
 
-void Board::spin(Block* change, bool clock) {
+void Board::spin(Difficulty* change, bool clock) {
 
     bool suc = 1;
     vector<vector<int>> placeold =  change->getalllocation();

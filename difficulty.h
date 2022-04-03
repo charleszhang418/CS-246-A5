@@ -13,6 +13,9 @@ class Difficulty {
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual void updateCellState();
     virtual std::vector<std::vector<int>> displayNext() = 0;
+    virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
+    virtual char getChar() = 0;
+    virtual void erasetype(bool clock) = 0;
     virtual ~Difficulty();
 };
 
@@ -22,7 +25,10 @@ class Level: public Difficulty {
     Difficulty *diff;
     public:
     Level(Difficulty* diff);
-    std::vector<std::vector<int>> displayNext();
+    virtual std::vector<std::vector<int>> displayNext();
+    virtual std::vector<std::vector<int>> rotate(bool clockwise);
+    virtual char getChar();
+    virtual void erasetype(bool clock);
     virtual ~Level();
     //virtual int getWeight();
     // int getWeight() override;

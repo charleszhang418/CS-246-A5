@@ -18,6 +18,17 @@ Level::Level(Difficulty* diff): diff{diff} { }
 std::vector<std::vector<int>> Level::displayNext() { 
     return diff->displayNext();
 }
+std::vector<std::vector<int>> Level::rotate(bool clockwise) {
+    return diff->rotate(clockwise);
+}
+
+char Level::getChar() {
+    return diff->getChar();
+}
+
+void Level::erasetype(bool clock) {
+    return diff->erasetype(clock);
+}
 
 Level::~Level() { 
     delete this->diff;

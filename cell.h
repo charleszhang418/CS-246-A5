@@ -4,6 +4,7 @@
 #include <vector> 
 #include "subject.h"
 #include "observer.h"
+#include "difficulty.h"
 
 // mutiple ineritance 
 class Cell : public Subject, public Observer {

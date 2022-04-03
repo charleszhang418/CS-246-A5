@@ -1,9 +1,10 @@
 #ifndef __DIFFICULTY_H__
 #define __DIFFICULTY_H__
-#include "cell.h"
+
 #include <vector>
 #include <iostream>
 #include <string>
+#include "cell.h"
 
 class Difficulty {
   public:

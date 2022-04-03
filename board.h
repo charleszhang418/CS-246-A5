@@ -14,11 +14,12 @@ class Board : public Observer {
     int score;
     int level;
     int score;
+    int dropTime;
     std::vector<std::vector<Cell*>> cells;
     std::vector<Block*> blocks;
 
     public:
-    Board(int width, int height, int level, int score = 0); 
+    Board(int width, int height, int level, int score = 0, int dropTime = 0); 
     ~Board();
 
     void initial();
@@ -26,11 +27,15 @@ class Board : public Observer {
     // Setters
     void setLevel(int level);
     void setScore(int score);
+    void setDropTime(int dropTime);
 
     // Getters
     int getLevel() const;
     int getScore() const;
     char getVal(int col, int row);
+    int getDropTime() const;
+
+
     // this method will change the subject, so it triggers
     // notifyobservers 
     bool isover();
@@ -54,7 +59,7 @@ class Board : public Observer {
     Cell* getCell(int col, int row);
 
     // Blockclear
-    int BlockClear();
+    bool BlockClear();
 
     void DropDown(int);
 

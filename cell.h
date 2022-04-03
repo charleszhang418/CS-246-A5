@@ -11,7 +11,7 @@ class Cell : public Subject {
     int col, row; 
     char value;
     bool iffilled = false;
-    Block* block = nullptr;
+    Difficulty* block = nullptr;
 
     public:
     Cell(int, int, char); 
@@ -22,14 +22,14 @@ class Cell : public Subject {
     void eraseCol(int);
     void eraseValue(char);
     void eraseIffilled(bool);
-    void eraseBlock(Block*);
+    void eraseBlock(Difficulty*);
 
 
     bool getiffilled();
     int getrow();
     int getcol();
     char getvalue();
-    Block* getvblock();
+    Difficulty* getblock();
     std::vector<int> getlocation();
 
     void copy(Cell*);

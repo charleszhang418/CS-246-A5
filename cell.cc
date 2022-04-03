@@ -29,7 +29,7 @@ char Cell::getvalue() {
     return value;
 }
 
-Block* Cell::getvblock() {
+Difficulty* Cell::getblock() {
     return block;
 }
 
@@ -49,7 +49,7 @@ void Cell::eraseIffilled(bool iffilled) {
     this->iffilled = iffilled;
 }
 
-void Cell::eraseBlock(Block* block) {
+void Cell::eraseBlock(Difficulty* block) {
     this->block = block;
 }
 
@@ -58,7 +58,7 @@ void Cell::copy(Cell* target) {
     eraseCol(target->getcol());
     eraseIffilled(target->getiffilled());
     eraseValue(target->getvalue());
-    eraseBlock(target->getvblock());
+    eraseBlock(target->getblock());
 }
 
 void Cell::ClearCell() {

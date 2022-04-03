@@ -101,12 +101,8 @@ int main (int argc, char *argv[]) {
     // b1->spin(curBlock1, true);
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
-<<<<<<< HEAD
-    b1->spin(currentBlock, true);
-=======
 
     // b1->move(-1, 0, 2, curBlock1);
->>>>>>> 67538a2c68e5b17271d21409224a96d0fca04668
 
     //? For textoutput and graphicsoutput
     

@@ -4,7 +4,9 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include "cell.h"
+// #include "cell.h"
+
+class Cell;
 
 class Difficulty {
   public:

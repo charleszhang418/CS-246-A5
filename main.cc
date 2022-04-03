@@ -10,10 +10,14 @@
 #include <string>
 #include <vector>
 #include <stdio.h>
+#include <fstream>
 
 using namespace std;
 
 int main (int argc, char *argv[]) {
+    
+    string p1_level0 = "sequence1.txt";
+    string p2_level0 = "sequence2.txt";
     
     //? Board Varibles
     Command cmd;
@@ -33,26 +37,58 @@ int main (int argc, char *argv[]) {
         string cmd_arg = argv[i];
         if (cmd_arg == "-text") {
             graphicsMode = false;
-        } 
-        if (cmd_arg == "-seed") {
-            // Left to add
-        }
-        if (cmd_arg == "scriptfile1") {
-            // set player1 to file
-        } 
-        if (cmd_arg == "scriptfile2") {
-            // set player2 to file;
-        } 
-        if (cmd_arg == "-startlevel") {
-            string xxx = argv[i + 1];
-            ini_level = stoi(xxx);
-            i++;
-        }
+        } else {
+            if (cmd_arg != "-seed" && cmd_arg != "-scriptfile1" && cmd_arg != "-scriptfile2" && cmd_arg != "-startlevel") {
+                cout << "Unknown command line argument: " << cmd_arg << endl;
+                return 1;
+            }
+            string arg = argv[i + 1];
+            
+            if (cmd_arg == "-seed") {
+                continue;
+            }
+            
+            if (cmd_arg == "scriptfile1") {
+                ifstream fin(arg, ios::in);
+                if (!fin) {
+                    cout << "Cannot open the scriptfile1: " << arg;
+                    return 1;
+                }
 
+                p1_level0 = arg;
+            } 
+
+            if (cmd_arg == "scriptfile2") {
+                ifstream fin(arg, ios::in);
+                if (!fin) {
+                    cout << "Cannot open the scriptfile2: " << arg;
+                    return 1;
+                }
+
+                p2_level0 = arg;
+            }
+
+            if (cmd_arg == "-startlevel") {
+                try {
+                    ini_level = stoi(arg);
+                } catch(...) {
+                    cout << "Please enter an integer after startlevel" << endl;
+                    return 1;
+                }
+
+                if (ini_level > 4) {
+                    ini_level = 4;
+                }
+
+                if (ini_level < 0) {
+                    ini_level = 0;
+                }
+            }
+        }
     }
     
     
-
+    //! Questions here need fix!!!
     //? Initialize two boards
     Board *b1 = new Board{width, height, ini_level};
     Board *b2 = new Board{width, height, ini_level};
@@ -74,8 +110,8 @@ int main (int argc, char *argv[]) {
 
     cout << curBlock1->getWeight() << endl;
     cout << curBlock2->getWeight() << endl;
-
-
+    
+    
     // cout << curBlock2->displayNext()[0][0] << endl;
     // cout << curBlock2->displayNext()[0][1] << endl;
     // cout << curBlock2->displayNext()[1][0] << endl;
@@ -83,8 +119,8 @@ int main (int argc, char *argv[]) {
     // cout << curBlock2->displayNext()[2][0] << endl;
     // cout << curBlock2->displayNext()[2][1] << endl;
     // cout << curBlock2->displayNext()[3][0] << endl;
-    // cout << curBlock2->displayNext()[3][1] << endl;
-
+    // cout << curBlock2->displayNext()[3][1] << endl;    
+    
     string cmdin;
     //! Game
     while (cin >> cmdin) {
@@ -110,32 +146,40 @@ int main (int argc, char *argv[]) {
 
         if (cmdin == "left") {
             if (!touch) {
-                cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
+                touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
             }
         }
 
         if (cmdin == "right") {
             if (!touch) {
-                cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
+                touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
             }
         }
 
         if (cmdin == "down") {
             if (!touch) {
-                cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+                touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
             }
         }
         
         if (cmdin == "clockwise") {
-
+            if (!touch) {
+                cur_play->spin(curBlock, true);
+            }
         }
 
         if (cmdin == "counterclockwise") {
-
+            if (!touch) {
+                cur_play->spin(curBlock, true);
+            }
         }
 
         if (cmdin == "drop") {
+            while (!touch) {
+                touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+            }
 
+            //! Clear lines 
         }
 
         if (cmdin == "levelup") {

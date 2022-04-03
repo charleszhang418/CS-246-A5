@@ -124,6 +124,7 @@ int main (int argc, char *argv[]) {
     // cout << curBlock2->displayNext()[2][1] << endl;
     // cout << curBlock2->displayNext()[3][0] << endl;
     // cout << curBlock2->displayNext()[3][1] << endl;    
+<<<<<<< Updated upstream
     
   string cmdin;
     //! Game
@@ -272,6 +273,162 @@ int main (int argc, char *argv[]) {
     //     hi_score = (p1_score > hi_score || p2_score > hi_score) ? (p1_score > p2_score ? p1_score : p2_score) : hi_score;
 
     //     if (restart) {continue;}
+=======
+
+    string cmdin;
+    //! Game
+    while (cin >> cmdin) {
+
+        bool restart = false;
+
+        player += 1;
+        
+        // Two players turn
+        Board *cur_play = (player == 1) ? b1 : b2;
+        Difficulty *curBlock = ((player % 2) != 0) ? curBlock1 : curBlock2;
+        // With input
+
+        // Special Action
+        string intput;
+
+        //! For player turn
+        while (true) {
+
+            bool touch = false;
+
+            if (cmdin == "rename") {
+                string old, cur;
+                cin >> old;
+                cin >> cur;
+                cmd.short_com(old, cur);
+                cout << t;
+                continue;
+            }
+
+            if (cmdin == "left") {
+                if (!touch) {
+                    touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
+                }
+            }
+
+            if (cmdin == "right") {
+                if (!touch) {
+                    touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
+                }
+            }
+
+            if (cmdin == "down") {
+                if (!touch) {
+                    touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+                }
+            }
+            
+            if (cmdin == "clockwise") {
+                if (!touch) {
+                    cur_play->spin(curBlock, true);
+                }
+            }
+
+            if (cmdin == "counterclockwise") {
+                if (!touch) {
+                    cur_play->spin(curBlock, true);
+                }
+            }
+
+            if (cmdin == "drop") {
+                while (!touch) {
+                    touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+                }
+
+                //! Clear lines 
+                break;
+            }
+
+            if (cmdin == "levelup") {
+                int cur_level = cur_play->getLevel();
+                if (cur_level < 4) {
+                    cur_level += 1;
+                }
+                cur_play->setLevel(cur_level);
+                cout << t;
+            }
+
+            if (cmdin == "leveldown") { 
+                int cur_level = cur_play->getLevel();
+                if (cur_level > 0) {
+                    cur_level -= 1;
+                }
+                cur_play->setLevel(cur_level);
+                cout << t;
+            }
+
+            if (cmdin == "norandom") {
+                cout << "Not yet developed" << endl;
+            }
+
+            if (cmdin == "random") {
+                cout << "Not yet developed" << endl;
+            }
+
+            if (cmdin == "sequence") {
+                cout << "Not yet developed" << endl;
+            }
+
+            //! For Block create with Block name
+            if (cmdin.length() == 1) {
+                Difficulty *newBlock;
+                int cur_level = cur_play->getLevel();
+
+                if (cmdin == "I") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('I', cur_level);
+                } else if (cmdin == "J") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('J', cur_level);
+                } else if (cmdin == "L") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('L', cur_level);
+                } else if (cmdin == "O") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('O', cur_level);
+                } else if (cmdin == "S") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('S', cur_level);
+                } else if (cmdin == "Z") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('Z', cur_level);
+                } else if (cmdin == "T") {
+                    curBlock->clearCellState();
+                    cur_play->generateNewBlock('T', cur_level);
+                } else {
+                    continue;
+                }
+
+                cout << t;
+                continue;
+
+            }
+
+
+            if (cmdin == "restart") {
+                
+                restart = true;
+                //! Need to clear the borads
+
+            }
+        }
+
+        int p1_score = b1->getScore();
+        int p2_score = b2->getScore();
+        
+        hi_score = (p1_score > hi_score || p2_score > hi_score) ? (p1_score > p2_score ? p1_score : p2_score) : hi_score;
+
+        if (restart) {continue;}
+
+        //! Spcecial Actions
+
+
+>>>>>>> Stashed changes
 
     // }
 

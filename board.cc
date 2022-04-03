@@ -50,28 +50,28 @@ void Board::spin(Difficulty* change, bool clock) {
     if (suc == 1) {
         change->clearCellState();
         char need = change->getChar();
-        for (int i = 0; i < 4; i++) {
-            int old1 = placeold[i][0];
-            int old2 = placeold[i][1];
-            // cells[old1][old2]->eraseValue(' ');
-            // cells[old1][old2]->eraseIffilled(true);
+        // for (int i = 0; i < 4; i++) {
+        //     int old1 = placeold[i][0];
+        //     int old2 = placeold[i][1];
+        //     // cells[old1][old2]->eraseValue(' ');
+        //     // cells[old1][old2]->eraseIffilled(true);
 
-            int new1 = placenew[i][0];
-            int new2 = placenew[i][1];
+        //     int new1 = placenew[i][0];
+        //     int new2 = placenew[i][1];
 
-            // cells[new1][new2]->eraseValue(need);
-            // cells[new1][new2]->eraseIffilled(false);
-        }
+        //     // cells[new1][new2]->eraseValue(need);
+        //     // cells[new1][new2]->eraseIffilled(false);
+        // }
 
         change->erasetype(clock);
         cout << need << endl;
         cout << (placenew[0][0]) << (placenew[0][1]) << (placenew[1][0]) <<
         (placenew[1][1]) << (placenew[2][0]) << (placenew[2][1]) <<
         (placenew[3][0]) << (placenew[3][1]);
-        Cell* cell1 = cells[placenew[0][0]][placenew[0][1]];
-        Cell* cell2 = cells[placenew[1][0]][placenew[1][1]];
-        Cell* cell3 = cells[placenew[2][0]][placenew[2][1]];
-        Cell* cell4 = cells[placenew[3][0]][placenew[3][1]];
+        Cell* cell1 = getCell(placenew[0][0], placenew[0][1]);
+        Cell* cell2 = getCell(placenew[1][0], placenew[1][1]);
+        Cell* cell3 = getCell(placenew[2][0], placenew[2][1]);
+        Cell* cell4 = getCell(placenew[3][0], placenew[3][1]);
         change->eraseallcell(cell1, cell2, cell3, cell4);
         change->updateCellState();
     }

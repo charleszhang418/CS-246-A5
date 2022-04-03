@@ -24,7 +24,7 @@ class Block: public Difficulty {
     virtual void updateCellState() = 0;
     int getType();
     //virtual void updateBlockDifficulty(Difficulty* diff);
-    //virtual int getLevel();
+    virtual int getLevel();
     virtual int getWeight();
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual std::vector<std::vector<int>> displayNext() = 0;

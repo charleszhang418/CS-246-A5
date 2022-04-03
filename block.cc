@@ -40,9 +40,9 @@ void Block::clearCellState() {
 //     this->diff = diff;
 // }
 
-// int Block::getLevel() {
-//     return this->diff->getWeight();
-// }
+int Block::getLevel() {
+    return this->level;
+}
 
 int Block::getWeight() { return 0; }
 

@@ -8,8 +8,8 @@
 
 using namespace std;
 
-TextOutput::TextOutput(int width, int height, Board *board1, Board *board2) :
-    width{width}, height{height}, board1{board1}, board2{board2} {}
+TextOutput::TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2) :
+    width{width}, height{height}, board1{board1}, board2{board2}, p_board1{p_board1}, p_board2{p_board2} {}
 
 
 int TextOutput::getHeight() {return height;}
@@ -44,6 +44,19 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
     }
 
     out << slash << between << slash << endl;
+    out << "Next:" << between << between << "Next:" << between << endl;
+
+    // Preview board
+    for (int i = 2; i < 4; ++i) {
+        for (int j = 0; j < text_out.getWidth(); ++j) {
+            out << text_out.p_board1->getVal(i, j);
+        }
+        out << between;
+        for (int j = 0; j < text_out.getWidth(); ++j) {
+            out << text_out.p_board2->getVal(i, j);
+        }
+        out << endl;
+    }
 
     return out;
 

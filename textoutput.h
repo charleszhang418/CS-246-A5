@@ -12,9 +12,12 @@ class TextOutput {
 
     Board *board1;
     Board *board2;
+    Board *p_board1;
+    Board *p_board2;
+
 
   public:
-    TextOutput(int width, int height, Board *board1, Board *board2);
+    TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2);
     ~TextOutput();
     int getHeight();
     int getWidth();

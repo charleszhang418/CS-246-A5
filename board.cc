@@ -93,13 +93,13 @@ Difficulty* Board::generateNewBlock(char c, int level) {
     } else if (c == 'J') {
         block = new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'L') {
-        block = new LBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        block = new LBlock(this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'O') {
         block = new OBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'S') {
         block = new SBlock(this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'Z') {
-        block = new ZBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(1, 4));
+        block = new ZBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(2, 3));
     } else {
         block = new TBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
     }

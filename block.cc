@@ -7,14 +7,14 @@ using namespace std;
 
 void Block::erasetype(bool clock) {
     if (clock) {
-        if (type == 4) {
+        if (type == 3) {
             type = 0;
         } else {
             type++;
         }
     } else {
         if (type == 0) {
-            type = 4;
+            type = 3;
         } else {
             type--;
         }
@@ -348,8 +348,8 @@ std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
     if ((this->type == 0) && (clockwise)) {
         std::vector<int> v1;
-        v1.emplace_back(this->cell1->getcol() + 1);
-        v1.emplace_back(this->cell1->getrow() - 1);
+        v1.emplace_back(this->cell1->getcol() - 1);
+        v1.emplace_back(this->cell1->getrow() + 1);
         std::vector<int> v2;
         v2.emplace_back(this->cell2->getcol());
         v2.emplace_back(this->cell2->getrow() - 2);
@@ -365,8 +365,8 @@ std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
         result.emplace_back(v4);
     } else if ((this->type == 0) && (!clockwise)) {
         std::vector<int> v1;
-        v1.emplace_back(this->cell1->getcol());
-        v1.emplace_back(this->cell1->getrow() + 1);
+        v1.emplace_back(this->cell1->getcol() - 2);
+        v1.emplace_back(this->cell1->getrow() - 1);
         std::vector<int> v2;
         v2.emplace_back(this->cell2->getcol() + 1);
         v2.emplace_back(this->cell2->getrow());
@@ -593,7 +593,7 @@ char SBlock::getChar() {
 
 std::vector<std::vector<int>> SBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
-    if (((this->type == 0) || (this->type == 2)) && (clockwise)) {
+    if (((this->type == 0) || (this->type == 2))) {
         std::vector<int> v1;
         v1.emplace_back(this->cell1->getcol());
         v1.emplace_back(this->cell1->getrow());
@@ -675,7 +675,7 @@ char ZBlock::getChar() {
 
 std::vector<std::vector<int>> ZBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
-    if (((this->type == 0) || (this->type == 2)) && (clockwise)) {
+    if (((this->type == 0) || (this->type == 2))) {
         std::vector<int> v1;
         v1.emplace_back(this->cell1->getcol() + 1);
         v1.emplace_back(this->cell1->getrow() - 1);
@@ -779,7 +779,7 @@ std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
         v1.emplace_back(this->cell1->getcol());
         v1.emplace_back(this->cell1->getrow() + 1);
         std::vector<int> v2;
-        v2.emplace_back(this->cell2->getcol());
+        v2.emplace_back(this->cell2->getcol() - 1);
         v2.emplace_back(this->cell2->getrow());
         std::vector<int> v3;
         v3.emplace_back(this->cell3->getcol() - 2);
@@ -828,7 +828,7 @@ std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
     } else if ((this->type == 2) && (clockwise)) {
         std::vector<int> v1;
         v1.emplace_back(this->cell1->getcol() - 2);
-        v1.emplace_back(this->cell1->getrow() - 1);
+        v1.emplace_back(this->cell1->getrow());
         std::vector<int> v2;
         v2.emplace_back(this->cell2->getcol() - 1);
         v2.emplace_back(this->cell2->getrow() - 1);

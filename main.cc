@@ -113,7 +113,7 @@ int main (int argc, char *argv[]) {
 
     //? For textoutput and graphicsoutput
     
-    cout << t;
+    
     // Initialize boards with other setting
     
     

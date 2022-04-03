@@ -29,6 +29,10 @@ char Cell::getvalue() {
     return value;
 }
 
+Block* Cell::getvblock() {
+    return block;
+}
+
 void Cell::eraseRow(int row) {
     this->row = row;
 }
@@ -43,5 +47,23 @@ void Cell::eraseValue(char value) {
 
 void Cell::eraseIffilled(bool iffilled) {
     this->iffilled = iffilled;
+}
+
+void Cell::eraseBlock(Block* block) {
+    this->block = block;
+}
+
+void Cell::copy(Cell* target) {
+    eraseRow(target->getrow());
+    eraseCol(target->getcol());
+    eraseIffilled(target->getiffilled());
+    eraseValue(target->getvalue());
+    eraseBlock(target->getvblock());
+}
+
+void Cell::ClearCell() {
+    eraseIffilled(false);
+    eraseValue(' ');
+    eraseBlock(nullptr);
 }
 

@@ -58,7 +58,7 @@ int main (int argc, char *argv[]) {
     Block* currentBlock = b1->generateNewBlock('L');
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
-    //b1->spin(currentBlock, true);
+    b1->spin(currentBlock, true);
 
     //? For textoutput and graphicsoutput
     TextOutput t{11 , 18, b1, b2};

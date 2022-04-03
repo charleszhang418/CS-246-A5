@@ -8,15 +8,17 @@
 #include "block.h"
 
 // mutiple ineritance 
-class Board : public Subject, public Observer {
+class Board : public Observer {
     int width;
     int height;
     int score;
     int level;
+    int score;
     std::vector<std::vector<Cell*>> cells;
+    std::vector<Block*> blocks;
 
     public:
-    Board(int width, int height, int level); 
+    Board(int width, int height, int level, int score = 0); 
     ~Board();
 
     void initial();
@@ -45,9 +47,16 @@ class Board : public Subject, public Observer {
 
     Block* generateNewBlock(char c);
 
+    void notify();
+
     
 
     Cell* getCell(int col, int row);
+
+    // Blockclear
+    int BlockClear();
+
+    void DropDown(int);
 
 
 

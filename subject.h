@@ -14,3 +14,4 @@ class Subject {
     virtual ~Subject() = 0;
 };
 #endif
+

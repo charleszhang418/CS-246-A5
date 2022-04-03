@@ -4,12 +4,14 @@
 #include <vector> 
 #include "subject.h"
 #include "observer.h"
+#include "block.h"
 
 // mutiple ineritance 
-class Cell : public Subject, public Observer {
+class Cell : public Subject {
     int col, row; 
     char value;
     bool iffilled = false;
+    Block* block = nullptr;
 
     public:
     Cell(int, int, char); 
@@ -20,13 +22,18 @@ class Cell : public Subject, public Observer {
     void eraseCol(int);
     void eraseValue(char);
     void eraseIffilled(bool);
+    void eraseBlock(Block*);
 
 
     bool getiffilled();
     int getrow();
     int getcol();
     char getvalue();
+    Block* getvblock();
     std::vector<int> getlocation();
+
+    void copy(Cell*);
+    void ClearCell();
 };
 
 #endif 

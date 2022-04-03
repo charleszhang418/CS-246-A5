@@ -7,18 +7,21 @@
 
 
 
-class Block {
+class Block : public Subject, public Observer {
     protected:
     int type = 0;
+    int level;
     Cell* cell1;
     Cell* cell2;
     Cell* cell3;
     Cell* cell4;
     public:
-    Block(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    Block(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    int getlevel();
     virtual char getChar() = 0;
     virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
     virtual void clearCellState();
+    // virtual void SetCellState(char);
     virtual void updateCellState() = 0;
     int getType();
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
@@ -26,7 +29,11 @@ class Block {
 
     void erasetype(bool);
 
+    virtual void notify() override;
+
     std::vector<std::vector<int>> getalllocation();
+
+    bool checkBlank();
 };
 
 class IBlock: public Block {

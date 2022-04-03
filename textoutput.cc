@@ -25,7 +25,7 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
     out << "Highest Score: " << "Substitution here" << endl; // Highest score on the first line
 
     // Print the level and socre for the two board
-    out << "Level:" << setw(5) << "N" << between << "Level:" << setw(5) << "N" << endl;
+    out << "Level:" << setw(5) << text_out.board1->getLevel() << between << "Level:" << setw(5) << "N" << endl;
     out << "Score:" << setw(5) << "N" << between << "Score:" << setw(5) << "N" << endl;
 
     // Slashes
@@ -42,6 +42,9 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
         }
         out << endl;
     }
+
+    out << slash << between << slash << endl;
+
     return out;
 
 }

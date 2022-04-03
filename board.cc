@@ -22,6 +22,18 @@ width{width}, height{height}, level{level} {
     this->cells = cells;
 }
 
+void Board::setLevel(int level) {
+    this->level = level;
+}
+
+int Board::getLevel() const {
+    return level;
+} 
+
+int Board::getScore() const {
+    return score;
+}
+
 char Board::getVal(int col, int row) {
     return cells[col][row]->getvalue();
 }

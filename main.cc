@@ -25,7 +25,7 @@ int main (int argc, char *argv[]) {
     int hi_score = 0;
     int width = 11;
     int height = 18;
-    int player = 1;
+    int player = 0;
     int ini_level = 0;
     
 
@@ -45,30 +45,26 @@ int main (int argc, char *argv[]) {
             string arg = argv[i + 1];
             
             if (cmd_arg == "-seed") {
-                continue;
+                cout << arg << endl;
             }
             
-            if (cmd_arg == "scriptfile1") {
+            if (cmd_arg == "-scriptfile1") {
                 ifstream fin(arg, ios::in);
                 if (!fin) {
-                    cout << "Cannot open the scriptfile1: " << arg;
+                    cout << "Cannot open the scriptfile1: " << arg << endl;
                     return 1;
                 }
 
                 p1_level0 = arg;
-            } 
-
-            if (cmd_arg == "scriptfile2") {
+            } else if (cmd_arg == "-scriptfile2") {
                 ifstream fin(arg, ios::in);
                 if (!fin) {
-                    cout << "Cannot open the scriptfile2: " << arg;
+                    cout << "Cannot open the scriptfile2: " << arg << endl;
                     return 1;
                 }
 
                 p2_level0 = arg;
-            }
-
-            if (cmd_arg == "-startlevel") {
+            } else if (cmd_arg == "-startlevel") {
                 try {
                     ini_level = stoi(arg);
                 } catch(...) {
@@ -84,6 +80,7 @@ int main (int argc, char *argv[]) {
                     ini_level = 0;
                 }
             }
+            ++i;
         }
     }
     
@@ -111,9 +108,6 @@ int main (int argc, char *argv[]) {
     
     cout << t;
     // Initialize boards with other setting
-
-    cout << curBlock1->getWeight() << endl;
-    cout << curBlock2->getWeight() << endl;
     
     
     // cout << curBlock2->displayNext()[0][0] << endl;
@@ -127,14 +121,14 @@ int main (int argc, char *argv[]) {
 
     string cmdin;
     //! Game
-    while (cin >> cmdin) {
+    while (true) {
 
         bool restart = false;
 
         player += 1;
         
         // Two players turn
-        Board *cur_play = (player == 1) ? b1 : b2;
+        Board *cur_play = ((player % 2) != 0) ? b1 : b2;
         Difficulty *curBlock = ((player % 2) != 0) ? curBlock1 : curBlock2;
         // With input
 
@@ -142,9 +136,9 @@ int main (int argc, char *argv[]) {
         string intput;
 
         //! For player turn
-        while (true) {
+        while (cin >> cmdin) {
 
-            bool touch = false;
+            bool touch = true;
 
             if (cmdin == "rename") {
                 string old, cur;
@@ -156,37 +150,37 @@ int main (int argc, char *argv[]) {
             }
 
             if (cmdin == "left") {
-                if (!touch) {
-                    touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock1);
+                if (touch) {
+                    touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock);
                 }
             }
 
             if (cmdin == "right") {
-                if (!touch) {
-                    touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock1);
+                if (touch) {
+                    touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock);
                 }
             }
 
             if (cmdin == "down") {
-                if (!touch) {
+                if (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
             }
             
             if (cmdin == "clockwise") {
-                if (!touch) {
+                if (touch) {
                     cur_play->spin(curBlock, true);
                 }
             }
 
             if (cmdin == "counterclockwise") {
-                if (!touch) {
+                if (touch) {
                     cur_play->spin(curBlock, true);
                 }
             }
 
             if (cmdin == "drop") {
-                while (!touch) {
+                while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
 
@@ -266,6 +260,7 @@ int main (int argc, char *argv[]) {
                 //! Need to clear the borads
 
             }
+            cout << t;
         }
 
         int p1_score = b1->getScore();
@@ -279,7 +274,7 @@ int main (int argc, char *argv[]) {
 
 
 
-    // }
+    }
 
 
 }

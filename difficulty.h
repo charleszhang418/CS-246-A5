@@ -1,30 +1,44 @@
 #ifndef __DIFFICULTY_H__
 #define __DIFFICULTY_H__
-
+#include "cell.h"
+#include <vector>
 #include <iostream>
-#include "block.h"
 #include <string>
 
 class Difficulty {
   public:
     virtual int getWeight() = 0;
+    virtual std::vector<std::vector<int>> getalllocation() = 0;
+    virtual void clearCellState() = 0;
+    virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) = 0;
+    virtual void updateCellState() = 0;
+    virtual std::vector<std::vector<int>> displayNext() = 0;
+    virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
+    virtual char getChar() = 0;
+    virtual void erasetype(bool clock) = 0;
     virtual ~Difficulty();
 };
 
 
 class Level: public Difficulty {
     protected:
-    Difficulty* diff;
+    Difficulty *diff;
     public:
     Level(Difficulty* diff);
+    virtual std::vector<std::vector<int>> getalllocation();
+    virtual void clearCellState();
+    virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    virtual void updateCellState();
+    virtual std::vector<std::vector<int>> displayNext();
+    virtual std::vector<std::vector<int>> rotate(bool clockwise);
+    virtual char getChar();
+    virtual void erasetype(bool clock);
     virtual ~Level();
-    virtual int getWeight() = 0;
+    //virtual int getWeight();
     // int getWeight() override;
 };
 
 class Level0: public Level {
-    protected:
-    Difficulty* diff;
     public:
     Level0(Difficulty* diff);
     virtual ~Level0();
@@ -32,8 +46,6 @@ class Level0: public Level {
 };
 
 class Level1: public Level {
-    protected:
-    Difficulty* core;
     public:
     Level1(Difficulty* diff);
     virtual ~Level1();
@@ -41,8 +53,6 @@ class Level1: public Level {
 };
 
 class Level2: public Level {
-    protected:
-    Difficulty* diff;
     public:
     Level2(Difficulty* diff);
     virtual ~Level2();
@@ -50,8 +60,6 @@ class Level2: public Level {
 };
 
 class Level3: public Level {
-    protected:
-    Difficulty* diff;
     public:
     Level3(Difficulty* diff);
     virtual ~Level3();
@@ -59,8 +67,6 @@ class Level3: public Level {
 };
 
 class Level4: public Level {
-    protected:
-    Difficulty* diff;
     public:
     Level4(Difficulty* diff);
     virtual ~Level4();
@@ -68,8 +74,6 @@ class Level4: public Level {
 };
 
 class ActionHeavy: public Level {
-    protected:
-    Difficulty* diff;
     public:
     ActionHeavy(Difficulty* diff);
     virtual ~ActionHeavy();

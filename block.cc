@@ -7,14 +7,14 @@ using namespace std;
 
 void Block::erasetype(bool clock) {
     if (clock) {
-        if (type == 4) {
+        if (type == 3) {
             type = 0;
         } else {
             type++;
         }
     } else {
         if (type == 0) {
-            type = 4;
+            type = 3;
         } else {
             type--;
         }
@@ -32,6 +32,7 @@ void Block::clearCellState() {
     cell4->eraseValue(' ');
 }
 
+<<<<<<< HEAD
 // void Block::SetCellState(char type) {
 //     cell1->eraseIffilled(true);
 //     cell2->eraseIffilled(true);
@@ -43,6 +44,18 @@ void Block::clearCellState() {
 //     cell4->eraseValue(type);
 // }
 
+=======
+// void Block::updateBlockDifficulty(Difficulty* diff) {
+//     this->diff = diff;
+// }
+
+// int Block::getLevel() {
+//     return this->diff->getWeight();
+// }
+
+int Block::getWeight() { return 0; }
+
+>>>>>>> 67538a2c68e5b17271d21409224a96d0fca04668
 void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
    this->cell1 = cell1;
    this->cell2 = cell2;
@@ -130,6 +143,27 @@ void IBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+}
+
+std::vector<std::vector<int>> IBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(0);
+    v1.emplace_back(1);
+    std::vector<int> v2;
+    v2.emplace_back(1);
+    v2.emplace_back(1);
+    std::vector<int> v3;
+    v3.emplace_back(2);
+    v3.emplace_back(1);
+    std::vector<int> v4;
+    v4.emplace_back(3);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
 }
 
 IBlock::~IBlock() {}
@@ -295,6 +329,27 @@ void JBlock::updateCellState() {
     cell4->eraseValue(this->c);
 }
 
+std::vector<std::vector<int>> JBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(0);
+    v1.emplace_back(0);
+    std::vector<int> v2;
+    v2.emplace_back(0);
+    v2.emplace_back(1);
+    std::vector<int> v3;
+    v3.emplace_back(1);
+    v3.emplace_back(1);
+    std::vector<int> v4;
+    v4.emplace_back(2);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
+}
+
 JBlock::~JBlock() {}
 
 LBlock::LBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
@@ -458,6 +513,27 @@ void LBlock::updateCellState() {
     cell4->eraseValue(this->c);
 }
 
+std::vector<std::vector<int>> LBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(2);
+    v1.emplace_back(0);
+    std::vector<int> v2;
+    v2.emplace_back(0);
+    v2.emplace_back(1);
+    std::vector<int> v3;
+    v3.emplace_back(1);
+    v3.emplace_back(1);
+    std::vector<int> v4;
+    v4.emplace_back(2);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
+}
+
 LBlock::~LBlock() {}
 
 OBlock::OBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
@@ -500,6 +576,27 @@ void OBlock::updateCellState() {
     cell4->eraseValue(this->c);
 }
 
+std::vector<std::vector<int>> OBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(0);
+    v1.emplace_back(0);
+    std::vector<int> v2;
+    v2.emplace_back(1);
+    v2.emplace_back(0);
+    std::vector<int> v3;
+    v3.emplace_back(0);
+    v3.emplace_back(1);
+    std::vector<int> v4;
+    v4.emplace_back(1);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
+}
+
 OBlock::~OBlock() {}
 
 SBlock::SBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
@@ -512,7 +609,7 @@ char SBlock::getChar() {
 
 std::vector<std::vector<int>> SBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
-    if (((this->type == 0) || (this->type == 2)) && (clockwise)) {
+    if (((this->type == 0) || (this->type == 2))) {
         std::vector<int> v1;
         v1.emplace_back(this->cell1->getcol());
         v1.emplace_back(this->cell1->getrow());
@@ -561,6 +658,27 @@ void SBlock::updateCellState() {
     cell4->eraseValue(this->c);
 }
 
+std::vector<std::vector<int>> SBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(1);
+    v1.emplace_back(0);
+    std::vector<int> v2;
+    v2.emplace_back(2);
+    v2.emplace_back(0);
+    std::vector<int> v3;
+    v3.emplace_back(0);
+    v3.emplace_back(1);
+    std::vector<int> v4;
+    v4.emplace_back(1);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
+}
+
 SBlock::~SBlock() {}
 
 ZBlock::ZBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
@@ -573,7 +691,7 @@ char ZBlock::getChar() {
 
 std::vector<std::vector<int>> ZBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
-    if (((this->type == 0) || (this->type == 2)) && (clockwise)) {
+    if (((this->type == 0) || (this->type == 2))) {
         std::vector<int> v1;
         v1.emplace_back(this->cell1->getcol() + 1);
         v1.emplace_back(this->cell1->getrow() - 1);
@@ -622,6 +740,27 @@ void ZBlock::updateCellState() {
     cell4->eraseValue(this->c);
 }
 
+std::vector<std::vector<int>> ZBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(0);
+    v1.emplace_back(0);
+    std::vector<int> v2;
+    v2.emplace_back(1);
+    v2.emplace_back(0);
+    std::vector<int> v3;
+    v3.emplace_back(1);
+    v3.emplace_back(1);
+    std::vector<int> v4;
+    v4.emplace_back(2);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
+}
+
 ZBlock::~ZBlock() {}
 
 TBlock::TBlock(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{cell1, cell2, cell3, cell4} { 
@@ -657,7 +796,7 @@ std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
         v1.emplace_back(this->cell1->getcol());
         v1.emplace_back(this->cell1->getrow() + 1);
         std::vector<int> v2;
-        v2.emplace_back(this->cell2->getcol());
+        v2.emplace_back(this->cell2->getcol() - 1);
         v2.emplace_back(this->cell2->getrow());
         std::vector<int> v3;
         v3.emplace_back(this->cell3->getcol() - 2);
@@ -706,7 +845,7 @@ std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
     } else if ((this->type == 2) && (clockwise)) {
         std::vector<int> v1;
         v1.emplace_back(this->cell1->getcol() - 2);
-        v1.emplace_back(this->cell1->getrow() - 1);
+        v1.emplace_back(this->cell1->getrow());
         std::vector<int> v2;
         v2.emplace_back(this->cell2->getcol() - 1);
         v2.emplace_back(this->cell2->getrow() - 1);
@@ -784,6 +923,27 @@ void TBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+}
+
+std::vector<std::vector<int>> TBlock::displayNext() {
+    std::vector<std::vector<int>> result;
+    std::vector<int> v1;
+    v1.emplace_back(0);
+    v1.emplace_back(0);
+    std::vector<int> v2;
+    v2.emplace_back(1);
+    v2.emplace_back(0);
+    std::vector<int> v3;
+    v3.emplace_back(2);
+    v3.emplace_back(0);
+    std::vector<int> v4;
+    v4.emplace_back(1);
+    v4.emplace_back(1);
+    result.emplace_back(v1);
+    result.emplace_back(v2);
+    result.emplace_back(v3);
+    result.emplace_back(v4);
+    return result;
 }
 
 TBlock::~TBlock() {}

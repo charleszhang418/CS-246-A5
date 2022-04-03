@@ -22,12 +22,13 @@ class Cell : public Subject {
     void eraseCol(int);
     void eraseValue(char);
     void eraseIffilled(bool);
-    void eraseBlock(Difficulty*);
+    void eraseBlock(Difficulty* diff);
 
 
     bool getiffilled();
     int getrow();
     int getcol();
+    Difficulty* getblock();
     char getvalue();
     Difficulty* getblock();
     std::vector<int> getlocation();

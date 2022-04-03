@@ -5,15 +5,28 @@
 int Difficulty::getWeight() {
     return 0;
 }
-std::vector<std::vector<int>> Difficulty::getalllocation() { }
-void Difficulty::clearCellState() { }
-void Difficulty::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) { }
-void Difficulty::updateCellState() { }
+
 
 
 Difficulty::~Difficulty() { }
 
 Level::Level(Difficulty* diff): diff{diff} { }
+
+std::vector<std::vector<int>> Level::getalllocation() { 
+    return diff->getalllocation();
+}
+
+void Level::clearCellState() { 
+    diff->clearCellState();
+}
+
+void Level::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
+    diff->eraseallcell(cell1, cell2, cell3, cell4);
+}
+
+void Level::updateCellState() { 
+    diff->updateCellState();
+}
 
 std::vector<std::vector<int>> Level::displayNext() { 
     return diff->displayNext();

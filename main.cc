@@ -95,15 +95,14 @@ int main (int argc, char *argv[]) {
     TextOutput t{11 , 18, b1, b2};
 
 
-    Difficulty *curBlock1 = b1->generateNewBlock('L', 4);
+    Difficulty *curBlock1 = b1->generateNewBlock('I', 4);
     Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
 
     b1->spin(curBlock1, false);
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
-    //b1->spin(currentBlock, true);
 
-    //b1->move(-1, 0, 2, curBlock1);
+    // b1->move(-1, 0, 2, curBlock1);
 
     //? For textoutput and graphicsoutput
     

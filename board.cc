@@ -222,10 +222,13 @@ bool Board::BlockClear() {
             line++;
             for (int j = 0; j < width; j++) {
                 cells[j][i]->ClearCell();
-                cells[j][i]->attach(cells[j][i]->getvblock());
+                cells[j][i]->attach(cells[j][i]->getblock());
                 cells[j][i]->notifyObservers();
-                cells[j][i]->detach(cells[j][i]->getvblock());
+                cells[j][i]->detach(cells[j][i]->getblock());
             }
+            for (int j = 0; j < width; j++) {
+                cells[j][i]->eraseBlock(nullptr);
+                }
             DropDown(i);
             score += ((level + 1) * (level + 1));
             i += 1;

@@ -35,6 +35,7 @@ class Cell : public Subject {
 
     void copy(Cell*);
     void ClearCell();
+
 };
 
 #endif 

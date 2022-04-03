@@ -47,6 +47,12 @@ void Block::clearCellState() {
 //     cell4->eraseValue(type);
 // }
 
+int Block::getLevel() {
+    return this->level;
+}
+
+int Block::getWeight() { return 0; }
+
 void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
    this->cell1 = cell1;
    this->cell2 = cell2;

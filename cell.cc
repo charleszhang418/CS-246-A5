@@ -73,6 +73,6 @@ void Cell::copy(Cell* target) {
 void Cell::ClearCell() {
     eraseIffilled(false);
     eraseValue(' ');
-    eraseBlock(nullptr);
 }
+
 

@@ -1,10 +1,11 @@
 #include <vector> 
 #include "subject.h"
 #include "observer.h"
+#include "difficulty.h"
 #include "cell.h"
 using namespace std;
 
-Cell::Cell(int col, int row, char value) :  col{col}, row{row}, value{value} {}
+Cell::Cell(int col, int row, char value): col{col}, row{row}, value{value} {}
 
 bool Cell::getiffilled() {
     return iffilled;
@@ -16,6 +17,14 @@ int Cell::getrow() {
 
 int Cell::getcol() {
     return col;
+}
+
+Difficulty* Cell::getblock() {
+    return block;
+}
+
+void Cell::eraseBlock(Difficulty* diff) {
+    block = diff;
 }
 
 vector<int> Cell::getlocation() {

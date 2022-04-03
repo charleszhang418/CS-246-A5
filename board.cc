@@ -101,19 +101,19 @@ Difficulty* Board::generateNewBlock(char c, int level) {
     Block* block;
     Difficulty* diff;
     if (c == 'I') {
-        block = new IBlock(this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
+        block = new IBlock(level, this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
     } else if (c == 'J') {
-        block = new JBlock(this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        block = new JBlock(level, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'L') {
-        block = new LBlock(this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        block = new LBlock(level, this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
     } else if (c == 'O') {
-        block = new OBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
+        block = new OBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'S') {
-        block = new SBlock(this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
+        block = new SBlock(level, this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
     } else if (c == 'Z') {
-        block = new ZBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(2, 3));
+        block = new ZBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(2, 3));
     } else {
-        block = new TBlock(this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
+        block = new TBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
     }
     if (level >= 0) {
         

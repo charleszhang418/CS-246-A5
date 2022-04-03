@@ -7,6 +7,7 @@
 
 // mutiple ineritance 
 class Cell : public Subject, public Observer {
+    Difficulty* block = nullptr;
     int col, row; 
     char value;
     bool iffilled = false;
@@ -20,11 +21,13 @@ class Cell : public Subject, public Observer {
     void eraseCol(int);
     void eraseValue(char);
     void eraseIffilled(bool);
+    void eraseBlock(Difficulty* diff);
 
 
     bool getiffilled();
     int getrow();
     int getcol();
+    Difficulty* getblock();
     char getvalue();
     std::vector<int> getlocation();
 };

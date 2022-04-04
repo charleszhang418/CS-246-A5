@@ -148,8 +148,11 @@ int main (int argc, char *argv[]) {
         char p_B1;
         char p_B2;
 
+<<<<<<< HEAD
         // if (b1.)
         
+=======
+>>>>>>> b74aff428d1c1cf0c12176244a7d5cbf6ba1eecf
         
         cout << t;
 

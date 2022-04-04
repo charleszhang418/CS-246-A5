@@ -232,6 +232,23 @@ bool Board::move(int x, int y, int weight, Difficulty* b) {
     return true;  
 }
 
+bool Board::dropMid() {
+    if (this->getCell(5, 0)->getiffilled()) {
+        return false;
+    } else {
+        int i = 0;
+        while ((i + 1 < height) && !(this->getCell(5, i + 1)->getiffilled())) {
+            i += 1;
+        }
+        this->getCell(5, i)->eraseValue('*');
+        this->getCell(5, i)->eraseIffilled(true);
+        std::cout << i << std::endl;
+
+        // this->BlockClear();
+        return true;
+    }
+}
+
 Board::~Board() {}
 
 

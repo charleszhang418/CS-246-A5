@@ -48,6 +48,8 @@ class Board : public Subject, public Observer {
 
     Difficulty* generateNewBlock(char c, int level);
 
+    bool dropMid();
+
     
 
     Cell* getCell(int col, int row);

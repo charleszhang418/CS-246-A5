@@ -103,10 +103,13 @@ int main (int argc, char *argv[]) {
     Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
     Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
 
+    b1->dropMid();
+    b1->dropMid();
+    b1->dropMid();
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
-    // b1->spin(curBlock1, true);
+    // b1->spin(curBlock1, true);./a    
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
 

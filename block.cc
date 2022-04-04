@@ -945,30 +945,46 @@ std::vector<std::vector<int>> TBlock::displayNext() {
 
 TBlock::~TBlock() {}
 
+// bool Block::checkBlank() {
+//     if ((cell1 == nullptr) && (cell2 == nullptr) && (cell3 == nullptr) && (cell4 == nullptr))  {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
+
 bool Block::checkBlank() {
-    if ((cell1 == nullptr) && (cell2 == nullptr) && (cell3 == nullptr) && (cell4 == nullptr))  {
+    if (cellCleared == 4)  {
         return true;
     } else {
         return false;
     }
 }
 
+// void Block::notify() {
+//     if (!(cell1->getiffilled())) {
+//         cell1 = nullptr;
+//     }
+//     if (!(cell2->getiffilled())) {
+//         cell2 = nullptr;
+//     }
+//     if (!(cell3->getiffilled())) {
+//         cell3 = nullptr;
+//     }
+//     if (!(cell4->getiffilled())) {
+//         cell4 = nullptr;
+//     }
+//     if (checkBlank() == true)  {
+//         notifyObservers();
+//         delete this;
+//     }
+// }
+
 void Block::notify() {
-    if (!(cell1->getiffilled())) {
-        cell1 = nullptr;
-    }
-    if (!(cell2->getiffilled())) {
-        cell2 = nullptr;
-    }
-    if (!(cell3->getiffilled())) {
-        cell3 = nullptr;
-    }
-    if (!(cell4->getiffilled())) {
-        cell4 = nullptr;
-    }
-    if (checkBlank() == true)  {
-        notifyObservers();
-        delete this;
-    }
+    cellCleared++;
+    // if (cellCleared == 4) {
+        // notifyObservers();
+        // delete this;
+    // }
 }
 

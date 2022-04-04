@@ -8,7 +8,7 @@
 
 
 
-class Block : public Subject, public Observer {
+class Block : public Difficulty {
     protected:
     int type = 0;
     int level;
@@ -34,11 +34,12 @@ class Block : public Subject, public Observer {
 
     void erasetype(bool);
 
-    virtual void notify() override;
-
+    
     std::vector<std::vector<int>> getalllocation();
 
     bool checkBlank();
+
+    void notify();
 };
 
 class IBlock: public Block {

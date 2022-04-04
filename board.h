@@ -9,7 +9,7 @@
 #include "difficulty.h"
 
 // mutiple ineritance 
-class Board : public Observer {
+class Board {
     int width;
     int height;
     int score;
@@ -17,6 +17,7 @@ class Board : public Observer {
     int score;
     int dropTime;
     std::vector<std::vector<Cell*>> cells;
+    std::vector<Block*> blocks;
     Difficulty* curBlock = nullptr;
     char nextBlock = ' ';
 
@@ -54,7 +55,7 @@ class Board : public Observer {
 
     Difficulty* generateNewBlock(char c, int level);
 
-    void notify();
+    void deleteBlock();
 
     
 

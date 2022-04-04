@@ -47,6 +47,10 @@ Level::~Level() {
     delete this->diff;
 }
 
+ void Level::notify() {
+     diff->notify();
+ }
+
 // int Level::getWeight() {
     
 //     return 0;
@@ -100,3 +104,6 @@ ActionHeavy::~ActionHeavy() {}
 int ActionHeavy::getWeight() {
    return 2 + diff->getWeight();
 }
+
+
+

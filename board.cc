@@ -220,6 +220,9 @@ Board::~Board() {}
 void Board::DropDown(int fresh) {
     for (int i = fresh; i > 0; i--) {
         for (int j = 0; j < width; j++) {
+            // if (cells[j][i-1]->getblock() != nullptr) {
+            //     cells[j][i-1]->getblock()->
+            // }
             cells[j][i]->copy(cells[j][i-1]);
         }
     }
@@ -246,6 +249,7 @@ bool Board::BlockClear() {
                 cells[j][i]->attach(cells[j][i]->getblock());
                 cells[j][i]->notifyObservers();
                 cells[j][i]->detach(cells[j][i]->getblock());
+                deleteBlock();
             }
             for (int j = 0; j < width; j++) {
                 cells[j][i]->eraseBlock(nullptr);
@@ -262,14 +266,15 @@ bool Board::BlockClear() {
     }
 }
 
-void Board::notify() {
+void Board::deleteBlock() {
     for (auto& b : blocks) {
         if (b->checkBlank()) {
             score += ((b->getlevel()) * (b->getlevel()));
             for (int i = 0; i < blocks.size(); i++) {
                 if (blocks[i] == b) {
                     blocks.erase(blocks.begin() + (i - 1));
-                    break;
+                    delete b;
+                    return;
                 }
             }
         }

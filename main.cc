@@ -96,15 +96,25 @@ int main (int argc, char *argv[]) {
     Board *pb1 = new Board{width, height, 0};
     Board *pb2 = new Board{width, height, 0};
     TextOutput t{11 , 18, b1, b2, pb1, pb2};
+    Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
+    Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
+    Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
+    Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
+    cout << t;
+
+
 
 
     
 
     
 
-    b1->dropMid();
-    b1->dropMid();
-    b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
+
+
+    
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
@@ -138,15 +148,9 @@ int main (int argc, char *argv[]) {
         char p_B1;
         char p_B2;
 
-        if (b1.)
+        // if (b1.)
         
-        Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
-        Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
-        Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
-        Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
-
-
-
+        
         cout << t;
 
         bool restart = false;
@@ -209,6 +213,7 @@ int main (int argc, char *argv[]) {
                 while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
+                // cur_play->BlockClear();
 
                 //! Clear lines
                 cout << t; 

@@ -57,8 +57,8 @@ int Block::getCellCleared() {
     return cellCleared;
 }
 
-void Block::updateCellCleared(int num) {
-    this->cellCleared = num;
+void Block::updateCellCleared() {
+    this->cellCleared++;
 }
 
 
@@ -990,11 +990,11 @@ bool Block::checkBlank() {
 //     }
 // }
 
-void Block::notify() {
-    cellCleared++;
-    // if (cellCleared == 4) {
-        // notifyObservers();
-        // delete this;
-    // }
-}
+// void Block::notify() {
+//     cellCleared++;
+//     // if (cellCleared == 4) {
+//         // notifyObservers();
+//         // delete this;
+//     // }
+// }
 

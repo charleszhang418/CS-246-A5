@@ -31,7 +31,6 @@ class Cell : public Subject {
     int getcol();
     Difficulty* getblock();
     char getvalue();
-    Difficulty* getblock();
     std::vector<int> getlocation();
 
     void copy(Cell*);

@@ -47,14 +47,19 @@ Level::~Level() {
     delete this->diff;
 }
 
- void Level::notify() {
-     diff->notify();
- }
+//  void Level::notify() {
+//      diff->notify();
+//  }
 
 // int Level::getWeight() {
     
 //     return 0;
 // }
+
+void Level::updateCellCleared() {
+    diff->updateCellCleared();
+}
+
 
 Level0::Level0(Difficulty* diff): Level{diff} { }
 

@@ -289,9 +289,9 @@ bool Board::BlockClear() {
             line++;
             for (int j = 0; j < width; j++) {
                 cells[j][i]->ClearCell();
-                cells[j][i]->attach(cells[j][i]->getblock());
-                cells[j][i]->notifyObservers();
-                cells[j][i]->detach(cells[j][i]->getblock());
+                // cells[j][i]->attach(cells[j][i]->getblock());
+                cells[j][i]->getblock()->updateCellCleared();
+                // cells[j][i]->detach(cells[j][i]->getblock());
                 deleteBlock();
             }
             for (int j = 0; j < width; j++) {

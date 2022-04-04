@@ -30,7 +30,7 @@ class Block : public Difficulty {
     virtual int getLevel();
     virtual int getWeight();
     virtual int getCellCleared();
-    virtual void updateCellCleared(int num);
+    virtual void updateCellCleared();
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual std::vector<std::vector<int>> displayNext() = 0;
     ~Block();
@@ -42,7 +42,7 @@ class Block : public Difficulty {
 
     bool checkBlank();
 
-    void notify();
+    // void notify();
 };
 
 class IBlock: public Block {

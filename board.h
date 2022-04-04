@@ -14,7 +14,6 @@ class Board {
     int height;
     int score;
     int level;
-    int score;
     int dropTime;
     std::vector<std::vector<Cell*>> cells;
     std::vector<Block*> blocks;

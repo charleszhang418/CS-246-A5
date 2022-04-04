@@ -10,7 +10,7 @@ class Cell;
 
 class Cell;
 
-class Difficulty : public Observer {
+class Difficulty  {
   public:
     virtual int getWeight() = 0;
     virtual std::vector<std::vector<int>> getalllocation() = 0;
@@ -22,7 +22,8 @@ class Difficulty : public Observer {
     virtual char getChar() = 0;
     virtual void erasetype(bool clock) = 0;
     virtual ~Difficulty();
-    virtual void notify() = 0;
+    // virtual void notify() = 0;
+    virtual void updateCellCleared() = 0;
 
 };
 
@@ -43,7 +44,8 @@ class Level: public Difficulty {
     virtual ~Level();
     //virtual int getWeight();
     // int getWeight() override;
-    virtual void notify();
+    // virtual void notify();
+    virtual void updateCellCleared();
 };
 
 class Level0: public Level {

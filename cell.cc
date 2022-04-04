@@ -38,9 +38,6 @@ char Cell::getvalue() {
     return value;
 }
 
-Difficulty* Cell::getblock() {
-    return block;
-}
 
 void Cell::eraseRow(int row) {
     this->row = row;
@@ -58,9 +55,6 @@ void Cell::eraseIffilled(bool iffilled) {
     this->iffilled = iffilled;
 }
 
-void Cell::eraseBlock(Difficulty* block) {
-    this->block = block;
-}
 
 void Cell::copy(Cell* target) {
     eraseRow(target->getrow());

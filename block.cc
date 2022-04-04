@@ -371,8 +371,8 @@ std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
     if ((this->type == 0) && (clockwise)) {
         std::vector<int> v1;
-        v1.emplace_back(this->cell1->getcol() + 1);
-        v1.emplace_back(this->cell1->getrow() - 1);
+        v1.emplace_back(this->cell1->getcol() - 1);
+        v1.emplace_back(this->cell1->getrow() + 1);
         std::vector<int> v2;
         v2.emplace_back(this->cell2->getcol());
         v2.emplace_back(this->cell2->getrow() - 2);

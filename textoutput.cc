@@ -26,7 +26,7 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
 
     // Print the level and socre for the two board
     out << "Level:" << setw(5) << text_out.board1->getLevel() << between << "Level:" << setw(5) << text_out.board2->getLevel() << endl;
-    out << "Score:" << setw(5) << "N" << between << "Score:" << setw(5) << "N" << endl;
+    out << "Score:" << setw(5) << text_out.board1->getScore() << between << "Score:" << setw(5) << text_out.board2->getScore() << endl;
 
     // Slashes
     out << slash << between << slash << endl;

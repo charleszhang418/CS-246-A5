@@ -109,9 +109,9 @@ int main (int argc, char *argv[]) {
 
     
 
-    // b1->dropMid();
-    // b1->dropMid();
-    // b1->dropMid();
+    b1->dropMid();
+    b1->dropMid();
+    b1->dropMid();
 
 
 

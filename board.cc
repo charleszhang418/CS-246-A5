@@ -114,24 +114,50 @@ Difficulty* Board::generateNewBlock(char c, int level) {
     Block* block;
     Difficulty* diff;
     if (c == 'I') {
-        block = new IBlock(level, this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
+        if (this->getCell(0, 3)->getiffilled() || this->getCell(1, 3)->getiffilled() || this->getCell(2, 3)->getiffilled() || this->getCell(3, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new IBlock(level, this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3), this->getCell(3, 3));
+        } 
     } else if (c == 'J') {
-        block = new JBlock(level, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        if (this->getCell(0, 2)->getiffilled() || this->getCell(0, 3)->getiffilled() || this->getCell(1, 3)->getiffilled() || this->getCell(2, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new JBlock(level, this->getCell(0, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        }
     } else if (c == 'L') {
-        block = new LBlock(level, this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        if (this->getCell(2, 2)->getiffilled() || this->getCell(0, 3)->getiffilled() || this->getCell(1, 3)->getiffilled() || this->getCell(2, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new LBlock(level, this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3), this->getCell(2, 3));
+        }
     } else if (c == 'O') {
-        block = new OBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
+        if (this->getCell(0, 2)->getiffilled() || this->getCell(1, 2)->getiffilled() || this->getCell(0, 3)->getiffilled() || this->getCell(1, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new OBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(0, 3), this->getCell(1, 3));
+        }
     } else if (c == 'S') {
-        block = new SBlock(level, this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
+        if (this->getCell(1, 2)->getiffilled() || this->getCell(2, 2)->getiffilled() || this->getCell(0, 3)->getiffilled() || this->getCell(1, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new SBlock(level, this->getCell(1, 2), this->getCell(2, 2), this->getCell(0, 3), this->getCell(1, 3));
+        }
     } else if (c == 'Z') {
-        block = new ZBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(2, 3));
+        if (this->getCell(0, 2)->getiffilled() || this->getCell(1, 2)->getiffilled() || this->getCell(1, 3)->getiffilled() || this->getCell(2, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new ZBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(2, 3));
+        }
     } else {
-        block = new TBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
+        if (this->getCell(0, 2)->getiffilled() || this->getCell(1, 2)->getiffilled() || this->getCell(2, 2)->getiffilled() || this->getCell(1, 3)->getiffilled()) {
+            return nullptr;
+        } else {
+            block = new TBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
+        }
     }
-    if (level >= 0) {
-        
+    if (level >= 0) { 
         diff = new Level0(block);
-        
     } 
     if (level >= 1) {
         diff = new Level1(diff);
@@ -213,6 +239,23 @@ bool Board::move(int x, int y, int weight, Difficulty* b) {
         }
     }
     return true;  
+}
+
+bool Board::dropMid() {
+    if (this->getCell(5, 0)->getiffilled()) {
+        return false;
+    } else {
+        int i = 0;
+        while ((i + 1 < height) && !(this->getCell(5, i + 1)->getiffilled())) {
+            i += 1;
+        }
+        this->getCell(5, i)->eraseValue('*');
+        this->getCell(5, i)->eraseIffilled(true);
+        std::cout << i << std::endl;
+
+        // this->BlockClear();
+        return true;
+    }
 }
 
 Board::~Board() {}

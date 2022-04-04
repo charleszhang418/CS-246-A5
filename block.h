@@ -12,6 +12,7 @@ class Block : public Difficulty {
     protected:
     int type = 0;
     int level;
+    int cellCleared = 0;
     Cell* cell1;
     Cell* cell2;
     Cell* cell3;
@@ -28,6 +29,8 @@ class Block : public Difficulty {
     //virtual void updateBlockDifficulty(Difficulty* diff);
     virtual int getLevel();
     virtual int getWeight();
+    virtual int getCellCleared();
+    virtual void updateCellCleared(int num);
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual std::vector<std::vector<int>> displayNext() = 0;
     ~Block();

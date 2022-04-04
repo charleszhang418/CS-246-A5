@@ -5,6 +5,7 @@
 #include "subject.h"
 #include "observer.h"
 #include "block.h"
+#include "difficulty.h"
 
 // mutiple ineritance 
 class Cell : public Subject {

@@ -56,6 +56,7 @@ class Board {
     Difficulty* generateNewBlock(char c, int level);
 
     void deleteBlock();
+    bool dropMid();
 
     
 

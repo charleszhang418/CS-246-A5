@@ -281,21 +281,21 @@ bool Board::BlockClear() {
     for (int i = (height - 1); i >= 0; i--) {
         bool clear = true;
         for (int j = 0; j < width; j++) {
-            if (!(cells[j][i]->getiffilled())) {
+            if (!(cells[i][j]->getiffilled())) {
                 clear = false;
             }
         }
         if (clear == true) {
             line++;
             for (int j = 0; j < width; j++) {
-                cells[j][i]->ClearCell();
+                cells[i][j]->ClearCell();
                 // cells[j][i]->attach(cells[j][i]->getblock());
-                cells[j][i]->getblock()->updateCellCleared();
+                cells[i][j]->getblock()->updateCellCleared();
                 // cells[j][i]->detach(cells[j][i]->getblock());
                 deleteBlock();
             }
             for (int j = 0; j < width; j++) {
-                cells[j][i]->eraseBlock(nullptr);
+                cells[i][j]->eraseBlock(nullptr);
                 }
             DropDown(i);
             score += ((level + 1) * (level + 1));

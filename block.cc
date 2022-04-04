@@ -94,7 +94,7 @@ int Block::getType() {
 Block::~Block() {}
 
 IBlock::IBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+    
 }
 
 char IBlock::getChar() {
@@ -141,7 +141,7 @@ std::vector<std::vector<int>> IBlock::rotate(bool clockwise) {
     return result;
 }
 
-void IBlock::updateCellState() {
+void IBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -150,6 +150,10 @@ void IBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> IBlock::displayNext() {
@@ -176,7 +180,7 @@ std::vector<std::vector<int>> IBlock::displayNext() {
 IBlock::~IBlock() {}
 
 JBlock::JBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+    
 }
 
 char JBlock::getChar() {
@@ -325,7 +329,7 @@ std::vector<std::vector<int>> JBlock::rotate(bool clockwise) {
     return result;
 }
 
-void JBlock::updateCellState() {
+void JBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -334,6 +338,10 @@ void JBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> JBlock::displayNext() {
@@ -360,7 +368,7 @@ std::vector<std::vector<int>> JBlock::displayNext() {
 JBlock::~JBlock() {}
 
 LBlock::LBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+    
 }
 
 char LBlock::getChar() {
@@ -509,7 +517,7 @@ std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
     return result;
 }
 
-void LBlock::updateCellState() {
+void LBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -518,6 +526,10 @@ void LBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> LBlock::displayNext() {
@@ -544,7 +556,7 @@ std::vector<std::vector<int>> LBlock::displayNext() {
 LBlock::~LBlock() {}
 
 OBlock::OBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+
 }
 
 char OBlock::getChar() {
@@ -572,7 +584,7 @@ std::vector<std::vector<int>> OBlock::rotate(bool clockwise) {
     return result;
 }
 
-void OBlock::updateCellState() {
+void OBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -581,6 +593,10 @@ void OBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> OBlock::displayNext() {
@@ -607,7 +623,7 @@ std::vector<std::vector<int>> OBlock::displayNext() {
 OBlock::~OBlock() {}
 
 SBlock::SBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+    
 }
 
 char SBlock::getChar() {
@@ -654,7 +670,7 @@ std::vector<std::vector<int>> SBlock::rotate(bool clockwise) {
     return result;
 }
 
-void SBlock::updateCellState() {
+void SBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -663,6 +679,10 @@ void SBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> SBlock::displayNext() {
@@ -689,7 +709,7 @@ std::vector<std::vector<int>> SBlock::displayNext() {
 SBlock::~SBlock() {}
 
 ZBlock::ZBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+    
 }
 
 char ZBlock::getChar() {
@@ -736,7 +756,7 @@ std::vector<std::vector<int>> ZBlock::rotate(bool clockwise) {
     return result;
 }
 
-void ZBlock::updateCellState() {
+void ZBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -745,6 +765,10 @@ void ZBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> ZBlock::displayNext() {
@@ -771,7 +795,7 @@ std::vector<std::vector<int>> ZBlock::displayNext() {
 ZBlock::~ZBlock() {}
 
 TBlock::TBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
-    this->updateCellState();
+    
 }
 
 char TBlock::getChar() {
@@ -921,7 +945,7 @@ std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
     return result;
 }
 
-void TBlock::updateCellState() {
+void TBlock::updateCellState(Difficulty* diff) {
     cell1->eraseIffilled(true);
     cell2->eraseIffilled(true);
     cell3->eraseIffilled(true);
@@ -930,6 +954,10 @@ void TBlock::updateCellState() {
     cell2->eraseValue(this->c);
     cell3->eraseValue(this->c);
     cell4->eraseValue(this->c);
+    cell1->eraseBlock(diff);
+    cell2->eraseBlock(diff);
+    cell3->eraseBlock(diff);
+    cell4->eraseBlock(diff);
 }
 
 std::vector<std::vector<int>> TBlock::displayNext() {

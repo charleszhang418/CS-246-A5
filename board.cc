@@ -109,11 +109,7 @@ void Board::spin(Difficulty* change, bool clock) {
         Cell* cell3 = getCell(placenew[2][0], placenew[2][1]);
         Cell* cell4 = getCell(placenew[3][0], placenew[3][1]);
         change->eraseallcell(cell1, cell2, cell3, cell4);
-        change->updateCellState();
-        cell1->eraseBlock(curBlock);
-        cell2->eraseBlock(curBlock);
-        cell3->eraseBlock(curBlock);
-        cell4->eraseBlock(curBlock);
+        change->updateCellState(curBlock);
     }
 }
 
@@ -186,7 +182,8 @@ Difficulty* Board::generateNewBlock(char c, int level) {
     if (level >= 4) {
         diff = new Level4(diff);
     }
-    curBlock = diff;
+    diff->updateCellState(diff);
+    this->curBlock = diff;
     //block->updateBlockDifficulty(diff);
     return diff;
 }
@@ -211,17 +208,9 @@ bool Board::move(int x, int y, int weight, Difficulty* b) {
                 Cell* cell4 = this->getCell(col4 + x, row4);
                 if (!(cell1->getiffilled()) && !(cell2->getiffilled()) && !(cell3->getiffilled()) && !(cell4->getiffilled())) {
                     b->eraseallcell(cell1, cell2, cell3, cell4);
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                 } else {
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                 }
             }
             x = 0;
@@ -234,17 +223,9 @@ bool Board::move(int x, int y, int weight, Difficulty* b) {
                 Cell* cell4 = this->getCell(col4, row4 + 1);
                 if (!(cell1->getiffilled()) && !(cell2->getiffilled()) && !(cell3->getiffilled()) && !(cell4->getiffilled())) {
                     b->eraseallcell(cell1, cell2, cell3, cell4);
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                 } else {
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                     return false;
                 }
             sum -= 1;

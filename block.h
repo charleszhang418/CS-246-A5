@@ -24,7 +24,7 @@ class Block : public Difficulty {
     virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
     virtual void clearCellState();
     // virtual void SetCellState(char);
-    virtual void updateCellState() = 0;
+    virtual void updateCellState(Difficulty* diff) = 0;
     int getType();
     //virtual void updateBlockDifficulty(Difficulty* diff);
     virtual int getLevel();
@@ -52,7 +52,7 @@ class IBlock: public Block {
     IBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) ;
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     std::vector<std::vector<int>> displayNext() override;
     ~IBlock();
 };
@@ -64,7 +64,7 @@ class JBlock: public Block {
     JBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     std::vector<std::vector<int>> displayNext() override;
     ~JBlock();
 };
@@ -76,7 +76,7 @@ class LBlock: public Block {
     LBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     std::vector<std::vector<int>> displayNext() override;
     ~LBlock();
 };
@@ -88,7 +88,7 @@ class OBlock: public Block {
     OBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     std::vector<std::vector<int>> displayNext() override;
     ~OBlock();
 };
@@ -100,7 +100,7 @@ class SBlock: public Block {
     SBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     std::vector<std::vector<int>> displayNext() override;
     ~SBlock();
 };
@@ -112,7 +112,7 @@ class ZBlock: public Block {
     ZBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     std::vector<std::vector<int>> displayNext() override;
     ~ZBlock();
 };
@@ -124,7 +124,7 @@ class TBlock: public Block {
     TBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     char getChar() override;
     std::vector<std::vector<int>> rotate(bool clockwise) override;
-    void updateCellState() override;
+    void updateCellState(Difficulty* diff) override;
     ~TBlock();
     std::vector<std::vector<int>> displayNext() override;
 };

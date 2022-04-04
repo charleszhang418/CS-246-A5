@@ -32,6 +32,14 @@ void Board::setDropTime(int dropTime) {
     dropTime = dropTime;
 }
 
+void Board::setCurBlock(Difficulty* diff) {
+    curBlock = diff;
+}
+
+void Board::setNextBlock(char c) {
+    nextBlock = c;
+}
+
 int Board::getLevel() const {
     return level;
 } 
@@ -48,6 +56,13 @@ int Board::getDropTime() const {
     return dropTime;
 }
 
+Difficulty* Board::getCurBlock() const {
+    return curBlock;
+}
+
+char Board::getNextBlock() const {
+    return nextBlock;
+}
 
 void Board::spin(Difficulty* change, bool clock) {
 

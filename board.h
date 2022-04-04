@@ -30,12 +30,16 @@ class Board {
     void setLevel(int level);
     void setScore(int score);
     void setDropTime(int dropTime);
+    void setCurBlock(Difficulty* diff);
+    void setNextBlock(char c);
 
     // Getters
     int getLevel() const;
     int getScore() const;
     char getVal(int col, int row);
     int getDropTime() const;
+    Difficulty* getCurBlock() const;
+    char getNextBlock() const;
 
 
     // this method will change the subject, so it triggers

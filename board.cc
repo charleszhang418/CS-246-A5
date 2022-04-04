@@ -122,6 +122,7 @@ void Board::spin(Difficulty* change, bool clock) {
 
 
 Cell* Board::getCell(int col, int row) {
+    cout << "we reached getbcell" << endl;
     return this->cells[row][col];
 }
 
@@ -281,11 +282,11 @@ void Board::DropDown(int fresh) {
             // if (cells[j][i-1]->getblock() != nullptr) {
             //     cells[j][i-1]->getblock()->
             // }
-            cells[j][i]->copy(cells[j][i-1]);
+            getCell(j,i)->copy(getCell(j,i - 1));
         }
     }
     for (int j = 0; j < width; j++) {
-        cells[j][0]->ClearCell();
+        getCell(j,0)->ClearCell();
     }
 }
 
@@ -296,21 +297,30 @@ bool Board::BlockClear() {
     for (int i = (height - 1); i >= 0; i--) {
         bool clear = true;
         for (int j = 0; j < width; j++) {
-            if (!(cells[i][j]->getiffilled())) {
+            if (!(getCell(j,i)->getiffilled())) {
                 clear = false;
             }
         }
         if (clear == true) {
             line++;
+            cout << "1 we reach here" << endl;
             for (int j = 0; j < width; j++) {
-                cells[i][j]->ClearCell();
+                cout << "2 we reach here" << endl;
+                getCell(j,i)->ClearCell();
+                cout << "3 we reach here" << endl;
+                cout << "j is " << j << " i is " << i << endl;
                 // cells[j][i]->attach(cells[j][i]->getblock());
-                cells[i][j]->getblock()->updateCellCleared();
+                Difficulty* temp;
+                temp = (getCell(j,i)->getblock());
+                cout << "3.5 we reach here" << endl;
+                cout << "this block has char" << temp->getChar() << endl;
+                temp->updateCellCleared();
                 // cells[j][i]->detach(cells[j][i]->getblock());
+                cout << "4 we reach here" << endl;
                 deleteBlock();
             }
             for (int j = 0; j < width; j++) {
-                cells[i][j]->eraseBlock(nullptr);
+                getCell(j,i)->eraseBlock(nullptr);
                 }
             DropDown(i);
             score += ((level + 1) * (level + 1));

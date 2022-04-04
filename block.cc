@@ -58,7 +58,8 @@ int Block::getCellCleared() {
 }
 
 void Block::updateCellCleared() {
-    this->cellCleared++;
+    cout << "we get into updateCellCleared" << endl;
+    this->cellCleared += 1;
 }
 
 

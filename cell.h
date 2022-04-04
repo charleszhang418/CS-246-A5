@@ -9,6 +9,7 @@
 
 // mutiple ineritance 
 class Cell : public Subject {
+    public:
     int col, row; 
     char value;
     bool iffilled = false;

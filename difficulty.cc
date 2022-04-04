@@ -57,6 +57,7 @@ Level::~Level() {
 // }
 
 void Level::updateCellCleared() {
+    std::cout << "we reached updateCellCleared" << std::endl;
     diff->updateCellCleared();
 }
 

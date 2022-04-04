@@ -8,6 +8,8 @@
 
 class Cell;
 
+class Cell;
+
 class Difficulty {
   public:
     virtual int getWeight() = 0;

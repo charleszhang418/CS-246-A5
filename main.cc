@@ -98,10 +98,9 @@ int main (int argc, char *argv[]) {
     TextOutput t{11 , 18, b1, b2, pb1, pb2};
 
 
-    Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
-    Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
-    Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
-    Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
+    
+
+    
 
     b1->dropMid();
     b1->dropMid();
@@ -117,7 +116,7 @@ int main (int argc, char *argv[]) {
 
     //? For textoutput and graphicsoutput
     
-    cout << t;
+    
     // Initialize boards with other setting
     
     
@@ -133,6 +132,22 @@ int main (int argc, char *argv[]) {
     string cmdin;
     //! Game
     while (true) {
+        
+        char cur_B1;
+        char cur_B2;
+        char p_B1;
+        char p_B2;
+
+        if (b1.)
+        
+        Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
+        Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
+        Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
+        Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
+
+
+
+        cout << t;
 
         bool restart = false;
 
@@ -195,7 +210,8 @@ int main (int argc, char *argv[]) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
 
-                //! Clear lines 
+                //! Clear lines
+                cout << t; 
                 break;
             }
 

@@ -189,8 +189,15 @@ int main (int argc, char *argv[]) {
     
     Difficulty *curBlock1 = b1->generateNewBlock(cur_B1, ini_level);
     Difficulty *curBlock2 = b2->generateNewBlock(cur_B2, ini_level);
+    b1->setCurBlock(curBlock1);
+    b2->setCurBlock(curBlock2);
+    b1->setNextBlock(nxt_B1);
+    b2->setNextBlock(nxt_B2);
+    
     Difficulty *p_Block1 = pb1->generateNewBlock(nxt_B1, ini_level);
     Difficulty *p_Block2 = pb2->generateNewBlock(nxt_B2, ini_level);
+
+    
 
     //! Game
     while (true) {
@@ -223,6 +230,11 @@ int main (int argc, char *argv[]) {
                 p_Block2 = pb2->generateNewBlock(nxt_B2, b2->getLevel());
             }
         }
+
+        b1->setCurBlock(curBlock1);
+        b2->setCurBlock(curBlock2);
+        b1->setNextBlock(nxt_B1);
+        b2->setNextBlock(nxt_B2);
 
         player += 1;
         cout << t;

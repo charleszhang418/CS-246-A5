@@ -96,13 +96,7 @@ int main (int argc, char *argv[]) {
     Board *pb1 = new Board{width, height, 0};
     Board *pb2 = new Board{width, height, 0};
     TextOutput t{11 , 18, b1, b2, pb1, pb2};
-    Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
-    Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
-    Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
-    Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
-    cout << t;
-
-
+    
 
 
     
@@ -140,20 +134,50 @@ int main (int argc, char *argv[]) {
     // cout << curBlock2->displayNext()[3][1] << endl;    
 
     string cmdin;
+
+    //? Temp input
+    string b1_seq = {'L', 'O', 'I', 'L', 'O', 'L', 'O', 'L', 'O'};
+
+    int p1_count = 0;
+    int p2_count = 0;
+    
+    char cur_B1;
+    char cur_B2;
+    char p_B1;
+    char p_B2;
+
+
+    cur_B1 = b1_seq[0];
+    cur_B2 = b1_seq[0];
+
+
+    Difficulty *curBlock1 = b1->generateNewBlock(cur_B1, 2);
+    Difficulty *curBlock2 = b2->generateNewBlock(cur_B2, 2);
+    Difficulty *p_Block1 = pb1->generateNewBlock('I', 0);
+    Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
+
     //! Game
     while (true) {
-        
-        char cur_B1;
-        char cur_B2;
-        char p_B1;
-        char p_B2;
-
-        
-        cout << t;
 
         bool restart = false;
+        if (player != 0) {
+            if ((player % 2) != 0) {
+                p1_count += 1;
+                cur_B1 = b1_seq[p1_count];
+                cout << cur_B1 << endl;
+                curBlock1 = b1->generateNewBlock(cur_B1, 0);
+                
+            } else {
+                p2_count += 1;
+                cur_B2 = b1_seq[p2_count];
+                cout << cur_B2 << endl;
+                curBlock2 = b2->generateNewBlock(cur_B2, 0);
+            }
+        }
 
         player += 1;
+        cout << t;
+        
         
         // Two players turn
         Board *cur_play = ((player % 2) != 0) ? b1 : b2;
@@ -211,7 +235,7 @@ int main (int argc, char *argv[]) {
                 while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
-                // cur_play->BlockClear();
+                cur_play->BlockClear();
 
                 //! Clear lines
                 cout << t; 

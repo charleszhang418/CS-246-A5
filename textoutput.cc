@@ -34,11 +34,11 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
     // Game board
     for (int i = 0; i < text_out.getHeight(); ++i) {
         for (int j = 0; j < text_out.getWidth(); ++j) {
-            out << text_out.board1->getVal(j,i);
+            out << text_out.board1->getVal(i,j);
         }
         out << between;
         for (int j = 0; j < text_out.getWidth(); ++j) {
-            out << text_out.board2->getVal(j,i);
+            out << text_out.board2->getVal(i,j);
         }
         out << endl;
     }

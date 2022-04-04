@@ -190,6 +190,20 @@ int main (int argc, char *argv[]) {
     while (true) {
 
         bool restart = false;
+        if (player != 0) {
+            if ((player % 2) != 0) {
+                p1_count += 1;
+                cur_B1 = b1_seq[p1_count];
+                cout << cur_B1 << endl;
+                curBlock1 = b1->generateNewBlock(cur_B1, 0);
+                
+            } else {
+                p2_count += 1;
+                cur_B2 = b1_seq[p2_count];
+                cout << cur_B2 << endl;
+                curBlock2 = b2->generateNewBlock(cur_B2, 0);
+            }
+        }
 
         if (player != 0) {
             if ((player % 2) != 0) {
@@ -220,7 +234,6 @@ int main (int argc, char *argv[]) {
 
         player += 1;
         cout << t;
-
         
         // Two players turn
         Board *cur_play = ((player % 2) != 0) ? b1 : b2;

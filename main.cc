@@ -138,7 +138,6 @@ int main (int argc, char *argv[]) {
         char p_B1;
         char p_B2;
 
-        if (b1.)
         
         Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
         Difficulty *curBlock2 = b2->generateNewBlock('L', 2);

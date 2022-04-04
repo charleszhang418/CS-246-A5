@@ -103,7 +103,9 @@ int main (int argc, char *argv[]) {
     
 
     b1->dropMid();
-    // b1->dropMid();
+    b1->dropMid();
+    b1->dropMid();
+
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);

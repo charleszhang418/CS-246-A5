@@ -4,14 +4,15 @@
 #include <vector> 
 #include "subject.h"
 #include "observer.h"
+#include "block.h"
 #include "difficulty.h"
 
 // mutiple ineritance 
-class Cell : public Subject, public Observer {
-    Difficulty* block = nullptr;
+class Cell : public Subject {
     int col, row; 
     char value;
     bool iffilled = false;
+    Difficulty* block = nullptr;
 
     public:
     Cell(int, int, char); 
@@ -31,6 +32,10 @@ class Cell : public Subject, public Observer {
     Difficulty* getblock();
     char getvalue();
     std::vector<int> getlocation();
+
+    void copy(Cell*);
+    void ClearCell();
+
 };
 
 #endif 

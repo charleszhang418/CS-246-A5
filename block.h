@@ -8,7 +8,7 @@
 
 
 
-class Block: public Difficulty {
+class Block : public Difficulty {
     protected:
     int type = 0;
     int level;
@@ -19,23 +19,30 @@ class Block: public Difficulty {
     Cell* cell4;
     public:
     Block(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
+    int getlevel();
     virtual char getChar() = 0;
     virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
     virtual void clearCellState();
+    // virtual void SetCellState(char);
     virtual void updateCellState() = 0;
     int getType();
     //virtual void updateBlockDifficulty(Difficulty* diff);
     virtual int getLevel();
     virtual int getWeight();
     virtual int getCellCleared();
-    virtual void updateCellCleared(int num);
+    virtual void updateCellCleared();
     virtual void eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4);
     virtual std::vector<std::vector<int>> displayNext() = 0;
     ~Block();
 
     void erasetype(bool);
 
-    std::vector<std::vector<int>> getalllocation() override;
+    
+    std::vector<std::vector<int>> getalllocation();
+
+    bool checkBlank();
+
+    // void notify();
 };
 
 class IBlock: public Block {

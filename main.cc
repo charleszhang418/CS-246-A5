@@ -11,8 +11,26 @@
 #include <vector>
 #include <stdio.h>
 #include <fstream>
+#include <cstdlib>
 
 using namespace std;
+
+char randomBlock(int level) {
+    string block;
+    if (level == 1) {
+        block = {'S', 'Z', 'I', 'I', 'J', 'J', 'L', 'L', 'O', 'O', 'T', 'T'};
+        int i = rand() % block.size();
+        return block[i];
+    } else if (level == 2) {
+        block = {'S', 'Z', 'I', 'J', 'L', 'O', 'T'};
+        int i = rand() % block.size();
+        return block[i];
+    } else if (level == 3 || level == 4) {
+        block = {'S', 'S', 'Z', 'Z', 'I', 'J', 'L', 'O', 'T'};
+        int i = rand() % block.size();
+        return block[i];
+    }
+}
 
 int main (int argc, char *argv[]) {
     
@@ -27,12 +45,7 @@ int main (int argc, char *argv[]) {
     int height = 18;
     int player = 0;
     int ini_level = 0;
-
-    //? Preview Board
-    int p_width = 11;
-    int p_height = 3;
     
-
     bool graphicsMode = true; //? Default: with both graphic output and text output
 
 
@@ -96,9 +109,10 @@ int main (int argc, char *argv[]) {
     Board *pb1 = new Board{width, height, 0};
     Board *pb2 = new Board{width, height, 0};
     TextOutput t{11 , 18, b1, b2, pb1, pb2};
-
-
     
+    // b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
 
     
 
@@ -112,7 +126,6 @@ int main (int argc, char *argv[]) {
     // b1->spin(curBlock1, true);./a    
     // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
     
-
     // b1->move(-1, 0, 2, curBlock1);
 
     //? For textoutput and graphicsoutput
@@ -131,28 +144,88 @@ int main (int argc, char *argv[]) {
     // cout << curBlock2->displayNext()[3][1] << endl;    
 
     string cmdin;
+
+    //? Temp input
+    string b1_seq = {'L', 'O', 'I', 'L', 'O', 'L', 'O', 'L', 'O'};
+
+    int p1_count = 1;
+    int p2_count = 1;
+
+    string p1_seq;
+    string p2_seq;
+    int temp = 0;
+    char tmp;
+    ifstream fin1(p1_level0);
+    while (fin1 >> tmp) {
+        p1_seq[temp++] = tmp;
+    }
+    temp = 0;
+    ifstream fin2(p2_level0);
+    while (fin2 >> tmp) {
+        p2_seq[temp++] = tmp;
+    }
+
+    char cur_B1;
+    char cur_B2;
+    char nxt_B1;
+    char nxt_B2;
+    char p_B1;
+    char p_B2;
+
+
+    if (ini_level == 0) {
+        cur_B1 = p1_seq[0];
+        nxt_B1 = p1_seq[1];
+
+        cur_B2 = p2_seq[0];
+        nxt_B2 = p2_seq[1];
+    } else if (ini_level >= 1 && ini_level <= 4) {
+        cur_B1 = randomBlock(ini_level);
+        nxt_B1 = randomBlock(ini_level);
+
+        cur_B2 = randomBlock(ini_level);
+        nxt_B2 = randomBlock(ini_level);
+    }
+    
+    Difficulty *curBlock1 = b1->generateNewBlock(cur_B1, ini_level);
+    Difficulty *curBlock2 = b2->generateNewBlock(cur_B2, ini_level);
+    Difficulty *p_Block1 = pb1->generateNewBlock(nxt_B1, ini_level);
+    Difficulty *p_Block2 = pb2->generateNewBlock(nxt_B2, ini_level);
+
     //! Game
     while (true) {
-        
-        char cur_B1;
-        char cur_B2;
-        char p_B1;
-        char p_B2;
-
-        // if (b1.)
-        
-        Difficulty *curBlock1 = b1->generateNewBlock('T', 4);
-        Difficulty *curBlock2 = b2->generateNewBlock('L', 2);
-        Difficulty *p_Block1 = pb1->generateNewBlock('T', 0);
-        Difficulty *p_Block2 = pb2->generateNewBlock('L', 0);
-
-
-
-        cout << t;
 
         bool restart = false;
 
+        if (player != 0) {
+            if ((player % 2) != 0) {
+                cur_B1 = nxt_B1;
+                curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
+                if (b1->getLevel() == 0) {
+                    p1_count += 1;
+                    nxt_B1 = p1_seq[p1_count];
+                } else if (b1->getLevel() >= 1 && b1->getLevel() <= 4) {
+                    nxt_B1 = randomBlock(b1->getLevel());
+                }
+                p_Block1->clearCellState();
+                p_Block1 = pb1->generateNewBlock(nxt_B1, b1->getLevel());
+                
+            } else {
+                cur_B2 = nxt_B2;
+                curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
+                if (b2->getLevel() == 0) {
+                    p2_count += 1;
+                    nxt_B2 = p2_seq[p2_count];
+                } else if (b2->getLevel() >= 1 && b2->getLevel() <= 4) {
+                    nxt_B2 = randomBlock(b2->getLevel());
+                }
+                p_Block2->clearCellState();
+                p_Block2 = pb2->generateNewBlock(nxt_B2, b2->getLevel());
+            }
+        }
+
         player += 1;
+        cout << t;
         
         // Two players turn
         Board *cur_play = ((player % 2) != 0) ? b1 : b2;
@@ -210,6 +283,7 @@ int main (int argc, char *argv[]) {
                 while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
+                cur_play->BlockClear();
 
                 //! Clear lines
                 cout << t; 

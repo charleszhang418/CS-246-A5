@@ -9,17 +9,19 @@
 #include "difficulty.h"
 
 // mutiple ineritance 
-class Board : public Subject, public Observer {
+class Board {
     int width;
     int height;
     int score;
     int level;
+    int dropTime;
     std::vector<std::vector<Cell*>> cells;
+    std::vector<Block*> blocks;
     Difficulty* curBlock = nullptr;
     char nextBlock = ' ';
 
     public:
-    Board(int width, int height, int level); 
+    Board(int width, int height, int level, int score = 0, int dropTime = 0); 
     ~Board();
 
     void initial();
@@ -27,11 +29,15 @@ class Board : public Subject, public Observer {
     // Setters
     void setLevel(int level);
     void setScore(int score);
+    void setDropTime(int dropTime);
 
     // Getters
     int getLevel() const;
     int getScore() const;
     char getVal(int col, int row);
+    int getDropTime() const;
+
+
     // this method will change the subject, so it triggers
     // notifyobservers 
     bool isover();
@@ -48,11 +54,17 @@ class Board : public Subject, public Observer {
 
     Difficulty* generateNewBlock(char c, int level);
 
+    void deleteBlock();
     bool dropMid();
 
     
 
     Cell* getCell(int col, int row);
+
+    // Blockclear
+    bool BlockClear();
+
+    void DropDown(int);
 
 
 

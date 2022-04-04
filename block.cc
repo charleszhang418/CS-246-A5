@@ -36,8 +36,15 @@ void Block::clearCellState() {
     cell4->eraseBlock(nullptr);
 }
 
-// void Block::updateBlockDifficulty(Difficulty* diff) {
-//     this->diff = diff;
+// void Block::SetCellState(char type) {
+//     cell1->eraseIffilled(true);
+//     cell2->eraseIffilled(true);
+//     cell3->eraseIffilled(true);
+//     cell4->eraseIffilled(true);
+//     cell1->eraseValue(type);
+//     cell2->eraseValue(type);
+//     cell3->eraseValue(type);
+//     cell4->eraseValue(type);
 // }
 
 int Block::getLevel() {
@@ -50,8 +57,8 @@ int Block::getCellCleared() {
     return cellCleared;
 }
 
-void Block::updateCellCleared(int num) {
-    this->cellCleared = num;
+void Block::updateCellCleared() {
+    this->cellCleared++;
 }
 
 
@@ -63,7 +70,9 @@ void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
    this->cell4 = cell4;
 }
 
-
+int Block::getlevel() {
+    return level;
+}
 
 
 std::vector<std::vector<int>> Block::getalllocation() {
@@ -76,7 +85,7 @@ std::vector<std::vector<int>> Block::getalllocation() {
 }
 
 
-Block::Block(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): cell1{cell1}, cell2{cell2}, cell3{cell3}, cell4{cell4} { }
+Block::Block(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): level{level}, cell1{cell1}, cell2{cell2}, cell3{cell3}, cell4{cell4} { }
 
 int Block::getType() {
     return this->type;
@@ -362,8 +371,8 @@ std::vector<std::vector<int>> LBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
     if ((this->type == 0) && (clockwise)) {
         std::vector<int> v1;
-        v1.emplace_back(this->cell1->getcol() - 1);
-        v1.emplace_back(this->cell1->getrow() + 1);
+        v1.emplace_back(this->cell1->getcol() + 1);
+        v1.emplace_back(this->cell1->getrow() - 1);
         std::vector<int> v2;
         v2.emplace_back(this->cell2->getcol());
         v2.emplace_back(this->cell2->getrow() - 2);
@@ -769,6 +778,7 @@ char TBlock::getChar() {
     return this->c;
 }
 
+
 std::vector<std::vector<int>> TBlock::rotate(bool clockwise) {
     std::vector<std::vector<int>> result;
     if ((this->type == 0) && (clockwise)) {
@@ -944,4 +954,47 @@ std::vector<std::vector<int>> TBlock::displayNext() {
 }
 
 TBlock::~TBlock() {}
+
+// bool Block::checkBlank() {
+//     if ((cell1 == nullptr) && (cell2 == nullptr) && (cell3 == nullptr) && (cell4 == nullptr))  {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// }
+
+bool Block::checkBlank() {
+    if (cellCleared == 4)  {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+// void Block::notify() {
+//     if (!(cell1->getiffilled())) {
+//         cell1 = nullptr;
+//     }
+//     if (!(cell2->getiffilled())) {
+//         cell2 = nullptr;
+//     }
+//     if (!(cell3->getiffilled())) {
+//         cell3 = nullptr;
+//     }
+//     if (!(cell4->getiffilled())) {
+//         cell4 = nullptr;
+//     }
+//     if (checkBlank() == true)  {
+//         notifyObservers();
+//         delete this;
+//     }
+// }
+
+// void Block::notify() {
+//     cellCleared++;
+//     // if (cellCleared == 4) {
+//         // notifyObservers();
+//         // delete this;
+//     // }
+// }
 

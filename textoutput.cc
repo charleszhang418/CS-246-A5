@@ -25,7 +25,7 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
     out << "Highest Score: " << "Substitution here" << endl; // Highest score on the first line
 
     // Print the level and socre for the two board
-    out << "Level:" << setw(5) << text_out.board1->getLevel() << between << "Level:" << setw(5) << "N" << endl;
+    out << "Level:" << setw(5) << text_out.board1->getLevel() << between << "Level:" << setw(5) << text_out.board2->getLevel() << endl;
     out << "Score:" << setw(5) << "N" << between << "Score:" << setw(5) << "N" << endl;
 
     // Slashes
@@ -34,11 +34,11 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
     // Game board
     for (int i = 0; i < text_out.getHeight(); ++i) {
         for (int j = 0; j < text_out.getWidth(); ++j) {
-            out << text_out.board1->getVal(i, j);
+            out << text_out.board1->getVal(i,j);
         }
         out << between;
         for (int j = 0; j < text_out.getWidth(); ++j) {
-            out << text_out.board2->getVal(i, j);
+            out << text_out.board2->getVal(i,j);
         }
         out << endl;
     }

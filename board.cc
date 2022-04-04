@@ -8,8 +8,8 @@
 #include "difficulty.h"
 using namespace std;
 
-Board::Board(int width, int height, int level) : 
-width{width}, height{height}, level{level} {
+Board::Board(int width, int height, int level, int score, int dropTime) : 
+width{width}, height{height}, level{level}, score{score}, dropTime{dropTime} {
     vector<vector<Cell*>> cells;
     for (int i = 0; i < height; i++) {
         vector<Cell*> line;
@@ -20,10 +20,16 @@ width{width}, height{height}, level{level} {
         cells.emplace_back(line);
     }
     this->cells = cells;
+    vector<Block*> blocks;
+    blocks = blocks;
 }
 
 void Board::setLevel(int level) {
     this->level = level;
+}
+
+void Board::setDropTime(int dropTime) {
+    dropTime = dropTime;
 }
 
 int Board::getLevel() const {
@@ -38,6 +44,10 @@ char Board::getVal(int col, int row) {
     return cells[col][row]->getvalue();
 }
 
+int Board::getDropTime() const {
+    return dropTime;
+}
+
 
 void Board::spin(Difficulty* change, bool clock) {
 
@@ -48,7 +58,6 @@ void Board::spin(Difficulty* change, bool clock) {
     for (int i = 0; i < 4; i++) {
         int new1 = placenew[i][0];
         int new2 = placenew[i][1];
-
         if ((new1 < 0) || (new2 < 0) || (new1 >= width) || (new2 >= height)) {
             suc = 0;
             break;
@@ -250,5 +259,69 @@ bool Board::dropMid() {
 }
 
 Board::~Board() {}
+
+void Board::DropDown(int fresh) {
+    for (int i = fresh; i > 0; i--) {
+        for (int j = 0; j < width; j++) {
+            // if (cells[j][i-1]->getblock() != nullptr) {
+            //     cells[j][i-1]->getblock()->
+            // }
+            cells[j][i]->copy(cells[j][i-1]);
+        }
+    }
+    for (int j = 0; j < width; j++) {
+        cells[j][0]->ClearCell();
+    }
+}
+
+
+
+bool Board::BlockClear() {
+    int line = 0;
+    for (int i = (height - 1); i >= 0; i--) {
+        bool clear = true;
+        for (int j = 0; j < width; j++) {
+            if (!(cells[i][j]->getiffilled())) {
+                clear = false;
+            }
+        }
+        if (clear == true) {
+            line++;
+            for (int j = 0; j < width; j++) {
+                cells[i][j]->ClearCell();
+                // cells[j][i]->attach(cells[j][i]->getblock());
+                cells[i][j]->getblock()->updateCellCleared();
+                // cells[j][i]->detach(cells[j][i]->getblock());
+                deleteBlock();
+            }
+            for (int j = 0; j < width; j++) {
+                cells[i][j]->eraseBlock(nullptr);
+                }
+            DropDown(i);
+            score += ((level + 1) * (level + 1));
+            i += 1;
+        }
+    }
+    if (line >= 2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+void Board::deleteBlock() {
+    for (auto& b : blocks) {
+        if (b->checkBlank()) {
+            score += ((b->getlevel()) * (b->getlevel()));
+            for (int i = 0; i < blocks.size(); i++) {
+                if (blocks[i] == b) {
+                    blocks.erase(blocks.begin() + (i - 1));
+                    delete b;
+                    return;
+                }
+            }
+        }
+    }
+}
 
 

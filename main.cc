@@ -190,47 +190,6 @@ int main (int argc, char *argv[]) {
     while (true) {
 
         bool restart = false;
-        if (player != 0) {
-            if ((player % 2) != 0) {
-                p1_count += 1;
-                cur_B1 = b1_seq[p1_count];
-                cout << cur_B1 << endl;
-                curBlock1 = b1->generateNewBlock(cur_B1, 0);
-                
-            } else {
-                p2_count += 1;
-                cur_B2 = b1_seq[p2_count];
-                cout << cur_B2 << endl;
-                curBlock2 = b2->generateNewBlock(cur_B2, 0);
-            }
-        }
-
-        if (player != 0) {
-            if ((player % 2) != 0) {
-                cur_B1 = nxt_B1;
-                curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
-                if (b1->getLevel() == 0) {
-                    p1_count += 1;
-                    nxt_B1 = p1_seq[p1_count];
-                } else if (b1->getLevel() >= 1 && b1->getLevel() <= 4) {
-                    nxt_B1 = randomBlock(b1->getLevel());
-                }
-                p_Block1->clearCellState();
-                p_Block1 = pb1->generateNewBlock(nxt_B1, b1->getLevel());
-                
-            } else {
-                cur_B2 = nxt_B2;
-                curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
-                if (b2->getLevel() == 0) {
-                    p2_count += 1;
-                    nxt_B2 = p2_seq[p2_count];
-                } else if (b2->getLevel() >= 1 && b2->getLevel() <= 4) {
-                    nxt_B2 = randomBlock(b2->getLevel());
-                }
-                p_Block2->clearCellState();
-                p_Block2 = pb2->generateNewBlock(nxt_B2, b2->getLevel());
-            }
-        }
 
         if (player != 0) {
             if ((player % 2) != 0) {

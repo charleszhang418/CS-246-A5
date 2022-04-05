@@ -24,8 +24,8 @@ void Level::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
     diff->eraseallcell(cell1, cell2, cell3, cell4);
 }
 
-void Level::updateCellState() { 
-    diff->updateCellState();
+void Level::updateCellState(Difficulty* diff) { 
+    this->diff->updateCellState(diff);
 }
 
 std::vector<std::vector<int>> Level::displayNext() { 
@@ -45,6 +45,14 @@ void Level::erasetype(bool clock) {
 
 Level::~Level() { 
     delete this->diff;
+}
+
+bool Level::checkBlank() {
+    return diff->checkBlank();
+}
+
+int Level::getLevel() {
+    return diff->getLevel();
 }
 
 //  void Level::notify() {

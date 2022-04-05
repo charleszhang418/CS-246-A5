@@ -200,13 +200,7 @@ int main (int argc, char *argv[]) {
     
 
     //! Game
-    cout << "we reached while true" << endl;
     while (true) {
-        cout << "we reached while true" << endl;
-    cout << b1->getCell(0,3)->block << b1->getCell(1,3)->block
-    << b1->getCell(2,3)->block << b1->getCell(3,3)->block
-    << b1->getCell(0,4)->block << b1->getCell(1,4)->block
-    << b1->getCell(2,4)->block << b1->getCell(3,4)->block << endl;
         bool restart = false;
 
         if (player != 0) {
@@ -255,6 +249,42 @@ int main (int argc, char *argv[]) {
         //! For player turn
         while (cin >> cmdin) {
 
+        std::cout << b1->getCell(0, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(1, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(2, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(3, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(4, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(5, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(6, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(7, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(8, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(9, 2)->getblock() << std::endl;
+                std::cout << b1->getCell(10, 2)->getblock() << std::endl;
+
+                std::cout << b1->getCell(0, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(1, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(2, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(3, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(4, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(5, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(6, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(7, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(8, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(9, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(10, 3)->getblock() << std::endl;
+                std::cout << b1->getCell(0, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(1, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(2, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(3, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(4, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(5, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(6, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(7, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(8, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(9, 4)->getblock() << std::endl;
+                std::cout << b1->getCell(10, 4)->getblock() << std::endl;
+
+
             bool touch = true;
 
             if (cmdin == "rename") {
@@ -279,12 +309,6 @@ int main (int argc, char *argv[]) {
             }
 
             if (cmdin == "down") {
-                cout << "we reached comdin == down" << endl;
-                cout << b1->getCell(0,3)->block << endl;
-                cout << b1->getCell(1,3)->block
-    << b1->getCell(2,3)->block << b1->getCell(3,3)->block
-    << b1->getCell(0,4)->block << b1->getCell(1,4)->block
-    << b1->getCell(2,4)->block << b1->getCell(3,4)->block << endl;
                 if (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
@@ -298,7 +322,7 @@ int main (int argc, char *argv[]) {
 
             if (cmdin == "counterclockwise") {
                 if (touch) {
-                    cur_play->spin(curBlock, true);
+                    cur_play->spin(curBlock, false);
                 }
             }
 
@@ -306,10 +330,50 @@ int main (int argc, char *argv[]) {
                 while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
+                cur_play->addBlock(curBlock);
+
+                // std::cout << b1->getCell(0, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(1, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(2, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(3, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(4, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(5, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(6, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(7, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(8, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(9, 17)->getblock() << std::endl;
+                // std::cout << b1->getCell(10, 17)->getblock() << std::endl;
+
+                // std::cout << b1->getCell(0, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(1, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(2, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(3, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(4, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(5, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(6, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(7, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(8, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(9, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(10, 16)->getblock() << std::endl;
+                // std::cout << b1->getCell(0, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(1, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(2, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(3, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(4, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(5, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(6, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(7, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(8, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(9, 15)->getblock() << std::endl;
+                // std::cout << b1->getCell(10, 15)->getblock() << std::endl;
+
                 cur_play->BlockClear();
 
                 //! Clear lines
                 cout << t; 
+
+                
+
                 break;
             }
 

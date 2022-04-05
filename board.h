@@ -16,7 +16,7 @@ class Board {
     int level;
     int dropTime;
     std::vector<std::vector<Cell*>> cells;
-    std::vector<Block*> blocks;
+    std::vector<Difficulty*> blocks;
     Difficulty* curBlock = nullptr;
     char nextBlock = ' ';
 
@@ -32,6 +32,7 @@ class Board {
     void setDropTime(int dropTime);
     void setCurBlock(Difficulty* diff);
     void setNextBlock(char c);
+    void addBlock(Difficulty* diff);
 
     // Getters
     int getLevel() const;

@@ -20,7 +20,6 @@ int Cell::getcol() {
 }
 
 Difficulty* Cell::getblock() {
-    cout << "we reached getblock" << endl;
     return block;
 }
 

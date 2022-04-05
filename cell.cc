@@ -1,6 +1,4 @@
 #include <vector> 
-#include "subject.h"
-#include "observer.h"
 #include "difficulty.h"
 #include "cell.h"
 using namespace std;

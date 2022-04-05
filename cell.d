@@ -1,1 +1,1 @@
-cell.o: cell.cc subject.h observer.h difficulty.h cell.h block.h
+cell.o: cell.cc difficulty.h cell.h

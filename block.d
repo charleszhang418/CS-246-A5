@@ -1,1 +1,1 @@
-block.o: block.cc block.h cell.h subject.h observer.h difficulty.h
+block.o: block.cc block.h cell.h difficulty.h

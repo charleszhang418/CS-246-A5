@@ -31,8 +31,8 @@
 
 CXX = g++
 CXXFLAGS = -std=c++14 -Wall -MMD -Werror=vla
-EXEC = a5
-OBJECTS = main.o command.o block.o difficulty.o cell.o observer.o subject.o board.o  textoutput.o
+EXEC = biquadris
+OBJECTS = main.o command.o block.o difficulty.o cell.o board.o  textoutput.o
 DEPENDS = ${OBJECTS:.o=.d}
 
 ${EXEC}: ${OBJECTS}

@@ -1,14 +1,11 @@
 #ifndef __CELL_H__
 #define __CELL_H__
 
-#include <vector> 
-#include "subject.h"
-#include "observer.h"
-#include "block.h"
+#include <vector>
 #include "difficulty.h"
 
 // mutiple ineritance 
-class Cell : public Subject {
+class Cell {
     public:
     int col, row; 
     char value;

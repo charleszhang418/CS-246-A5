@@ -1,2 +1,1 @@
-board.o: board.cc subject.h observer.h cell.h block.h difficulty.h \
- board.h
+board.o: board.cc cell.h difficulty.h block.h board.h

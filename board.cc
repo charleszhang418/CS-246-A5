@@ -1,7 +1,5 @@
 #include <vector> 
 #include <iostream>
-#include "subject.h"
-#include "observer.h"
 #include "cell.h"
 #include "block.h"
 #include "board.h"
@@ -266,12 +264,12 @@ bool Board::dropMid() {
 Board::~Board() {
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            delete getCell(j,i);
+            // delete getCell(j,i);
         }
     }
     
     for(auto& block : blocks) {
-        delete block;
+        // delete block;
     }
 
 
@@ -343,7 +341,7 @@ void Board::deleteBlock() {
             for (int i = 0; i < blocks.size(); i++) {
                 if (blocks[i] == b) {
                     blocks.erase(blocks.begin() + i);
-                    delete b;
+                    // delete b;
                     return;
                 }
             }

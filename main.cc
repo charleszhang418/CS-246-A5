@@ -264,7 +264,7 @@ int main (int argc, char *argv[]) {
             if ((player % 2) != 0) {
                 if (force_block) {
                     curBlock2->clearCellState();
-                    delete curBlock2;
+                    // delete curBlock2;
                     cur_B2 = force;
                     force_block = false;
                     curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
@@ -285,7 +285,7 @@ int main (int argc, char *argv[]) {
                 if (force_block) {
 
                     curBlock1->clearCellState();
-                    delete curBlock1;
+                    // delete curBlock1;
                     cur_B1 = force;
                     force_block = false;
                     curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
@@ -318,10 +318,10 @@ int main (int argc, char *argv[]) {
                 std::cout << "shit" << endl;
                 cout << "DRAW!!!" << endl;
             }
-            delete b1;
-            delete b2;
-            delete pb1;
-            delete pb2;
+            // delete b1;
+            // delete b2;
+            // delete pb1;
+            // delete pb2;
             return 0;
         }
 
@@ -457,10 +457,10 @@ int main (int argc, char *argv[]) {
                         } else {
                             cout << "DRAW!!!" << endl;
                         }
-                        delete b1;
-                        delete b2;
-                        delete pb1;
-                        delete pb2;
+                        // delete b1;
+                        // delete b2;
+                        // delete pb1;
+                        // delete pb2;
                         return 0;
                     }
                 }

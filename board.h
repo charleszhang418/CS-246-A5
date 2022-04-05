@@ -2,8 +2,6 @@
 #define __BOARD_H__
 
 #include <vector> 
-#include "subject.h"
-#include "observer.h"
 #include "cell.h"
 #include "block.h"
 #include "difficulty.h"
@@ -24,8 +22,6 @@ class Board {
     Board(int width, int height, int level, int score = 0, int dropTime = 0); 
     ~Board();
 
-    void initial();
-
     // Setters
     void setLevel(int level);
     void setScore(int score);
@@ -43,10 +39,6 @@ class Board {
     char getNextBlock() const;
 
 
-    // this method will change the subject, so it triggers
-    // notifyobservers 
-    bool isover();
-
     //? Blockspin
     void spin(Difficulty* change, bool clock);
 
@@ -55,7 +47,7 @@ class Board {
 
     void clearFull();
 
-    void resetgame();
+    // void resetgame();
 
     Difficulty* generateNewBlock(char c, int level);
 
@@ -73,15 +65,6 @@ class Board {
 
     void blind();
 
-
-
-
-
-
-
-
-
-   
 };
 
 #endif 

@@ -22,6 +22,8 @@ class Command {
     void short_com(std::string old, std::string cur);
     std::string readcom(std::string in);
     void output();
+    std::string n_com(std::string cmd);
+    int n_count(std::string cmd);
 
 };
 

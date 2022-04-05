@@ -25,7 +25,7 @@ char randomBlock(int level) {
         block = {'S', 'Z', 'I', 'J', 'L', 'O', 'T'};
         int i = rand() % block.size();
         return block[i];
-    } else if (level == 3 || level == 4) {
+    } else {
         block = {'S', 'S', 'Z', 'Z', 'I', 'J', 'L', 'O', 'T'};
         int i = rand() % block.size();
         return block[i];
@@ -45,6 +45,7 @@ int main (int argc, char *argv[]) {
     int height = 18;
     int player = 0;
     int ini_level = 0;
+    srand(time(NULL));
     
     bool graphicsMode = true; //? Default: with both graphic output and text output
 
@@ -62,7 +63,7 @@ int main (int argc, char *argv[]) {
             string arg = argv[i + 1];
             
             if (cmd_arg == "-seed") {
-                cout << arg << endl;
+                srand(stoi(arg));
             }
             
             if (cmd_arg == "-scriptfile1") {
@@ -108,7 +109,7 @@ int main (int argc, char *argv[]) {
     Board *b2 = new Board{width, height, ini_level};
     Board *pb1 = new Board{width, height, 0};
     Board *pb2 = new Board{width, height, 0};
-    TextOutput t{11 , 18, b1, b2, pb1, pb2};
+    TextOutput t{11 , 18, b1, b2, pb1, pb2, hi_score};
     
     // b1->dropMid();
     // b1->dropMid();
@@ -116,9 +117,9 @@ int main (int argc, char *argv[]) {
 
     
 
-    b1->dropMid();
-    b1->dropMid();
-    b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
 
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
@@ -145,11 +146,9 @@ int main (int argc, char *argv[]) {
 
     string cmdin;
 
-    //? Temp input
-    string b1_seq = {'L', 'O', 'I', 'L', 'O', 'L', 'O', 'L', 'O'};
-
     int p1_count = 1;
     int p2_count = 1;
+    int drop = 0;
 
     string p1_seq;
     string p2_seq;
@@ -169,8 +168,6 @@ int main (int argc, char *argv[]) {
     char cur_B2;
     char nxt_B1;
     char nxt_B2;
-    char p_B1;
-    char p_B2;
 
 
     if (ini_level == 0) {
@@ -197,16 +194,66 @@ int main (int argc, char *argv[]) {
     Difficulty *p_Block1 = pb1->generateNewBlock(nxt_B1, ini_level);
     Difficulty *p_Block2 = pb2->generateNewBlock(nxt_B2, ini_level);
 
+    string special_action;
+    bool blind = false;
+    bool heavy = false;
+    char force;
+    bool force_block = false;
     
 
     //! Game
     while (true) {
 
         bool restart = false;
+        int rowCleared = 0;
+        bool special = (rowCleared >= 2) ? true : false;
+        bool heavy_one = heavy;
+
+        // std::cout << b1->getCell(0, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(1, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(2, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(3, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(4, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(5, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(6, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(7, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(8, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(9, 2)->getblock() << std::endl;
+        // std::cout << b1->getCell(10, 2)->getblock() << std::endl;
+
+        // std::cout << b1->getCell(0, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(1, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(2, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(3, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(4, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(5, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(6, 3)->getblock() << std::endl;
+        // std::cout << b1->getCell(7, 3)->getblock() << std::endl;
+        //         std::cout << b1->getCell(8, 3)->getblock() << std::endl;
+        //         std::cout << b1->getCell(9, 3)->getblock() << std::endl;
+        //         std::cout << b1->getCell(10, 3)->getblock() << std::endl;
+        //         std::cout << b1->getCell(0, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(1, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(2, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(3, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(4, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(5, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(6, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(7, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(8, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(9, 4)->getblock() << std::endl;
+        //         std::cout << b1->getCell(10, 4)->getblock() << std::endl;
+
+        
 
         if (player != 0) {
             if ((player % 2) != 0) {
-                cur_B1 = nxt_B1;
+                if (force_block) {
+                    cur_B1 = force;
+                    force_block = false;
+                } else {
+                    cur_B1 = nxt_B1;
+                }
                 curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
                 if (b1->getLevel() == 0) {
                     p1_count += 1;
@@ -218,7 +265,13 @@ int main (int argc, char *argv[]) {
                 p_Block1 = pb1->generateNewBlock(nxt_B1, b1->getLevel());
                 
             } else {
-                cur_B2 = nxt_B2;
+                if (force_block) {
+                    cur_B2 = force;
+                    force_block = false;
+                } else {
+                    cur_B2 = nxt_B2;
+                }
+                
                 curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
                 if (b2->getLevel() == 0) {
                     p2_count += 1;
@@ -236,6 +289,22 @@ int main (int argc, char *argv[]) {
         b1->setNextBlock(nxt_B1);
         b2->setNextBlock(nxt_B2);
 
+        if (special) {
+            cout << "You can choose one special action!" << endl;
+            cin >> special_action;
+            if (special_action == "blind") {
+                cout << "Your opponent will be blinded next turn!" << endl;
+                blind = true;
+            } else if (special_action == "heavy") {
+                cout << "Your opponent's board will be heavier next turne!" << endl;
+                heavy = true;
+            } else if (special_action == "force") {
+                cout << "Choose one block for your opponent's next turn" << endl;
+                force_block = true;
+                cin >> force;
+            }
+        }
+
         player += 1;
         cout << t;
         
@@ -243,14 +312,37 @@ int main (int argc, char *argv[]) {
         Board *cur_play = ((player % 2) != 0) ? b1 : b2;
         Difficulty *curBlock = ((player % 2) != 0) ? curBlock1 : curBlock2;
         // With input
-
         // Special Action
-        string intput;
+        string input;
 
         //! For player turn
-        while (cin >> cmdin) {
+        while (cin >> input) {
 
             bool touch = true;
+
+            if (drop != 0) {
+                while (touch) {
+                    touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+                }
+                cur_play->BlockClear();
+
+                //! Clear lines
+                cout << t;
+                drop--;
+                cout << "Unable to control, you can only drop, remaining: " << drop << " times" << endl;
+                break;;
+            }
+
+
+            cmdin = cmd.n_com(input);
+            int n = cmd.n_count(input);
+            cmdin = cmd.readcom(cmdin);
+
+            if (cmdin == "drop" && n > 0) {drop = n;}
+            
+            //! Only for test needed to comment
+            cout << cmdin << endl;
+            n = (n == 0) ? 1 : n;
 
             if (cmdin == "rename") {
                 string old, cur;
@@ -262,32 +354,50 @@ int main (int argc, char *argv[]) {
             }
 
             if (cmdin == "left") {
-                if (touch) {
-                    touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock);
+                for (int i = 0; i < n; ++i) {
+                    if (touch) {
+                        if (heavy_one) {
+                            touch = cur_play->move(-1, 0, curBlock->getWeight() + 2, curBlock);
+                        } else {
+                            touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock);
+                        }
+                    }
                 }
             }
 
             if (cmdin == "right") {
-                if (touch) {
-                    touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock);
+                for (int i = 0; i < n; ++i) {
+                    if (touch) {
+                        if (heavy_one) {
+                            touch = cur_play->move(1, 0, curBlock->getWeight() + 2, curBlock);
+                        } else {
+                            touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock);
+                        }
+                    }
                 }
             }
 
             if (cmdin == "down") {
-                if (touch) {
-                    touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+                for (int i = 0; i < n; ++ i) {
+                    if (touch) {
+                        touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
+                    }
                 }
             }
             
             if (cmdin == "clockwise") {
-                if (touch) {
-                    cur_play->spin(curBlock, true);
+                for (int i = 0; i < n; ++ i) {
+                    if (touch) {
+                        cur_play->spin(curBlock, true);
+                    }
                 }
             }
 
             if (cmdin == "counterclockwise") {
-                if (touch) {
-                    cur_play->spin(curBlock, true);
+                for (int i = 0; i < n; ++ i) {
+                    if (touch) {
+                        cur_play->spin(curBlock, false);
+                    }
                 }
             }
 
@@ -295,28 +405,35 @@ int main (int argc, char *argv[]) {
                 while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
+                cur_play->addBlock(curBlock);
+
                 cur_play->BlockClear();
 
                 //! Clear lines
-                cout << t; 
+                cout << t;
+                if (heavy_one) {heavy = false;}
                 break;
             }
 
             if (cmdin == "levelup") {
-                int cur_level = cur_play->getLevel();
-                if (cur_level < 4) {
-                    cur_level += 1;
+                for (int i = 0; i < n; ++ i) {
+                    int cur_level = cur_play->getLevel();
+                    if (cur_level < 4) {
+                        cur_level += 1;
+                    }
+                    cur_play->setLevel(cur_level);
                 }
-                cur_play->setLevel(cur_level);
                 cout << t;
             }
 
             if (cmdin == "leveldown") { 
-                int cur_level = cur_play->getLevel();
-                if (cur_level > 0) {
-                    cur_level -= 1;
+                for (int i = 0; i < n; ++ i) {
+                    int cur_level = cur_play->getLevel();
+                    if (cur_level > 0) {
+                        cur_level -= 1;
+                    }
+                    cur_play->setLevel(cur_level);
                 }
-                cur_play->setLevel(cur_level);
                 cout << t;
             }
 
@@ -339,25 +456,32 @@ int main (int argc, char *argv[]) {
 
                 if (cmdin == "I") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('I', cur_level);
+                    newBlock = cur_play->generateNewBlock('I', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else if (cmdin == "J") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('J', cur_level);
+                    newBlock = cur_play->generateNewBlock('J', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else if (cmdin == "L") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('L', cur_level);
+                    newBlock = cur_play->generateNewBlock('L', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else if (cmdin == "O") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('O', cur_level);
+                    newBlock = cur_play->generateNewBlock('O', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else if (cmdin == "S") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('S', cur_level);
+                    newBlock = cur_play->generateNewBlock('S', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else if (cmdin == "Z") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('Z', cur_level);
+                    newBlock = cur_play->generateNewBlock('Z', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else if (cmdin == "T") {
                     curBlock->clearCellState();
-                    cur_play->generateNewBlock('T', cur_level);
+                    newBlock = cur_play->generateNewBlock('T', cur_level);
+                    cur_play->setCurBlock(newBlock);
                 } else {
                     continue;
                 }
@@ -381,10 +505,6 @@ int main (int argc, char *argv[]) {
         int p2_score = b2->getScore();
         
         hi_score = (p1_score > hi_score || p2_score > hi_score) ? (p1_score > p2_score ? p1_score : p2_score) : hi_score;
-
-        if (restart) {continue;}
-
-        //! Spcecial Actions
 
 
 

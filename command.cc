@@ -18,7 +18,7 @@ void Command::short_com(string old, string cur) {
     }
 
     if (find > 1) {
-        cout << "Your new name for command " << old << " is too confusing" << endl;
+        cout << "Your new name for command " << old << " is established already" << endl;
         return;
     }
 
@@ -31,21 +31,44 @@ void Command::short_com(string old, string cur) {
 }
 
 string Command::readcom(string in) {
-    for (auto n : command_list) {
-        if (n == in) {
-            return n;
+    int find = 0;
+    int pos = -1;
+    for (size_t i = 0; i < command_list.size(); ++i) {
+        if (command_list[i] == in) {
+            return command_list[i];
         }
+        if (command_list[i].find(in) != string::npos) {
+            find += 1;
+            pos = i;
+        }
+    }
+    if (find == 1) {
+        return command_list[pos];
     }
     for (size_t i = 0; i < short_command.size(); ++i) {
         if (short_command[i] == in) {
             return command_list[i];
         }
-    }
-    return "Not found";
+    }   
+    return "Your command is not valid, please enter again";
 }
 
 void Command::output() {
     for (auto n : short_command) {
         cout << n << " ";
     }
+}
+
+string Command::n_com(string com) {
+    if (isdigit(com[0])) {
+        com = com.substr(1, com.size());
+    }
+    return com;
+}
+
+int Command::n_count(string com) {
+    if (isdigit(com[0])) {
+        return com[0] - '0';
+    }
+    return 0;
 }

@@ -9,6 +9,7 @@ class Board;
 class TextOutput {
 
     int width, height;
+    int hi_score;
 
     Board *board1;
     Board *board2;
@@ -17,7 +18,7 @@ class TextOutput {
 
 
   public:
-    TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2);
+    TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2, int hi_score);
     ~TextOutput();
     int getHeight();
     int getWidth();

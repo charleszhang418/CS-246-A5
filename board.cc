@@ -40,6 +40,10 @@ void Board::setNextBlock(char c) {
     nextBlock = c;
 }
 
+void Board::addBlock(Difficulty* diff) {
+    blocks.emplace_back(diff);
+}
+
 int Board::getLevel() const {
     return level;
 } 
@@ -73,18 +77,21 @@ void Board::spin(Difficulty* change, bool clock) {
     for (int i = 0; i < 4; i++) {
         int new1 = placenew[i][0];
         int new2 = placenew[i][1];
+        change->clearCellState();
         if ((new1 < 0) || (new2 < 0) || (new1 >= width) || (new2 >= height)) {
             suc = 0;
+            change->updateCellState(curBlock);
             break;
         }
+
         if (cells[new1][new2]->getiffilled()) {
             suc = 0;
+            change->updateCellState(curBlock);
             break;
         }
     }
 
     if (suc == 1) {
-        change->clearCellState();
         char need = change->getChar();
         // for (int i = 0; i < 4; i++) {
         //     int old1 = placeold[i][0];
@@ -109,11 +116,7 @@ void Board::spin(Difficulty* change, bool clock) {
         Cell* cell3 = getCell(placenew[2][0], placenew[2][1]);
         Cell* cell4 = getCell(placenew[3][0], placenew[3][1]);
         change->eraseallcell(cell1, cell2, cell3, cell4);
-        change->updateCellState();
-        cell1->eraseBlock(curBlock);
-        cell2->eraseBlock(curBlock);
-        cell3->eraseBlock(curBlock);
-        cell4->eraseBlock(curBlock);
+        change->updateCellState(curBlock);
     }
 }
 
@@ -186,7 +189,8 @@ Difficulty* Board::generateNewBlock(char c, int level) {
     if (level >= 4) {
         diff = new Level4(diff);
     }
-    curBlock = diff;
+    diff->updateCellState(diff);
+    this->curBlock = diff;
     //block->updateBlockDifficulty(diff);
     return diff;
 }
@@ -211,17 +215,9 @@ bool Board::move(int x, int y, int weight, Difficulty* b) {
                 Cell* cell4 = this->getCell(col4 + x, row4);
                 if (!(cell1->getiffilled()) && !(cell2->getiffilled()) && !(cell3->getiffilled()) && !(cell4->getiffilled())) {
                     b->eraseallcell(cell1, cell2, cell3, cell4);
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                 } else {
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                 }
             }
             x = 0;
@@ -234,17 +230,9 @@ bool Board::move(int x, int y, int weight, Difficulty* b) {
                 Cell* cell4 = this->getCell(col4, row4 + 1);
                 if (!(cell1->getiffilled()) && !(cell2->getiffilled()) && !(cell3->getiffilled()) && !(cell4->getiffilled())) {
                     b->eraseallcell(cell1, cell2, cell3, cell4);
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                 } else {
-                    b->updateCellState();
-                    cell1->eraseBlock(curBlock);
-                    cell2->eraseBlock(curBlock);
-                    cell3->eraseBlock(curBlock);
-                    cell4->eraseBlock(curBlock);
+                    b->updateCellState(curBlock);
                     return false;
                 }
             sum -= 1;
@@ -281,11 +269,11 @@ void Board::DropDown(int fresh) {
             // if (cells[j][i-1]->getblock() != nullptr) {
             //     cells[j][i-1]->getblock()->
             // }
-            cells[j][i]->copy(cells[j][i-1]);
+            getCell(j, i)->copy(getCell(j, i - 1));
         }
     }
     for (int j = 0; j < width; j++) {
-        cells[j][0]->ClearCell();
+        getCell(j, 0)->ClearCell();
     }
 }
 
@@ -303,15 +291,22 @@ bool Board::BlockClear() {
         if (clear == true) {
             line++;
             for (int j = 0; j < width; j++) {
-                cells[i][j]->ClearCell();
+                std::cout << j << std::endl;
                 // cells[j][i]->attach(cells[j][i]->getblock());
+                // std::cout << curBlock << std::endl;
+
+                
+                
+                
+                
                 cells[i][j]->getblock()->updateCellCleared();
+                cells[i][j]->ClearCell();
                 // cells[j][i]->detach(cells[j][i]->getblock());
                 deleteBlock();
             }
-            for (int j = 0; j < width; j++) {
-                cells[i][j]->eraseBlock(nullptr);
-                }
+            // for (int j = 0; j < width; j++) {
+            //     cells[i][j]->eraseBlock(nullptr);
+            // }
             DropDown(i);
             score += ((level + 1) * (level + 1));
             i += 1;
@@ -325,13 +320,18 @@ bool Board::BlockClear() {
 }
 
 void Board::deleteBlock() {
+    std::cout << "daozhele" << std::endl;
     for (auto& b : blocks) {
+        std::cout << "daozhele1" << std::endl;
         if (b->checkBlank()) {
-            score += ((b->getlevel()) * (b->getlevel()));
+            std::cout << "daozhele2" << std::endl;
+            score += ((b->getLevel()) * (b->getLevel()));
             for (int i = 0; i < blocks.size(); i++) {
+                std::cout << "daozhele3" << std::endl;
                 if (blocks[i] == b) {
                     blocks.erase(blocks.begin() + (i - 1));
-                    delete b;
+                    std::cout << "daozhele4" << std::endl;
+                    // delete b;
                     return;
                 }
             }

@@ -116,9 +116,9 @@ int main (int argc, char *argv[]) {
 
     
 
-    b1->dropMid();
-    b1->dropMid();
-    b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
+    // b1->dropMid();
 
     // b1->spin(curBlock1, false);
     // b1->spin(curBlock1, false);
@@ -200,8 +200,13 @@ int main (int argc, char *argv[]) {
     
 
     //! Game
+    cout << "we reached while true" << endl;
     while (true) {
-
+        cout << "we reached while true" << endl;
+    cout << b1->getCell(0,3)->block << b1->getCell(1,3)->block
+    << b1->getCell(2,3)->block << b1->getCell(3,3)->block
+    << b1->getCell(0,4)->block << b1->getCell(1,4)->block
+    << b1->getCell(2,4)->block << b1->getCell(3,4)->block << endl;
         bool restart = false;
 
         if (player != 0) {
@@ -274,6 +279,12 @@ int main (int argc, char *argv[]) {
             }
 
             if (cmdin == "down") {
+                cout << "we reached comdin == down" << endl;
+                cout << b1->getCell(0,3)->block << endl;
+                cout << b1->getCell(1,3)->block
+    << b1->getCell(2,3)->block << b1->getCell(3,3)->block
+    << b1->getCell(0,4)->block << b1->getCell(1,4)->block
+    << b1->getCell(2,4)->block << b1->getCell(3,4)->block << endl;
                 if (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }

@@ -57,8 +57,6 @@ void Cell::eraseIffilled(bool iffilled) {
 
 
 void Cell::copy(Cell* target) {
-    eraseRow(target->getrow());
-    eraseCol(target->getcol());
     eraseIffilled(target->getiffilled());
     eraseValue(target->getvalue());
     eraseBlock(target->getblock());
@@ -67,6 +65,8 @@ void Cell::copy(Cell* target) {
 void Cell::ClearCell() {
     eraseIffilled(false);
     eraseValue(' ');
+    eraseBlock(nullptr);
 }
+
 
 

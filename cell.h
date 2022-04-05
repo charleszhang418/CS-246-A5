@@ -14,9 +14,12 @@ class Cell : public Subject {
     char value;
     bool iffilled = false;
     Difficulty* block = nullptr;
+    bool blind = false;
 
     public:
     Cell(int, int, char); 
+
+    ~Cell();
 
     // this method will change the subject, so it triggers
     // notifyobservers 
@@ -25,6 +28,7 @@ class Cell : public Subject {
     void eraseValue(char);
     void eraseIffilled(bool);
     void eraseBlock(Difficulty* diff);
+    void eraseBlind();
 
 
     bool getiffilled();
@@ -33,6 +37,7 @@ class Cell : public Subject {
     Difficulty* getblock();
     char getvalue();
     std::vector<int> getlocation();
+    bool getblind();
 
     void copy(Cell*);
     void ClearCell();

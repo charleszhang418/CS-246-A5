@@ -29,7 +29,7 @@ void Board::setLevel(int level) {
 }
 
 void Board::setDropTime(int dropTime) {
-    dropTime = dropTime;
+    this->dropTime = dropTime;
 }
 
 void Board::setCurBlock(Difficulty* diff) {
@@ -261,7 +261,21 @@ bool Board::dropMid() {
     }
 }
 
-Board::~Board() {}
+
+
+Board::~Board() {
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            delete getCell(j,i);
+        }
+    }
+    
+    for(auto& block : blocks) {
+        delete block;
+    }
+
+
+}
 
 void Board::DropDown(int fresh) {
     for (int i = fresh; i > 0; i--) {
@@ -298,8 +312,10 @@ bool Board::BlockClear() {
                 
                 
                 
+                if (cells[i][j]->getblock() != 0) {
+                    cells[i][j]->getblock()->updateCellCleared();
+                }
                 
-                cells[i][j]->getblock()->updateCellCleared();
                 cells[i][j]->ClearCell();
                 // cells[j][i]->detach(cells[j][i]->getblock());
                 deleteBlock();
@@ -310,6 +326,7 @@ bool Board::BlockClear() {
             DropDown(i);
             score += ((level + 1) * (level + 1));
             i += 1;
+            this->dropTime = 0;
         }
     }
     if (line >= 2) {
@@ -320,18 +337,13 @@ bool Board::BlockClear() {
 }
 
 void Board::deleteBlock() {
-    std::cout << "daozhele" << std::endl;
     for (auto& b : blocks) {
-        std::cout << "daozhele1" << std::endl;
         if (b->checkBlank()) {
-            std::cout << "daozhele2" << std::endl;
-            score += ((b->getLevel()) * (b->getLevel()));
+            score += ((b->getLevel() + 1) * (b->getLevel()) + 1);
             for (int i = 0; i < blocks.size(); i++) {
-                std::cout << "daozhele3" << std::endl;
                 if (blocks[i] == b) {
-                    blocks.erase(blocks.begin() + (i - 1));
-                    std::cout << "daozhele4" << std::endl;
-                    // delete b;
+                    blocks.erase(blocks.begin() + i);
+                    delete b;
                     return;
                 }
             }
@@ -339,4 +351,10 @@ void Board::deleteBlock() {
     }
 }
 
-
+void Board::blind() {
+    for (int i = 2; i <= 11; i++) {
+        for (int j = 2; j <= 8; j++) {
+            getCell(j,i)->eraseBlind();
+        }
+    }
+}

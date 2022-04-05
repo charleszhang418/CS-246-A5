@@ -9,7 +9,7 @@ class Board;
 class TextOutput {
 
     int width, height;
-    int hi_score;
+    int hi_score = 0;
 
     Board *board1;
     Board *board2;
@@ -18,10 +18,11 @@ class TextOutput {
 
 
   public:
-    TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2, int hi_score);
+    TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2);
     ~TextOutput();
     int getHeight();
     int getWidth();
+    void setHiscore(int hiscore);
     friend std::ostream &operator<<(std::ostream &out, TextOutput &text_out);
 
 };

@@ -8,14 +8,18 @@
 
 using namespace std;
 
-TextOutput::TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2, int hi_score) :
-    width{width}, height{height}, board1{board1}, board2{board2}, p_board1{p_board1}, p_board2{p_board2}, hi_score{hi_score} {}
+TextOutput::TextOutput(int width, int height, Board *board1, Board *board2, Board *p_board1, Board *p_board2) :
+    width{width}, height{height}, board1{board1}, board2{board2}, p_board1{p_board1}, p_board2{p_board2} {}
 
 
 int TextOutput::getHeight() {return height;}
 
 
 int TextOutput::getWidth() {return width;}
+
+void TextOutput::setHiscore(int hiscore) {
+    this->hi_score = hiscore;
+}
 
 
 
@@ -31,48 +35,56 @@ ostream &operator<<(ostream &out,  TextOutput &text_out) {
     // Slashes
     out << slash << between << slash << endl;
     
-    // // Game board
-    // for (int i = 0; i < text_out.getHeight(); ++i) {
-    //     for (int j = 0; j < text_out.getWidth(); ++j) {
-    //         out << text_out.board1->getVal(i,j);
-    //     }
-    //     out << between;
-    //     for (int j = 0; j < text_out.getWidth(); ++j) {
-    //         out << text_out.board2->getVal(i,j);
-    //     }
-    //     out << endl;
-    // }
-
-    // out << slash << between << slash << endl;
-    // out << "Next:" << between << between << "Next:" << between << endl;
-
-    // // Preview board
-    // for (int i = 2; i < 4; ++i) {
-    //     for (int j = 0; j < text_out.getWidth(); ++j) {
-    //         out << text_out.p_board1->getVal(i, j);
-    //     }
-    //     out << between;
-    //     for (int j = 0; j < text_out.getWidth(); ++j) {
-    //         out << text_out.p_board2->getVal(i, j);
-    //     }
-    //     out << endl;
-    // }
-    
-    // out << slash << between << slash << endl;
     // Game board
     for (int i = 0; i < text_out.getHeight(); ++i) {
         for (int j = 0; j < text_out.getWidth(); ++j) {
-            out << ((text_out.board1->getCell(j, i)->getblock() == nullptr) ? 0 : 1);
+            if (text_out.board1->getCell(j, i)->getblind()) {
+                out << '?';
+            } else {
+                out << text_out.board1->getVal(i,j);
+            }
         }
         out << between;
         for (int j = 0; j < text_out.getWidth(); ++j) {
-            out << ((text_out.board1->getCell(j, i)->getblock() == nullptr) ? 0 : 1);
+            if (text_out.board2->getCell(j, i)->getblind()) {
+                out << '?';
+            } else {
+                out << text_out.board2->getVal(i,j);
+            }
         }
         out << endl;
     }
 
     out << slash << between << slash << endl;
     out << "Next:" << between << between << "Next:" << between << endl;
+
+    // Preview board
+    for (int i = 2; i < 4; ++i) {
+        for (int j = 0; j < text_out.getWidth(); ++j) {
+            out << text_out.p_board1->getVal(i, j);
+        }
+        out << between;
+        for (int j = 0; j < text_out.getWidth(); ++j) {
+            out << text_out.p_board2->getVal(i, j);
+        }
+        out << endl;
+    }
+    
+    out << slash << between << slash << endl;
+    // Game board
+    // for (int i = 0; i < text_out.getHeight(); ++i) {
+    //     for (int j = 0; j < text_out.getWidth(); ++j) {
+    //         out << ((text_out.board1->getCell(j, i)->getblock() == nullptr) ? 0 : 1);
+    //     }
+    //     out << between;
+    //     for (int j = 0; j < text_out.getWidth(); ++j) {
+    //         out << ((text_out.board1->getCell(j, i)->getblock() == nullptr) ? 0 : 1);
+    //     }
+    //     out << endl;
+    // }
+
+    // out << slash << between << slash << endl;
+    // out << "Next:" << between << between << "Next:" << between << endl;
 
     return out;
 

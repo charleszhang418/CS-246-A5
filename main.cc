@@ -109,7 +109,7 @@ int main (int argc, char *argv[]) {
     Board *b2 = new Board{width, height, ini_level};
     Board *pb1 = new Board{width, height, 0};
     Board *pb2 = new Board{width, height, 0};
-    TextOutput t{11 , 18, b1, b2, pb1, pb2, hi_score};
+    TextOutput t{11 , 18, b1, b2, pb1, pb2};
     
     // b1->dropMid();
     // b1->dropMid();
@@ -199,15 +199,14 @@ int main (int argc, char *argv[]) {
     bool heavy = false;
     char force;
     bool force_block = false;
+    bool rowCleared = false;
     
 
     //! Game
     while (true) {
 
         bool restart = false;
-        int rowCleared = 0;
-        bool special = (rowCleared >= 2) ? true : false;
-        bool heavy_one = heavy;
+
 
         // std::cout << b1->getCell(0, 2)->getblock() << std::endl;
         // std::cout << b1->getCell(1, 2)->getblock() << std::endl;
@@ -244,13 +243,31 @@ int main (int argc, char *argv[]) {
         //         std::cout << b1->getCell(9, 4)->getblock() << std::endl;
         //         std::cout << b1->getCell(10, 4)->getblock() << std::endl;
 
-        
+        if (rowCleared) {
+            cout << "You can choose one special action!" << endl;
+            cin >> special_action;
+            if (special_action == "blind") {
+                cout << "Your opponent will be blinded next turn!" << endl;
+                blind = true;
+                
+            } else if (special_action == "heavy") {
+                cout << "Your opponent's board will be heavier next turne!" << endl;
+                heavy = true;
+            } else if (special_action == "force") {
+                cout << "Choose one block for your opponent's next turn" << endl;
+                force_block = true;
+                cin >> force;
+            }
+        }
 
         if (player != 0) {
             if ((player % 2) != 0) {
                 if (force_block) {
-                    cur_B1 = force;
+                    curBlock2->clearCellState();
+                    delete curBlock2;
+                    cur_B2 = force;
                     force_block = false;
+                    curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
                 } else {
                     cur_B1 = nxt_B1;
                 }
@@ -266,8 +283,12 @@ int main (int argc, char *argv[]) {
                 
             } else {
                 if (force_block) {
-                    cur_B2 = force;
+
+                    curBlock1->clearCellState();
+                    delete curBlock1;
+                    cur_B1 = force;
                     force_block = false;
+                    curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
                 } else {
                     cur_B2 = nxt_B2;
                 }
@@ -284,42 +305,55 @@ int main (int argc, char *argv[]) {
             }
         }
 
+        std::cout << curBlock1 << endl;
+        std::cout << curBlock2 << endl;
+
+        if (curBlock1 == nullptr || curBlock2 == nullptr) {
+            if (b1->getScore() > b2->getScore()) {
+                cout << "Player1 wins!" << endl;
+            } else if (b1->getScore() > b2->getScore()) {
+                cout << "Player2 wins!" << endl;
+            } else {
+
+                std::cout << "shit" << endl;
+                cout << "DRAW!!!" << endl;
+            }
+            delete b1;
+            delete b2;
+            delete pb1;
+            delete pb2;
+            return 0;
+        }
+
         b1->setCurBlock(curBlock1);
         b2->setCurBlock(curBlock2);
         b1->setNextBlock(nxt_B1);
         b2->setNextBlock(nxt_B2);
 
-        if (special) {
-            cout << "You can choose one special action!" << endl;
-            cin >> special_action;
-            if (special_action == "blind") {
-                cout << "Your opponent will be blinded next turn!" << endl;
-                blind = true;
-            } else if (special_action == "heavy") {
-                cout << "Your opponent's board will be heavier next turne!" << endl;
-                heavy = true;
-            } else if (special_action == "force") {
-                cout << "Choose one block for your opponent's next turn" << endl;
-                force_block = true;
-                cin >> force;
-            }
-        }
+        
 
         player += 1;
-        cout << t;
+        
         
         // Two players turn
         Board *cur_play = ((player % 2) != 0) ? b1 : b2;
         Difficulty *curBlock = ((player % 2) != 0) ? curBlock1 : curBlock2;
         // With input
         // Special Action
+        if (blind) {
+            std::cout << "FFFF" << endl;
+            cur_play->blind();
+            std::cout << "FFFF2" << endl;
+        }
+        cout << t;
+
         string input;
+        bool touch = true;
 
         //! For player turn
         while (cin >> input) {
 
-            bool touch = true;
-
+            
             if (drop != 0) {
                 while (touch) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
@@ -340,8 +374,6 @@ int main (int argc, char *argv[]) {
 
             if (cmdin == "drop" && n > 0) {drop = n;}
             
-            //! Only for test needed to comment
-            cout << cmdin << endl;
             n = (n == 0) ? 1 : n;
 
             if (cmdin == "rename") {
@@ -356,7 +388,7 @@ int main (int argc, char *argv[]) {
             if (cmdin == "left") {
                 for (int i = 0; i < n; ++i) {
                     if (touch) {
-                        if (heavy_one) {
+                        if (heavy) {
                             touch = cur_play->move(-1, 0, curBlock->getWeight() + 2, curBlock);
                         } else {
                             touch = cur_play->move(-1, 0, curBlock->getWeight(), curBlock);
@@ -368,7 +400,7 @@ int main (int argc, char *argv[]) {
             if (cmdin == "right") {
                 for (int i = 0; i < n; ++i) {
                     if (touch) {
-                        if (heavy_one) {
+                        if (heavy) {
                             touch = cur_play->move(1, 0, curBlock->getWeight() + 2, curBlock);
                         } else {
                             touch = cur_play->move(1, 0, curBlock->getWeight(), curBlock);
@@ -389,6 +421,7 @@ int main (int argc, char *argv[]) {
                 for (int i = 0; i < n; ++ i) {
                     if (touch) {
                         cur_play->spin(curBlock, true);
+                        touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                     }
                 }
             }
@@ -397,6 +430,7 @@ int main (int argc, char *argv[]) {
                 for (int i = 0; i < n; ++ i) {
                     if (touch) {
                         cur_play->spin(curBlock, false);
+                        touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                     }
                 }
             }
@@ -406,12 +440,40 @@ int main (int argc, char *argv[]) {
                     touch = cur_play->move(0, 1, curBlock->getWeight(), curBlock);
                 }
                 cur_play->addBlock(curBlock);
+                curBlock->eraseallcell(nullptr, nullptr, nullptr, nullptr);
 
-                cur_play->BlockClear();
+                rowCleared = cur_play->BlockClear();
+
+                int step = cur_play->getDropTime() + 1;
+                cout << "Step: " << step << endl;
+                cur_play->setDropTime(step);
+                if ((cur_play->getLevel() == 4) && (step > 0) && (step % 5 == 0)) {
+                    int result = cur_play->dropMid();
+                    if (!result) {
+                        if (b1->getScore() > b2->getScore()) {
+                            cout << "Player1 wins!" << endl;
+                        } else if (b1->getScore() > b2->getScore()) {
+                            cout << "Player2 wins!" << endl;
+                        } else {
+                            cout << "DRAW!!!" << endl;
+                        }
+                        delete b1;
+                        delete b2;
+                        delete pb1;
+                        delete pb2;
+                        return 0;
+                    }
+                }
+
+                int p1_score = b1->getScore();
+                int p2_score = b2->getScore();
+        
+                if ((p1_score > hi_score) || (p2_score > hi_score)) {
+                    t.setHiscore((p1_score > p2_score) ? p1_score : p2_score);
+                }
 
                 //! Clear lines
-                cout << t;
-                if (heavy_one) {heavy = false;}
+                if (heavy) {heavy = false;}
                 break;
             }
 
@@ -423,7 +485,6 @@ int main (int argc, char *argv[]) {
                     }
                     cur_play->setLevel(cur_level);
                 }
-                cout << t;
             }
 
             if (cmdin == "leveldown") { 
@@ -434,7 +495,6 @@ int main (int argc, char *argv[]) {
                     }
                     cur_play->setLevel(cur_level);
                 }
-                cout << t;
             }
 
             if (cmdin == "norandom") {
@@ -485,10 +545,6 @@ int main (int argc, char *argv[]) {
                 } else {
                     continue;
                 }
-
-                cout << t;
-                continue;
-
             }
 
 
@@ -498,13 +554,16 @@ int main (int argc, char *argv[]) {
                 //! Need to clear the borads
 
             }
+
             cout << t;
         }
 
-        int p1_score = b1->getScore();
-        int p2_score = b2->getScore();
+        if (blind) {
+            cur_play->blind();
+            blind = false;
+        }
+
         
-        hi_score = (p1_score > hi_score || p2_score > hi_score) ? (p1_score > p2_score ? p1_score : p2_score) : hi_score;
 
 
 

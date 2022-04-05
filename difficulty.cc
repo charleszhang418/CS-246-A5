@@ -44,6 +44,7 @@ void Level::erasetype(bool clock) {
 }
 
 Level::~Level() { 
+    std::cout << "_____ here" << std::endl;
     delete this->diff;
 }
 
@@ -72,7 +73,9 @@ void Level::updateCellCleared() {
 
 Level0::Level0(Difficulty* diff): Level{diff} { }
 
-Level0::~Level0() { }
+Level0::~Level0() { 
+    return;
+}
 
 int Level0::getWeight() {
     return 0;
@@ -81,7 +84,9 @@ int Level0::getWeight() {
 
 Level1::Level1(Difficulty* diff): Level{diff} { }
 
-Level1::~Level1() { }
+Level1::~Level1() { 
+    return;
+}
 
 int Level1::getWeight() { 
     return diff->getWeight();
@@ -89,7 +94,9 @@ int Level1::getWeight() {
 
 Level2::Level2(Difficulty* diff): Level{diff} { }
 
-Level2::~Level2() { }
+Level2::~Level2() { 
+    return;
+}
 
 int Level2::getWeight() { 
     return diff->getWeight();
@@ -97,7 +104,9 @@ int Level2::getWeight() {
 
 Level3::Level3(Difficulty* diff): Level{diff} { }
 
-Level3::~Level3() { }
+Level3::~Level3() { 
+    return;
+}
 
 int Level3::getWeight() { 
     return 1 + diff->getWeight();
@@ -105,7 +114,9 @@ int Level3::getWeight() {
 
 Level4::Level4(Difficulty* diff): Level{diff} { }
 
-Level4::~Level4() { }
+Level4::~Level4() { 
+    return;
+}
 
 int Level4::getWeight() {
     return diff->getWeight();
@@ -113,7 +124,9 @@ int Level4::getWeight() {
 
 ActionHeavy::ActionHeavy(Difficulty* diff): Level{diff} {}
 
-ActionHeavy::~ActionHeavy() {}
+ActionHeavy::~ActionHeavy() {
+    return;
+}
 
 int ActionHeavy::getWeight() {
    return 2 + diff->getWeight();

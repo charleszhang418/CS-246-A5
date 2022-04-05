@@ -983,7 +983,7 @@ std::vector<std::vector<int>> TBlock::displayNext() {
     return result;
 }
 
-TBlock::~TBlock() {}
+TBlock::~TBlock() { }
 
 // bool Block::checkBlank() {
 //     if ((cell1 == nullptr) && (cell2 == nullptr) && (cell3 == nullptr) && (cell4 == nullptr))  {

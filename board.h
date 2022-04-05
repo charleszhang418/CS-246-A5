@@ -71,6 +71,8 @@ class Board {
 
     void DropDown(int);
 
+    void blind();
+
 
 
 

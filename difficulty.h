@@ -21,7 +21,7 @@ class Difficulty  {
     virtual std::vector<std::vector<int>> rotate(bool clockwise) = 0;
     virtual char getChar() = 0;
     virtual void erasetype(bool clock) = 0;
-    virtual ~Difficulty();
+    ~Difficulty();
     virtual bool checkBlank() = 0;
     virtual int getLevel() = 0;
     // virtual void notify() = 0;
@@ -43,7 +43,7 @@ class Level: public Difficulty {
     virtual std::vector<std::vector<int>> rotate(bool clockwise);
     virtual char getChar();
     virtual void erasetype(bool clock);
-    virtual ~Level();
+    ~Level();
     virtual bool checkBlank();
     virtual int getLevel();
     //virtual int getWeight();
@@ -55,42 +55,42 @@ class Level: public Difficulty {
 class Level0: public Level {
     public:
     Level0(Difficulty* diff);
-    virtual ~Level0();
+    ~Level0();
     int getWeight() override;
 };
 
 class Level1: public Level {
     public:
     Level1(Difficulty* diff);
-    virtual ~Level1();
+    ~Level1();
     int getWeight() override;
 };
 
 class Level2: public Level {
     public:
     Level2(Difficulty* diff);
-    virtual ~Level2();
+    ~Level2();
     int getWeight() override;
 };
 
 class Level3: public Level {
     public:
     Level3(Difficulty* diff);
-    virtual ~Level3();
+    ~Level3();
     int getWeight() override;
 };
 
 class Level4: public Level {
     public:
     Level4(Difficulty* diff);
-    virtual ~Level4();
+    ~Level4();
     int getWeight() override;
 };
 
 class ActionHeavy: public Level {
     public:
     ActionHeavy(Difficulty* diff);
-    virtual ~ActionHeavy();
+    ~ActionHeavy();
     int getWeight() override;
 };
 

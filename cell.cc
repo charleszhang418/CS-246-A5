@@ -7,6 +7,12 @@ using namespace std;
 
 Cell::Cell(int col, int row, char value): col{col}, row{row}, value{value} {}
 
+
+Cell::~Cell() {
+    delete this;
+    return;
+}
+
 bool Cell::getiffilled() {
     return iffilled;
 }
@@ -38,6 +44,9 @@ char Cell::getvalue() {
     return value;
 }
 
+bool Cell::getblind() {
+    return blind;
+}
 
 void Cell::eraseRow(int row) {
     this->row = row;
@@ -53,6 +62,14 @@ void Cell::eraseValue(char value) {
 
 void Cell::eraseIffilled(bool iffilled) {
     this->iffilled = iffilled;
+}
+
+void Cell::eraseBlind() {
+    if (blind == false) {
+        blind = true;
+    } else {
+        blind = false;
+    }
 }
 
 

@@ -90,25 +90,8 @@ void Board::spin(Difficulty* change, bool clock) {
     }
 
     if (suc == 1) {
-        char need = change->getChar();
-        // for (int i = 0; i < 4; i++) {
-        //     int old1 = placeold[i][0];
-        //     int old2 = placeold[i][1];
-        //     // cells[old1][old2]->eraseValue(' ');
-        //     // cells[old1][old2]->eraseIffilled(true);
-
-        //     int new1 = placenew[i][0];
-        //     int new2 = placenew[i][1];
-
-        //     // cells[new1][new2]->eraseValue(need);
-        //     // cells[new1][new2]->eraseIffilled(false);
-        // }
-
         change->erasetype(clock);
-        cout << need << endl;
-        cout << (placenew[0][0]) << (placenew[0][1]) << (placenew[1][0]) <<
-        (placenew[1][1]) << (placenew[2][0]) << (placenew[2][1]) <<
-        (placenew[3][0]) << (placenew[3][1]);
+        
         Cell* cell1 = getCell(placenew[0][0], placenew[0][1]);
         Cell* cell2 = getCell(placenew[1][0], placenew[1][1]);
         Cell* cell3 = getCell(placenew[2][0], placenew[2][1]);
@@ -165,12 +148,14 @@ Difficulty* Board::generateNewBlock(char c, int level) {
         } else {
             block = new ZBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(1, 3), this->getCell(2, 3));
         }
-    } else {
+    } else if (c == 'T'){
         if (this->getCell(0, 2)->getiffilled() || this->getCell(1, 2)->getiffilled() || this->getCell(2, 2)->getiffilled() || this->getCell(1, 3)->getiffilled()) {
             return nullptr;
         } else {
             block = new TBlock(level, this->getCell(0, 2), this->getCell(1, 2), this->getCell(2, 2), this->getCell(1, 3));
         }
+    } else {
+        return nullptr;
     }
     if (level >= 0) { 
         diff = new Level0(block);
@@ -252,7 +237,7 @@ bool Board::dropMid() {
         }
         this->getCell(5, i)->eraseValue('*');
         this->getCell(5, i)->eraseIffilled(true);
-        std::cout << i << std::endl;
+        // std::cout << i << std::endl;
 
         // this->BlockClear();
         return true;
@@ -261,19 +246,7 @@ bool Board::dropMid() {
 
 
 
-Board::~Board() {
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
-            // delete getCell(j,i);
-        }
-    }
-    
-    for(auto& block : blocks) {
-        // delete block;
-    }
-
-
-}
+Board::~Board() {}
 
 void Board::DropDown(int fresh) {
     for (int i = fresh; i > 0; i--) {
@@ -303,7 +276,6 @@ bool Board::BlockClear() {
         if (clear == true) {
             line++;
             for (int j = 0; j < width; j++) {
-                std::cout << j << std::endl;
                 // cells[j][i]->attach(cells[j][i]->getblock());
                 // std::cout << curBlock << std::endl;
 
@@ -338,7 +310,7 @@ void Board::deleteBlock() {
     for (auto& b : blocks) {
         if (b->checkBlank()) {
             score += ((b->getLevel() + 1) * (b->getLevel()) + 1);
-            for (int i = 0; i < blocks.size(); i++) {
+            for (size_t i = 0; i < blocks.size(); i++) {
                 if (blocks[i] == b) {
                     blocks.erase(blocks.begin() + i);
                     // delete b;

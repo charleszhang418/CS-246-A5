@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// Used for rename command: change old into cur
 void Command::short_com(string old, string cur) {
     int find = 0; // find indicates number of commands in command_list that may cause confusing to the new command
     // Check validness of the new name of command
@@ -30,6 +31,7 @@ void Command::short_com(string old, string cur) {
     }
 }
 
+// Reads command and returns the corresponding command
 string Command::readcom(string in) {
     int find = 0;
     int pos = -1;
@@ -53,12 +55,7 @@ string Command::readcom(string in) {
     return "Your command is not valid, please enter again";
 }
 
-void Command::output() {
-    for (auto n : short_command) {
-        cout << n << " ";
-    }
-}
-
+// Reads command and returns the corresponding command running times
 string Command::n_com(string com) {
     if (isdigit(com[0])) {
         com = com.substr(1, com.size());

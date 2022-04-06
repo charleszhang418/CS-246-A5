@@ -1,5 +1,5 @@
-#ifndef _TEXTOUTPUT_H_
-#define _TEXTOUTPUT_H_
+#ifndef __TEXTOUTPUT_H__
+#define __TEXTOUTPUT_H__
 
 #include <vector>
 #include <iostream>

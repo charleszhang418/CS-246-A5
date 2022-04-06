@@ -44,8 +44,7 @@ void Level::erasetype(bool clock) {
 }
 
 Level::~Level() { 
-    std::cout << "_____ here" << std::endl;
-    delete this->diff;
+    delete diff;
 }
 
 bool Level::checkBlank() {
@@ -66,7 +65,6 @@ int Level::getLevel() {
 // }
 
 void Level::updateCellCleared() {
-    std::cout << "we reached updateCellCleared" << std::endl;
     diff->updateCellCleared();
 }
 

@@ -5,7 +5,6 @@
 #include "difficulty.h"
 #include "textoutput.h"
 
-
 #include <iostream>
 #include <string>
 #include <vector>
@@ -37,9 +36,9 @@ int main (int argc, char *argv[]) {
     string p1_level0 = "sequence1.txt";
     string p2_level0 = "sequence2.txt";
     
-    //? Board Varibles
-    Command cmd;
     
+    Command cmd;
+    // Board Varibles
     int hi_score = 0;
     int width = 11;
     int height = 18;
@@ -103,46 +102,15 @@ int main (int argc, char *argv[]) {
     }
     
     
-    //! Questions here need fix!!!
     //? Initialize two boards
     Board *b1 = new Board{width, height, ini_level};
     Board *b2 = new Board{width, height, ini_level};
     Board *pb1 = new Board{width, height, 0};
     Board *pb2 = new Board{width, height, 0};
+    // Xwindow * win = new Xwindow();
     TextOutput t{11 , 18, b1, b2, pb1, pb2};
     
-    // b1->dropMid();
-    // b1->dropMid();
-    // b1->dropMid();
-
     
-
-    // b1->dropMid();
-    // b1->dropMid();
-    // b1->dropMid();
-
-    // b1->spin(curBlock1, false);
-    // b1->spin(curBlock1, false);
-    // b1->spin(curBlock1, false);
-    // b1->spin(curBlock1, true);./a    
-    // Block* currentBlock = new JBlock(b1->getCell(0, 3), b1->getCell(0, 4), b1->getCell(1, 4), b1->getCell(2, 4));
-    
-    // b1->move(-1, 0, 2, curBlock1);
-
-    //? For textoutput and graphicsoutput
-    
-    
-    // Initialize boards with other setting
-    
-    
-    // cout << curBlock2->displayNext()[0][0] << endl;
-    // cout << curBlock2->displayNext()[0][1] << endl;
-    // cout << curBlock2->displayNext()[1][0] << endl;
-    // cout << curBlock2->displayNext()[1][1] << endl;
-    // cout << curBlock2->displayNext()[2][0] << endl;
-    // cout << curBlock2->displayNext()[2][1] << endl;
-    // cout << curBlock2->displayNext()[3][0] << endl;
-    // cout << curBlock2->displayNext()[3][1] << endl;    
 
     string cmdin;
 
@@ -150,25 +118,25 @@ int main (int argc, char *argv[]) {
     int p2_count = 1;
     int drop = 0;
 
+
     string p1_seq;
     string p2_seq;
-    int temp = 0;
+    int temp_1 = 0;
+    int temp_2 = 0;
     char tmp;
     ifstream fin1(p1_level0);
     while (fin1 >> tmp) {
-        p1_seq[temp++] = tmp;
+        p1_seq[temp_1++] = tmp;
     }
-    temp = 0;
     ifstream fin2(p2_level0);
     while (fin2 >> tmp) {
-        p2_seq[temp++] = tmp;
+        p2_seq[temp_2++] = tmp;
     }
 
     char cur_B1;
     char cur_B2;
     char nxt_B1;
     char nxt_B2;
-
 
     if (ini_level == 0) {
         cur_B1 = p1_seq[0];
@@ -183,6 +151,7 @@ int main (int argc, char *argv[]) {
         cur_B2 = randomBlock(ini_level);
         nxt_B2 = randomBlock(ini_level);
     }
+
     
     Difficulty *curBlock1 = b1->generateNewBlock(cur_B1, ini_level);
     Difficulty *curBlock2 = b2->generateNewBlock(cur_B2, ini_level);
@@ -205,45 +174,10 @@ int main (int argc, char *argv[]) {
     //! Game
     while (true) {
 
-        bool restart = false;
-
-
-        // std::cout << b1->getCell(0, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(1, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(2, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(3, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(4, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(5, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(6, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(7, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(8, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(9, 2)->getblock() << std::endl;
-        // std::cout << b1->getCell(10, 2)->getblock() << std::endl;
-
-        // std::cout << b1->getCell(0, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(1, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(2, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(3, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(4, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(5, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(6, 3)->getblock() << std::endl;
-        // std::cout << b1->getCell(7, 3)->getblock() << std::endl;
-        //         std::cout << b1->getCell(8, 3)->getblock() << std::endl;
-        //         std::cout << b1->getCell(9, 3)->getblock() << std::endl;
-        //         std::cout << b1->getCell(10, 3)->getblock() << std::endl;
-        //         std::cout << b1->getCell(0, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(1, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(2, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(3, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(4, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(5, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(6, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(7, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(8, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(9, 4)->getblock() << std::endl;
-        //         std::cout << b1->getCell(10, 4)->getblock() << std::endl;
+        // bool restart = false;
 
         if (rowCleared) {
+            cout << t;
             cout << "You can choose one special action!" << endl;
             cin >> special_action;
             if (special_action == "blind") {
@@ -268,45 +202,50 @@ int main (int argc, char *argv[]) {
                     cur_B2 = force;
                     force_block = false;
                     curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
-                } else {
-                    cur_B1 = nxt_B1;
                 }
+                cur_B1 = nxt_B1;
                 curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
                 if (b1->getLevel() == 0) {
                     p1_count += 1;
-                    nxt_B1 = p1_seq[p1_count];
+                    if (p1_count >= temp_1) {
+                        nxt_B1 = ' ';
+                    } else {
+                        nxt_B1 = p1_seq[p1_count];
+                    }
                 } else if (b1->getLevel() >= 1 && b1->getLevel() <= 4) {
                     nxt_B1 = randomBlock(b1->getLevel());
                 }
                 p_Block1->clearCellState();
-                p_Block1 = pb1->generateNewBlock(nxt_B1, b1->getLevel());
+                if (nxt_B1 != ' ') {
+                    p_Block1 = pb1->generateNewBlock(nxt_B1, b1->getLevel());
+                }
                 
             } else {
                 if (force_block) {
-
                     curBlock1->clearCellState();
                     // delete curBlock1;
                     cur_B1 = force;
                     force_block = false;
                     curBlock1 = b1->generateNewBlock(cur_B1, b1->getLevel());
-                } else {
-                    cur_B2 = nxt_B2;
                 }
-                
+                cur_B2 = nxt_B2;
                 curBlock2 = b2->generateNewBlock(cur_B2, b2->getLevel());
                 if (b2->getLevel() == 0) {
                     p2_count += 1;
-                    nxt_B2 = p2_seq[p2_count];
+                    if (p2_count >= temp_2) {
+                        nxt_B2 = ' ';
+                    } else {
+                        nxt_B2 = p2_seq[p2_count];
+                    }
                 } else if (b2->getLevel() >= 1 && b2->getLevel() <= 4) {
                     nxt_B2 = randomBlock(b2->getLevel());
                 }
                 p_Block2->clearCellState();
-                p_Block2 = pb2->generateNewBlock(nxt_B2, b2->getLevel());
-            }
-        }
-
-        std::cout << curBlock1 << endl;
-        std::cout << curBlock2 << endl;
+                if (nxt_B2 != ' ') {
+                    p_Block2 = pb2->generateNewBlock(nxt_B2, b2->getLevel());
+                }
+            } 
+        } 
 
         if (curBlock1 == nullptr || curBlock2 == nullptr) {
             if (b1->getScore() > b2->getScore()) {
@@ -314,8 +253,6 @@ int main (int argc, char *argv[]) {
             } else if (b1->getScore() > b2->getScore()) {
                 cout << "Player2 wins!" << endl;
             } else {
-
-                std::cout << "shit" << endl;
                 cout << "DRAW!!!" << endl;
             }
             // delete b1;
@@ -341,10 +278,9 @@ int main (int argc, char *argv[]) {
         // With input
         // Special Action
         if (blind) {
-            std::cout << "FFFF" << endl;
             cur_play->blind();
-            std::cout << "FFFF2" << endl;
         }
+        
         cout << t;
 
         string input;
@@ -445,7 +381,6 @@ int main (int argc, char *argv[]) {
                 rowCleared = cur_play->BlockClear();
 
                 int step = cur_play->getDropTime() + 1;
-                cout << "Step: " << step << endl;
                 cur_play->setDropTime(step);
                 if ((cur_play->getLevel() == 4) && (step > 0) && (step % 5 == 0)) {
                     int result = cur_play->dropMid();
@@ -502,11 +437,18 @@ int main (int argc, char *argv[]) {
             }
 
             if (cmdin == "random") {
-                cout << "Not yet developed" << endl;
-            }
+                
 
             if (cmdin == "sequence") {
                 cout << "Not yet developed" << endl;
+            }
+
+            if (cmdin == "restart") {
+                
+                cout << "Not yet developed" << endl;
+                // restart = true;
+                //! Need to clear the borads
+
             }
 
             //! For Block create with Block name
@@ -546,28 +488,13 @@ int main (int argc, char *argv[]) {
                     continue;
                 }
             }
-
-
-            if (cmdin == "restart") {
-                
-                restart = true;
-                //! Need to clear the borads
-
-            }
-
-            cout << t;
         }
+        cout << t;
 
+        }
         if (blind) {
             cur_play->blind();
             blind = false;
         }
-
-        
-
-
-
     }
-
-
 }

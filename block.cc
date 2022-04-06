@@ -59,7 +59,6 @@ int Block::getCellCleared() {
 }
 
 void Block::updateCellCleared() {
-    cout << "we get into updateCellCleared" << endl;
     this->cellCleared += 1;
 }
 
@@ -72,9 +71,6 @@ void Block::eraseallcell(Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4) {
    this->cell4 = cell4;
 }
 
-int Block::getlevel() {
-    return level;
-}
 
 
 std::vector<std::vector<int>> Block::getalllocation() {
@@ -94,7 +90,6 @@ int Block::getType() {
 }
 
 Block::~Block() {}
-
 IBlock::IBlock(int level, Cell* cell1, Cell* cell2, Cell* cell3, Cell* cell4): Block{level, cell1, cell2, cell3, cell4} { 
     
 }

@@ -8,9 +8,13 @@
 class Cell {
     public:
     int col, row; 
+    // the type of the cell, if it is blank currently, it is " "
     char value;
+    // whether the cell is occupied
     bool iffilled = false;
+    // the corresbonding block if it is occupied
     Difficulty* block = nullptr;
+    // whether is is blind due to the action implemented by the opponent
     bool blind = false;
 
     public:
@@ -18,8 +22,7 @@ class Cell {
 
     ~Cell();
 
-    // this method will change the subject, so it triggers
-    // notifyobservers 
+    // these methods allows client to change the value of field of the object in the type Cell
     void eraseRow(int);
     void eraseCol(int);
     void eraseValue(char);
@@ -27,7 +30,7 @@ class Cell {
     void eraseBlock(Difficulty* diff);
     void eraseBlind();
 
-
+    // these methods allows client to get the value of field of the object in the type Cell
     bool getiffilled();
     int getrow();
     int getcol();
@@ -36,7 +39,10 @@ class Cell {
     std::vector<int> getlocation();
     bool getblind();
 
+    // erase all status of a cell to exactly the same as the target cell
     void copy(Cell*);
+
+    // clean the cell status to unoccupied
     void ClearCell();
 
 };

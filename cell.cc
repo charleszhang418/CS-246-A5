@@ -7,8 +7,6 @@ Cell::Cell(int col, int row, char value): col{col}, row{row}, value{value} {}
 
 
 Cell::~Cell() {
-    delete this;
-    return;
 }
 
 bool Cell::getiffilled() {

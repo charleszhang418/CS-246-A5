@@ -4,6 +4,7 @@
 #include "block.h"
 #include "difficulty.h"
 #include "textoutput.h"
+#include <time.h>
 
 #include <iostream>
 #include <string>
